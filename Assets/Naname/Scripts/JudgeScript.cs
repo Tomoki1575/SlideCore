@@ -25,17 +25,19 @@ public class JudgeScript : MonoBehaviour
 
     RESULT judgmentResult = RESULT.NONE;
 
+    public GameObject tapNotes;
+
     void Update()
     {
         deltaTime = notesTime - CountUpScript.msGameTime;
-
-        deltaTimeText.text = $"Delta time : {Mathf.FloorToInt(deltaTime)} ms";
 
         if (IsPerfect())
         {
             judgmentResult = RESULT.PERFECT;
 
             Debug.Log(judgmentResult);
+
+            DestroyThisObject();
         }
 
         else if (IsGreat())
@@ -43,24 +45,33 @@ public class JudgeScript : MonoBehaviour
             judgmentResult = RESULT.GREAT;
 
             Debug.Log(judgmentResult);
+
+            DestroyThisObject();
         }
-  
+
 
         else if (IsBad())
         {
             judgmentResult = RESULT.BAD;
 
             Debug.Log(judgmentResult);
+
+            DestroyThisObject();
         }
 
-        else if (IsMiss())        
-            judgmentResult = RESULT.MISS;        
+        else if (IsMiss())
+        {
+            judgmentResult = RESULT.MISS;
 
-        judgmentResultText.text = $"Judgment Result : {judgmentResult}";
+            Debug.Log(judgmentResult);
+
+            DestroyThisObject();
+        }
+
+        DebugPanel_DeltaTimeOutput();
+
+        DebugPanel_JudgmentResultOutput();
     }
-
-    bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする
-        deltaTime < 1000;       
 
     bool IsPerfect() =>
         Mathf.Abs(deltaTime) <= perfectGracePeriod && Keyboard.current.jKey.wasPressedThisFrame && IsActiveNotes();
@@ -72,5 +83,23 @@ public class JudgeScript : MonoBehaviour
         Mathf.Abs(deltaTime) <= badGracePeriod && Keyboard.current.jKey.wasPressedThisFrame && IsActiveNotes();
 
     bool IsMiss() =>
-        IsActiveNotes();
+        (Keyboard.current.jKey.wasPressedThisFrame && IsActiveNotes()) || deltaTime < -1000;
+
+    bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
+        deltaTime < 1000;
+
+    void DebugPanel_DeltaTimeOutput()
+    {
+        deltaTimeText.text = $"Delta time : {Mathf.FloorToInt(deltaTime)} ms";
+    }
+
+    void DebugPanel_JudgmentResultOutput()
+    {
+        judgmentResultText.text = $"Judgment Result : {judgmentResult}";
+    }
+
+    void DestroyThisObject()
+    {
+        Destroy(this.gameObject);
+    }
 }

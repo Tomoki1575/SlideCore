@@ -6,19 +6,19 @@ public class LaneScript_Minimal : MonoBehaviour
     [SerializeField] private Material activeMaterial;
     [SerializeField] private Material inActiveMaterial;
 
+    public GameObject[] allLanes;
+
     public GameObject LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5;
 
     int[] a = new int[4] { 1, 2, 3, 4 };
 
     int[] canInputLane = new int[4];
 
-    GameObject[] lanes;
-
     bool[] isActiveLane = new bool[6];
 
     void Awake()
     {
-        lanes = new[] { LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5 };
+        allLanes = new[] { LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5 };
         Recalc();
     }
 
@@ -52,7 +52,7 @@ public class LaneScript_Minimal : MonoBehaviour
             canInputLane[i] = Wrap6(a[i]);
         }
 
-        for (int lane = 0; lane < lanes.Length; lane++)
+        for (int lane = 0; lane < allLanes.Length; lane++)
         {
             bool can = false;
 
@@ -65,21 +65,21 @@ public class LaneScript_Minimal : MonoBehaviour
                 }
             }
 
-            var r = lanes[lane].GetComponent<Renderer>();
+            var r = allLanes[lane].GetComponent<Renderer>();
 
             if (can)
             {
                 r.material = activeMaterial;
 
                 isActiveLane[lane] = true;
-            }        
+            }
 
             else
             {
                 r.material = inActiveMaterial;
 
                 isActiveLane[lane] = false;
-            }          
+            }
         }
     }
 
