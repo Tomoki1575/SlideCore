@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoveNotes : MonoBehaviour
 {
-    float noteSpeed = 11 * 1.6f;
+    private float noteSpeed = 11 * 1.6f;
 
     void Update()
     {
