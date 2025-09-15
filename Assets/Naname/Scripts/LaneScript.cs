@@ -1,28 +1,28 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LaneScript_Minimal : MonoBehaviour
+public class LaneScript : MonoBehaviour
 {
     [SerializeField] private Material activeMaterial;
     [SerializeField] private Material inActiveMaterial;
 
-    public GameObject[] allLanes;
+    private GameObject[] allLanes;
 
     public GameObject LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5;
 
-    int[] a = new int[4] { 1, 2, 3, 4 };
+    private int[] a = new int[4] { 1, 2, 3, 4 };
 
-    int[] canInputLane = new int[4];
+    private int[] canInputLane = new int[4];
 
-    bool[] isActiveLane = new bool[6];
+    public static bool[] isActiveLane = new bool[6];
 
-    void Awake()
+    private void Awake()
     {
         allLanes = new[] { LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5 };
         Recalc();
     }
 
-    void Update()
+    private void Update()
     {
         if (Keyboard.current.mKey.wasPressedThisFrame)
         {
@@ -45,7 +45,7 @@ public class LaneScript_Minimal : MonoBehaviour
         }
     }
 
-    void Recalc()
+    private void Recalc()
     {
         for (int i = 0; i < 4; i++)
         {
@@ -83,5 +83,5 @@ public class LaneScript_Minimal : MonoBehaviour
         }
     }
 
-    int Wrap6(int x) => ((x % 6) + 6) % 6;
+    private int Wrap6(int x) => ((x % 6) + 6) % 6;
 }

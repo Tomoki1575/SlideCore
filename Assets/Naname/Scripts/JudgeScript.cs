@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
-enum RESULT
+public enum RESULT
 {
     PERFECT,
     GREAT,
@@ -16,18 +17,35 @@ public class JudgeScript : MonoBehaviour
     public TextMeshProUGUI deltaTimeText;
     public TextMeshProUGUI judgmentResultText;
 
-    float deltaTime;
-    float notesTime = 10000f;
+    [SerializeField] private float notesTime = 10000f;
+    [SerializeField] private int laneNumber = 3;
 
-    float perfectGracePeriod = 300;
-    float greatGracePeriod = 600;
-    float badGracePeriod = 1000;
+    private KeyControl[] laneKeys;
 
-    RESULT judgmentResult = RESULT.NONE;
+    private float deltaTime;
+
+    private float perfectGracePeriod = 300;
+    private float greatGracePeriod = 600;
+    private float badGracePeriod = 1000;
+
+    private RESULT judgmentResult = RESULT.NONE;
 
     public GameObject tapNotes;
 
-    void Update()
+    void Awake()
+    {
+        laneKeys = new KeyControl[6]
+        {
+            Keyboard.current.sKey,
+            Keyboard.current.dKey,
+            Keyboard.current.fKey,
+            Keyboard.current.jKey,
+            Keyboard.current.kKey,
+            Keyboard.current.lKey
+        };
+    }
+
+    private void Update()
     {
         deltaTime = notesTime - CountUpScript.msGameTime;
 
@@ -73,32 +91,32 @@ public class JudgeScript : MonoBehaviour
         DebugPanel_JudgmentResultOutput();
     }
 
-    bool IsPerfect() =>
-        Mathf.Abs(deltaTime) <= perfectGracePeriod && Keyboard.current.jKey.wasPressedThisFrame && IsActiveNotes();
+    private bool IsPerfect() =>
+        Mathf.Abs(deltaTime) <= perfectGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true;
 
-    bool IsGreat() =>
-        Mathf.Abs(deltaTime) <= greatGracePeriod && Keyboard.current.jKey.wasPressedThisFrame && IsActiveNotes();
+    private bool IsGreat() =>
+        Mathf.Abs(deltaTime) <= greatGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true;
 
-    bool IsBad() =>
-        Mathf.Abs(deltaTime) <= badGracePeriod && Keyboard.current.jKey.wasPressedThisFrame && IsActiveNotes();
+    private bool IsBad() =>
+        Mathf.Abs(deltaTime) <= badGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true;
 
-    bool IsMiss() =>
-        (Keyboard.current.jKey.wasPressedThisFrame && IsActiveNotes()) || deltaTime < -1000;
+    private bool IsMiss() =>
+        (laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true) || deltaTime < -1000;
 
-    bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
+    private bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
         deltaTime < 1000;
 
-    void DebugPanel_DeltaTimeOutput()
+    private void DebugPanel_DeltaTimeOutput()
     {
         deltaTimeText.text = $"Delta time : {Mathf.FloorToInt(deltaTime)} ms";
     }
 
-    void DebugPanel_JudgmentResultOutput()
+    private void DebugPanel_JudgmentResultOutput()
     {
         judgmentResultText.text = $"Judgment Result : {judgmentResult}";
     }
 
-    void DestroyThisObject()
+    private void DestroyThisObject()
     {
         Destroy(this.gameObject);
     }

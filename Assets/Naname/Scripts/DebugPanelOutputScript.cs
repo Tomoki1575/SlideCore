@@ -5,7 +5,7 @@ public class DebugPanelOutput : MonoBehaviour
 {
     public GameObject debugPanel;
 
-    void Update()
+    private void Update()
     {
         if (Keyboard.current.qKey.wasPressedThisFrame && Keyboard.current.shiftKey.isPressed)
         {
