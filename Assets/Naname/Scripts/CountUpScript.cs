@@ -8,7 +8,7 @@ public class CountUpScript : MonoBehaviour
     public static float gameTime;
     public static float msGameTime;
 
-    void Update()
+    private void Update()
     {
         gameTime = Time.time;
 
