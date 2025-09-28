@@ -24,9 +24,10 @@ public class JudgeScript : MonoBehaviour
 
     private float deltaTime;
 
-    private float perfectGracePeriod = 300;
-    private float greatGracePeriod = 600;
-    private float badGracePeriod = 1000;
+    private float perfectGracePeriod = 50;
+    private float greatGracePeriod = 100;
+    private float badGracePeriod = 180;
+    private float activeNotePeriod = 300;
 
     private RESULT judgmentResult = RESULT.NONE;
 
@@ -92,19 +93,29 @@ public class JudgeScript : MonoBehaviour
     }
 
     private bool IsPerfect() =>
-        Mathf.Abs(deltaTime) <= perfectGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true;
+        Mathf.Abs(deltaTime) <= perfectGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
 
     private bool IsGreat() =>
-        Mathf.Abs(deltaTime) <= greatGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true;
+        Mathf.Abs(deltaTime) <= greatGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
 
     private bool IsBad() =>
-        Mathf.Abs(deltaTime) <= badGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true;
+        Mathf.Abs(deltaTime) <= badGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
 
-    private bool IsMiss() =>
-        (laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber] == true) || deltaTime < -1000;
+    private bool IsMiss()
+    {
+        bool keyDown = laneKeys[laneNumber].wasPressedThisFrame;
+        bool laneActive = IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
+        float adt = Mathf.Abs(deltaTime);
+
+        if (deltaTime < -activeNotePeriod) return true;
+
+        //if (keyDown && laneActive && adt > badGracePeriod && adt <= activeNotePeriod) return true;
+
+        return false;
+    }
 
     private bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
-        deltaTime < 1000;
+        deltaTime < activeNotePeriod;
 
     private void DebugPanel_DeltaTimeOutput()
     {
