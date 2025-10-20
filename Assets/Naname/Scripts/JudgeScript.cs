@@ -12,24 +12,36 @@ public enum RESULT
     NONE
 }
 
+public enum NotesType
+{
+    NONE,
+    TAP,
+    HOLD,
+    SLIDE,
+    NOISE
+};
+
 public class JudgeScript : MonoBehaviour
 {
+    [Header("text")]
     public TextMeshProUGUI deltaTimeText;
     public TextMeshProUGUI judgmentResultText;
 
+    [Header("notesVariable")]
     [SerializeField] private float notesTime = 10000f;
     [SerializeField] private int laneNumber = 3;
+    [SerializeField] private NotesType noteTipe = NotesType.NONE;
+    private RESULT judgmentResult = RESULT.NONE;
 
     private KeyControl[] laneKeys;
 
     private float deltaTime;
 
-    private float perfectGracePeriod = 50;
-    private float greatGracePeriod = 100;
-    private float badGracePeriod = 180;
-    private float activeNotePeriod = 300;
-
-    private RESULT judgmentResult = RESULT.NONE;
+    [Header("judge")]
+    [SerializeField] private float perfectGracePeriod = 50;
+    [SerializeField] private float greatGracePeriod = 100;
+    [SerializeField] private float badGracePeriod = 180;
+    [SerializeField] private float activeNotePeriod = 300;
 
     public GameObject tapNotes;
 
@@ -56,7 +68,7 @@ public class JudgeScript : MonoBehaviour
 
             Debug.Log(judgmentResult);
 
-            DestroyThisObject();
+            Destroy(this.gameObject);
         }
 
         else if (IsGreat())
@@ -65,7 +77,7 @@ public class JudgeScript : MonoBehaviour
 
             Debug.Log(judgmentResult);
 
-            DestroyThisObject();
+            Destroy(this.gameObject);
         }
 
 
@@ -75,7 +87,7 @@ public class JudgeScript : MonoBehaviour
 
             Debug.Log(judgmentResult);
 
-            DestroyThisObject();
+            Destroy(this.gameObject);
         }
 
         else if (IsMiss())
@@ -84,12 +96,10 @@ public class JudgeScript : MonoBehaviour
 
             Debug.Log(judgmentResult);
 
-            DestroyThisObject();
+            Destroy(this.gameObject);
         }
 
-        DebugPanel_DeltaTimeOutput();
-
-        DebugPanel_JudgmentResultOutput();
+        DebugPanel_Output();
     }
 
     private bool IsPerfect() =>
@@ -109,26 +119,16 @@ public class JudgeScript : MonoBehaviour
 
         if (deltaTime < -activeNotePeriod) return true;
 
-        //if (keyDown && laneActive && adt > badGracePeriod && adt <= activeNotePeriod) return true;
-
         return false;
     }
 
     private bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
-        deltaTime < activeNotePeriod;
+        Mathf.Abs(deltaTime) < activeNotePeriod;
 
-    private void DebugPanel_DeltaTimeOutput()
+    private void DebugPanel_Output()
     {
         deltaTimeText.text = $"Delta time : {Mathf.FloorToInt(deltaTime)} ms";
-    }
 
-    private void DebugPanel_JudgmentResultOutput()
-    {
         judgmentResultText.text = $"Judgment Result : {judgmentResult}";
-    }
-
-    private void DestroyThisObject()
-    {
-        Destroy(this.gameObject);
     }
 }
