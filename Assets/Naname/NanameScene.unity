@@ -140,7 +140,12 @@ MonoBehaviour:
   judgmentResultText: {fileID: 1136166047}
   notesTime: 9200
   laneNumber: 4
-  tapNotes: {fileID: 211940136}
+  noteType: 1
+  PerfectGracePeriod: 50
+  GreatGracePeriod: 100
+  BadGracePeriod: 180
+  activeNotePeriod: 300
+  TapNotes: {fileID: 0}
 --- !u!1 &407997187
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +905,12 @@ MonoBehaviour:
   judgmentResultText: {fileID: 1136166047}
   notesTime: 10000
   laneNumber: 4
-  tapNotes: {fileID: 723826040}
+  noteType: 1
+  PerfectGracePeriod: 50
+  GreatGracePeriod: 100
+  BadGracePeriod: 180
+  activeNotePeriod: 300
+  TapNotes: {fileID: 0}
 --- !u!1 &740688888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1182,12 @@ MonoBehaviour:
   judgmentResultText: {fileID: 1136166047}
   notesTime: 9000
   laneNumber: 4
-  tapNotes: {fileID: 812395757}
+  noteType: 1
+  PerfectGracePeriod: 50
+  GreatGracePeriod: 100
+  BadGracePeriod: 180
+  activeNotePeriod: 300
+  TapNotes: {fileID: 0}
 --- !u!1 &828246565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2527,12 @@ MonoBehaviour:
   judgmentResultText: {fileID: 1136166047}
   notesTime: 11000
   laneNumber: 3
-  tapNotes: {fileID: 1858078944}
+  noteType: 1
+  PerfectGracePeriod: 50
+  GreatGracePeriod: 100
+  BadGracePeriod: 180
+  activeNotePeriod: 300
+  TapNotes: {fileID: 0}
 --- !u!1 &1858454178
 GameObject:
   m_ObjectHideFlags: 0
