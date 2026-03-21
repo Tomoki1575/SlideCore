@@ -22,14 +22,14 @@ public class JudgeScript : MonoBehaviour
     public TextMeshProUGUI deltaTimeText;
     public TextMeshProUGUI judgmentResultText;
 
-    [Header("notesVariable")]
+    [Header("ノーツ情報")]
     //public float generateTime;  // 生成する時間
     [SerializeField] private float notesTime = 10000f;
     [SerializeField] private int laneNumber = 3;
     [SerializeField] private NoteDataManager.NoteType noteType = NoteDataManager.NoteType.None;
     //public bool bSpecial;       // 特殊ノーツか
     //public float duration;      // Holdノーツのみで使用、それ以外では0
-    public bool bIsRight;       // Slideノーツのみで使用、それ以外ではfalse
+    [SerializeField] public bool bIsRight;       // Slideノーツのみで使用、それ以外ではfalse
 
     private Result judgmentResult = Result.None;
 
@@ -37,11 +37,12 @@ public class JudgeScript : MonoBehaviour
 
     private float deltaTime;
 
-    [Header("judge")]
+    [Header("判定幅")]
     [SerializeField] private float PerfectGracePeriod = 50;
     [SerializeField] private float GreatGracePeriod = 100;
     [SerializeField] private float BadGracePeriod = 180;
     [SerializeField] private float activeNotePeriod = 300;
+    [SerializeField] private float overNotePeriod = -300;
 
     public GameObject TapNotes;
 
@@ -67,6 +68,10 @@ public class JudgeScript : MonoBehaviour
             case NoteDataManager.NoteType.Tap:                
                 TapNoteJudge();
                 break;
+
+            case NoteDataManager.NoteType.Slide:             
+                SlideNoteJudge();
+                break;
         }
 
         DebugPanel_Output();
@@ -74,7 +79,7 @@ public class JudgeScript : MonoBehaviour
 
     private void TapNoteJudge()
     {
-        if (IsPerfect())
+        if (IsPerfect() && laneKeys[laneNumber].wasPressedThisFrame)
         {
             judgmentResult = Result.Perfect;
 
@@ -83,7 +88,7 @@ public class JudgeScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        else if (IsGreat())
+        else if (IsGreat() && laneKeys[laneNumber].wasPressedThisFrame)
         {
             judgmentResult = Result.Great;
 
@@ -93,7 +98,7 @@ public class JudgeScript : MonoBehaviour
         }
 
 
-        else if (IsBad())
+        else if (IsBad() && laneKeys[laneNumber].wasPressedThisFrame)
         {
             judgmentResult = Result.Bad;
 
@@ -102,7 +107,7 @@ public class JudgeScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        else if (IsMiss())
+        else if (IsMiss() && laneKeys[laneNumber].wasPressedThisFrame)
         {
             judgmentResult = Result.Miss;
 
@@ -110,77 +115,118 @@ public class JudgeScript : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-    }
 
-    private KeyControl GetSlideKey(NoteData note)
-    {
-        // 左右スライドでキーを変えるなら
-        return note.bIsRight
-            ? Keyboard.current.rightArrowKey   // 右スライド
-            : Keyboard.current.leftArrowKey;   // 左スライド
+        else if(IsOverNotes())
+        {
+            judgmentResult = Result.Miss;
+
+            Debug.Log(judgmentResult);
+
+            Destroy(this.gameObject);
+        }
     }
 
     private void SlideNoteJudge()
     {
-        KeyControl a = note.bIsRight ? Keyboard.current.rightArrowKey : Keyboard.current.leftArrowKey;
-
-        if (Mathf.Abs(deltaTime) <= PerfectGracePeriod
-            && a.wasPressedThisFrame
-            && IsActiveNotes()
-            && LaneScript.isActiveLane[note.lane])
+        if(bIsRight)
         {
-            judgmentResult = Result.Perfect;
+            if (IsPerfect() && Keyboard.current.mKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Perfect;
 
-            Destroy(this.gameObject);
+                Debug.Log(judgmentResult);
+
+                Destroy(this.gameObject);
+            }
+
+            else if (IsGreat() && Keyboard.current.mKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Great;
+
+                Debug.Log(judgmentResult);
+
+                Destroy(this.gameObject);
+            }
+
+
+            else if (IsBad() && Keyboard.current.mKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Bad;
+
+                Debug.Log(judgmentResult);
+
+                Destroy(this.gameObject);
+            }
+
+            else if (IsMiss() && Keyboard.current.mKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Miss;
+
+                Debug.Log(judgmentResult);
+
+                Destroy(this.gameObject);
+            }
         }
 
-
-        else if (IsGreat())
+        else if(!bIsRight)
         {
-            judgmentResult = Result.Great;
+            if (IsPerfect() && Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Perfect;
 
-            Debug.Log(judgmentResult);
+                Debug.Log(judgmentResult);
 
-            Destroy(this.gameObject);
-        }
+                Destroy(this.gameObject);
+            }
+
+            else if (IsGreat() && Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Great;
+
+                Debug.Log(judgmentResult);
+
+                Destroy(this.gameObject);
+            }
 
 
-        else if (IsBad())
-        {
-            judgmentResult = Result.Bad;
+            else if (IsBad() && Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Bad;
 
-            Debug.Log(judgmentResult);
+                Debug.Log(judgmentResult);
 
-            Destroy(this.gameObject);
-        }
+                Destroy(this.gameObject);
+            }
 
-        else if (IsMiss())
-        {
-            judgmentResult = Result.Miss;
+            else if (IsMiss() && Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                judgmentResult = Result.Miss;
 
-            Debug.Log(judgmentResult);
+                Debug.Log(judgmentResult);
 
-            Destroy(this.gameObject);
+                Destroy(this.gameObject);
+            }
         }
     }
+
 
     private void calcDeltaTime()=>    
         deltaTime = notesTime - CountUpScript.msGameTime;    
 
     private bool IsPerfect() =>
-        Mathf.Abs(deltaTime) <= PerfectGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
+        Mathf.Abs(deltaTime) <= PerfectGracePeriod && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
 
     private bool IsGreat() =>
-        Mathf.Abs(deltaTime) <= GreatGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
+        Mathf.Abs(deltaTime) <= GreatGracePeriod && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
 
     private bool IsBad() =>
-        Mathf.Abs(deltaTime) <= BadGracePeriod && laneKeys[laneNumber].wasPressedThisFrame && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
+        Mathf.Abs(deltaTime) <= BadGracePeriod && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
 
     private bool IsMiss()
     {
-        bool keyDown = laneKeys[laneNumber].wasPressedThisFrame;
-        bool laneActive = IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
-        float adt = Mathf.Abs(deltaTime);
+        //bool keyDown = laneKeys[laneNumber].wasPressedThisFrame;
+        //bool laneActive = IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
+        //float adt = Mathf.Abs(deltaTime);
 
         if (deltaTime < -activeNotePeriod) return true;
 
@@ -189,6 +235,8 @@ public class JudgeScript : MonoBehaviour
 
     private bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
         Mathf.Abs(deltaTime) < activeNotePeriod;
+    private bool IsOverNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
+        deltaTime < overNotePeriod;
 
     private void DebugPanel_Output()
     {
