@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283fe82c2b2e573458d80be72da10d2b, type: 3}
+  m_Name: Dummy5
+  m_EditorClassIdentifier: 
+  jacketImage: {fileID: 21300000, guid: ee8ce5cd9c0883f4182b5cfd43cfd7fe, type: 3}
+  title: Dummy5-Easy&Hard
+  artist: Unknown
+  audioClip: {fileID: 8300000, guid: 77af67be94c7ded489f6153b8961ba14, type: 3}
+  levelEasy: 1
+  chartEasy: {fileID: 4900000, guid: dca09a6c77c5c1d4a84d1c0e2a783fbe, type: 3}
+  levelNormal: 0
+  chartNormal: {fileID: 0}
+  levelHard: 3
+  chartHard: {fileID: 4900000, guid: dca09a6c77c5c1d4a84d1c0e2a783fbe, type: 3}

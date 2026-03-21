@@ -1,0 +1,231 @@
+using System.Collections.Generic;
+using TMPro;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Pool;
+using UnityEngine.UI;
+
+// このコードは以下サイトを参考にしました
+// https://light11.hatenadiary.com/entry/2022/05/16/201949#Loop-Scroll-Rect%E3%81%A8%E3%81%AF
+
+[RequireComponent(typeof(LoopScrollRect))]
+[DisallowMultipleComponent]
+public sealed class ScrollRectPool : MonoBehaviour, LoopScrollPrefabSource, LoopScrollDataSource
+{
+    [SerializeField]
+    private GameObject ElementPrefab;
+    [SerializeField]
+    private LoopScrollRect ScrollRectComp;
+    [SerializeField]
+    private RectTransform ViewportRect;
+    [SerializeField]
+    private RectTransform ContentRect;
+
+    int dataCount = 10;
+
+    private ObjectPool<GameObject> ElementPool;
+    private HashSet<RectTransform> VisibleElements = new HashSet<RectTransform>();
+    private Dictionary<RectTransform, int> RectToIndex = new Dictionary<RectTransform, int>();
+    private bool bNeedSnap = false;
+    private int SnapIndex = 0;
+
+    // 状態変数
+    private bool IsPointerDown;
+    private float LastScrollTime;
+    private bool PreviousUpdated;
+
+    private const float SlipTime = 0.15f;
+
+    private void Start()
+    {
+        if (ElementPrefab == null || ScrollRectComp == null || ViewportRect == null) return;
+
+        ElementPool = new ObjectPool<GameObject>(
+            () => Instantiate(ElementPrefab),
+            o => o.SetActive(true),
+            o =>
+            {
+                o.transform.SetParent(transform);
+                o.SetActive(false);
+            });
+
+        ScrollRectComp.prefabSource = this;
+        ScrollRectComp.dataSource = this;
+        // -1を指定するとループになる
+        ScrollRectComp.totalCount = -1;
+        ScrollRectComp.RefillCells();
+    }
+
+    void LoopScrollDataSource.ProvideData(Transform trans, int index)
+    {
+        // ここでデータをセットする
+        int dataIndex = (int)Mathf.Repeat(index, dataCount);
+
+        trans.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Data {dataIndex}";
+        trans.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"Virtual {index}";
+
+        var rect = trans as RectTransform;
+        RectToIndex[rect] = index;
+    }
+
+    GameObject LoopScrollPrefabSource.GetObject(int index)
+    {
+        // ScrollRectが要素を要求したときに呼ぶ
+        GameObject go = ElementPool.Get();
+        VisibleElements.Add(go.transform as RectTransform);
+        return go;
+    }
+
+    void LoopScrollPrefabSource.ReturnObject(Transform trans)
+    {
+        // ScrollRectが要素を返すときに呼ぶ
+        var rect = trans as RectTransform;
+        VisibleElements.Remove(rect);
+        RectToIndex.Remove(rect);
+        ElementPool.Release(trans.gameObject);
+    }
+
+    void LateUpdate()
+    {
+        if (IsUserInteracting())
+        {
+            // もし前フレームまでUpdateしていたなら、全部を元のサイズに戻す
+            ResetVisibleSizes();
+            //if (PreviousUpdated)
+            //{
+            //    foreach (var item in VisibleElements)
+            //    {
+            //        item.GetComponent<LayoutElement>().preferredHeight = 135;
+            //    }
+            //    PreviousUpdated = false;
+            //}
+            return;
+        }
+        if (VisibleElements.Count == 0) return;
+
+        //if (PreviousUpdated) return;
+
+        //PreviousUpdated = true;
+        //RectTransform centerItem = null;
+        //float minDist = float.MaxValue;
+
+        //// Viewportの中心（ワールド）
+        //Vector3 viewportCenter =
+        //    ViewportRect.TransformPoint(ViewportRect.rect.center);
+
+        //float centerGap = 0;
+
+        //foreach (var item in VisibleElements)
+        //{
+        //    Vector3 itemCenter =
+        //        item.TransformPoint(item.rect.center);
+
+        //    float dist = Mathf.Abs(itemCenter.y - viewportCenter.y);
+
+        //    if (dist < minDist)
+        //    {
+        //        centerGap = itemCenter.y - viewportCenter.y;
+        //        minDist = dist;
+        //        centerItem = item;
+        //    }
+        //}
+
+        //int centerIndex = rectToIndex[centerItem];
+
+        //// サイズ確定
+        //foreach (var item in VisibleElements)
+        //{
+        //    int index = rectToIndex[item];
+        //    LayoutElement le = item.GetComponent<LayoutElement>();
+
+        //    if (index == centerIndex)
+        //    {
+        //        le.preferredHeight = 190;
+        //        Debug.Log($"Set Big{index}");
+        //    }
+        //    else le.preferredHeight = 135;
+        //}
+
+        //Debug.Log($"これが中央>{centerIndex}なので、これを一番上にします。>{centerIndex - 3}");
+        //// スナップ
+        //ScrollRectComp.RefillCells(rectToIndex[centerItem] - 3);
+
+        // ビューポート中心
+        Vector3 viewportCenter = ViewportRect.TransformPoint(ViewportRect.rect.center);
+
+        RectTransform centerItem = null;
+        float minDist = float.MaxValue;
+
+        foreach (var item in VisibleElements)
+        {
+            Vector3 itemCenter = item.TransformPoint(item.rect.center);
+            float dist = Mathf.Abs(itemCenter.y - viewportCenter.y);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                centerItem = item;
+            }
+        }
+
+        if (centerItem == null) return;
+
+        int centerIndex = RectToIndex[centerItem];
+
+        // サイズ更新
+        foreach (var item in VisibleElements)
+        {
+            var le = item.GetComponent<LayoutElement>();
+            if (RectToIndex[item] == centerIndex)
+                le.preferredHeight = 190;
+            else
+                le.preferredHeight = 135;
+        }
+
+        // Snap は次フレームで
+        SnapIndex = centerIndex - 3;
+        bNeedSnap = true;
+    }
+
+    void Update()
+    {
+        if (!bNeedSnap) return;
+        bNeedSnap = false;
+        ScrollRectComp.RefillCells(SnapIndex);
+    }
+
+    void ResetVisibleSizes()
+    {
+        foreach (var item in VisibleElements)
+        {
+            item.GetComponent<LayoutElement>().preferredHeight = 135;
+        }
+    }
+
+    // イベントハンドラー
+    public void OnPointerDown(BaseEventData eventData)
+    {
+        IsPointerDown = true;
+    }
+
+    public void OnPointerUp(BaseEventData eventData)
+    {
+        IsPointerDown = false;
+    }
+
+    public void OnScroll(BaseEventData eventData)
+    {
+        LastScrollTime = Time.unscaledTime;
+    }
+
+    bool IsUserInteracting()
+    {
+        if (IsPointerDown) return true;
+
+        // ホイール入力の余韻
+        if (Time.unscaledTime - LastScrollTime < SlipTime)
+            return true;
+
+        return false;
+    }
+}

@@ -1,0 +1,58 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MusicElement : MonoBehaviour
+{
+    [SerializeField]
+    private Image LevelImage;
+    [SerializeField]
+    private TextMeshProUGUI LevelText;
+    [SerializeField]
+    private Image JacketImage;
+    [SerializeField]
+    private TextMeshProUGUI TitleText;
+    [SerializeField]
+    private TextMeshProUGUI ArtistText;
+
+    private void Awake()
+    {
+        RequireCheck.ThrowIfAnyNull(this,
+            (LevelImage, nameof(LevelImage)),
+            (LevelText, nameof(LevelText)),
+            (JacketImage, nameof(JacketImage)),
+            (TitleText, nameof(TitleText)),
+            (ArtistText, nameof(ArtistText))
+        );
+    }
+
+    public void SetElementData(MusicData musicData, MusicDataManager.Difficulty difficulty, Color levelColor)
+    {
+        // レベルの背景色を設定
+        if (LevelImage.color != levelColor) LevelImage.color = levelColor;
+        // レベルの数値を設定
+        string level = string.Empty;
+        switch (difficulty)
+        {
+            case MusicDataManager.Difficulty.Easy:
+                level = musicData.levelEasy.ToString();
+                break;
+            case MusicDataManager.Difficulty.Normal:
+                level = musicData.levelNormal.ToString();
+                break;
+            case MusicDataManager.Difficulty.Hard:
+                level = musicData.levelHard.ToString();
+                break;
+            default:
+                level = "--";
+                break;
+        }
+        if (LevelText.text != level) LevelText.text = level;
+        // ジャケット画像を設定
+        if (JacketImage.sprite != musicData.jacketImage) JacketImage.sprite = musicData.jacketImage;
+        // 曲名を設定
+        if (TitleText.text != musicData.title) TitleText.text = musicData.title;
+        // アーティスト名を設定
+        if (ArtistText.text != musicData.artist) ArtistText.text = musicData.artist;
+    }
+}
