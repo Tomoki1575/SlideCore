@@ -3,11 +3,15 @@ using UnityEngine.InputSystem;
 
 public class LaneScript : MonoBehaviour
 {
+    [Header("ノーツがアクティブである事を表すマテリアルをアタッチ")]
     [SerializeField] private Material activeMaterial;
+
+    [Header("ノーツが非アクティブである事を表すマテリアルをアタッチ")]
     [SerializeField] private Material inActiveMaterial;
 
     private GameObject[] allLanes;
 
+    [Header("各レーンをアタッチ")]
     public GameObject LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5;
 
     private int[] a = new int[4] { 1, 2, 3, 4 };
@@ -83,5 +87,5 @@ public class LaneScript : MonoBehaviour
         }
     }
 
-    private int Wrap6(int x) => ((x % 6) + 6) % 6;
+    private int Wrap6(int x) => ((x % 6) + 6) % 6;    // ずらす
 }
