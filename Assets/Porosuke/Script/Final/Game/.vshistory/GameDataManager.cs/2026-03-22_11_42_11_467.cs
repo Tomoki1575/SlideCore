@@ -142,19 +142,20 @@ public static class GameDataManager
 
         GameWaitSec = MusicStartWaitSec - OffsetSec;
 
+        if (NoteListSize > 0) PrecomputeDistance();
         // 待ち時間は常に一定とのことなので、ここを使わない
-        if (NoteListSize > 0)
-        {
-            // フェーズ2：Editorでの時間基準で、最初のノーツの生成時間について考える
-            PrecomputeDistance();
-            //double generateTime = CalcGenerateTime(NoteList[0].finishTime, OptionData.LaneLength);
-            //// 生成時間が負の値の場合、更に長く待つ必要がある可能性がある
-            //if (generateTime < 0)
-            //{
-            //    double genAbs = Math.Abs(generateTime);
-            //    if (genAbs > GameWaitSec) GameWaitSec = genAbs;
-            //}
-        }
+        //if (NoteListSize > 0)
+        //{
+        //    // フェーズ2：Editorでの時間基準で、最初のノーツの生成時間について考える
+        //    PrecomputeDistance();
+        //    double generateTime = CalcGenerateTime(NoteList[0].finishTime, OptionData.LaneLength);
+        //    // 生成時間が負の値の場合、更に長く待つ必要がある可能性がある
+        //    if(generateTime < 0)
+        //    {
+        //        double genAbs = Math.Abs(generateTime);
+        //        if (genAbs > GameWaitSec) GameWaitSec = genAbs;
+        //    }
+        //}
 
         //MusicStartWaitSec = GameWaitSec + OffsetSec;
     }
