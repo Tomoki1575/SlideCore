@@ -1,91 +1,91 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class LaneScript : MonoBehaviour
 {
-    [Header("ノーツがアクティブである事を表すマテリアルをアタッチ")]
-    [SerializeField] private Material activeMaterial;
+    [Header("判定アクティブ時の色")]
+    [SerializeField] private Color activeColor = Color.white;
 
-    [Header("ノーツが非アクティブである事を表すマテリアルをアタッチ")]
-    [SerializeField] private Material inActiveMaterial;
+    [Header("判定非アクティブ時の色")]
+    [SerializeField] private Color inActiveColor = Color.gray;
 
-    private GameObject[] allLanes;
+    private Image[] allLaneImages;
 
-    [Header("各レーンをアタッチ")]
-    public GameObject LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5;
+    [Header("各レーンのImageをアタッチ")]
+    public Image Lane0, Lane1, Lane2, Lane3, Lane4, Lane5;
 
-    private int[] a = new int[4] { 1, 2, 3, 4 };
+    private int[] canInputLane = new int[4] { 1, 2, 3, 4 };
 
-    private int[] canInputLane = new int[4];
-
-    public static bool[] isActiveLane = new bool[6];
+    public static bool[] isActiveLane = new bool[6];        // 判定時に役に立つ（このスクリプトではあまり使わない）
 
     private void Awake()
     {
-        allLanes = new[] { LaneNumber0, LaneNumber1, LaneNumber2, LaneNumber3, LaneNumber4, LaneNumber5 };
-        Recalc();
+        allLaneImages = new[] { Lane0, Lane1, Lane2, Lane3, Lane4, Lane5 };
+
+        for (int i = 0; i < 4; i++)
+        {
+            canInputLane[i] = NormalizeLane(canInputLane[i]);
+        }
+
+        ApplyActiveLanes();
     }
 
     private void Update()
     {
         if (Keyboard.current.mKey.wasPressedThisFrame)
         {
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 0; i < canInputLane.Length; i++)
             {
-                a[i] = Wrap6(a[i] + 1);
+                canInputLane[i] = NormalizeLane(canInputLane[i] + 1);
             }
 
-            Recalc();
+            ApplyActiveLanes();
         }
 
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 0; i < canInputLane.Length; i++)
             {
-                a[i] = Wrap6(a[i] - 1);
+                canInputLane[i] = NormalizeLane(canInputLane[i] - 1);
             }
 
-            Recalc();
+            ApplyActiveLanes();
         }
     }
 
-    private void Recalc()
+    private void ApplyActiveLanes()
     {
-        for (int i = 0; i < 4; i++)
+        for (int lane = 0; lane < allLaneImages.Length; lane++)
         {
-            canInputLane[i] = Wrap6(a[i]);
-        }
-
-        for (int lane = 0; lane < allLanes.Length; lane++)
-        {
-            bool can = false;
+            bool isActive = false;
 
             for (int i = 0; i < canInputLane.Length; i++)
             {
                 if (canInputLane[i] == lane)
                 {
-                    can = true;
-                    break;
+                    isActive = true; 
+                    break; 
                 }
             }
 
-            var r = allLanes[lane].GetComponent<Renderer>();
-
-            if (can)
+            if (isActive)
             {
-                r.material = activeMaterial;
-
+                allLaneImages[lane].color = activeColor;
                 isActiveLane[lane] = true;
             }
 
             else
             {
-                r.material = inActiveMaterial;
-
+                allLaneImages[lane].color = inActiveColor;
                 isActiveLane[lane] = false;
             }
         }
     }
 
-    private int Wrap6(int x) => ((x % 6) + 6) % 6;    // ずらす
+    private int NormalizeLane(int laneNumber) 
+        => ((laneNumber % 6) + 6) % 6;
+    // アクティブレーンをずらした時にはみ出たものを6で割り、その余りを算出するための関数。
+    // 例えば3,4,5,6レーンがアクティブである時、一つずらすと4,5,6,7レーンがアクティブとなる。
+    // しかし7レーンなんてものは存在しない為、7 % 6をすることで1レーン目をアクティブにする。
 }
