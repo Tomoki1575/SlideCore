@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static GameDataManager;
+
+public class LineManager : MonoBehaviour
+{
+    [SerializeField]
+    private LineDrawer LineDrawerClass;
+    [SerializeField]
+    private RectTransform LineDrawerRect;
+
+    private HashSet<NoteData> DrewHoldStartNoteHash;
+
+    private const int HoldLineThickness = 10;
+
+    private Color HoldLineColor = new Color(1.000f, 0.753f, 0.251f, 1f);
+
+    private void Awake()
+    {
+        RequireCheck.ThrowIfAnyNull(this,
+            (LineDrawerClass, nameof(LineDrawerClass)),
+            (LineDrawerRect, nameof(LineDrawerRect))
+            );
+
+        DrewHoldStartNoteHash = new HashSet<NoteData>();
+    }
+
+    public void DrawLines()
+    {
+        // 1フレーム終わったら呼ぶ
+        LineDrawerClass.DrawLines();
+    }
+
+    public void ClearLines()
+    {
+        // 処理の最初に呼ぶ
+        LineDrawerClass.ClearLines();
+        DrewHoldStartNoteHash.Clear();
+    }
+
+    public void AddHoldLine(NoteData noteData, double position, double currentTime)
+    {
+        if (noteData.type != NoteType.Hold && noteData.type != NoteType.HoldEnd) return;
+
+        double startPosition = 0;
+        double endPosition = 0;
+
+        if(noteData.type == NoteType.Hold)
+        {
+            if (DrewHoldStartNoteHash.Contains(noteData)) return;
+
+            // 既に計算済みの値を使うことで高速化
+            startPosition = position;
+            // ペア（End）の今の位置を求める
+            endPosition = GetPositionAtTime(noteData.pairNoteData.generateTime, currentTime);
+        }
+        else
+        {
+            if (DrewHoldStartNoteHash.Contains(noteData.pairNoteData)) return;
+
+            startPosition = GetPositionAtTime(noteData.pairNoteData.generateTime, currentTime);
+            endPosition = position;
+        }
+        // End -> Startの線を引く
+        //float topY = (float)Math.Min(startPosition, endPosition);
+        //float bottomY = (float)Math.Max(startPosition, endPosition);
+
+        //LineDrawerClass.AddLine(
+        //    GetStartPosition(noteData.lane, topY),
+        //    bottomY - topY,
+        //    LineDrawer.LineOrientation.Vertical,
+        //    HoldLineThickness,
+        //    HoldLineColor
+        //);
+        LineDrawerClass.AddLine(GetStartPosition(noteData.lane, startPosition),
+                                (float)(startPosition - endPosition),
+                                LineDrawer.LineOrientation.Vertical,
+                                HoldLineThickness,
+                                HoldLineColor);
+        // 描画済みリストに追加
+        DrewHoldStartNoteHash.Add(noteData.type == NoteType.Hold ? noteData : noteData.pairNoteData);
+
+        Debug.Log("Draw");
+    }
+
+    private Vector2 GetStartPosition(int lane, double y)
+    {
+        return new Vector2(NotePoolManager.GetPositionXByLane((int)LineDrawerRect.rect.width, lane),
+                            (float)y);
+    }
+
+    public void AddSameLine()
+    {
+
+    }
+}
