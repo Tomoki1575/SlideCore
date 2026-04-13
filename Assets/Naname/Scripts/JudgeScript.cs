@@ -1,247 +1,94 @@
-using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using static NoteDataManager;
-
-public enum Result
-{
-    Perfect,
-    Great,
-    Bad,
-    Miss,
-    None
-}
 
 public class JudgeScript : MonoBehaviour
 {
-    public NoteData note;
+    private MoveScript moveScript;
 
-    [Header("text")]
-    public TextMeshProUGUI deltaTimeText;
-    public TextMeshProUGUI judgmentResultText;
+    private float perfectWindow = 0.05f; // ±50ms
+    private float greatWindow = 0.10f;   // ±100ms
+    private float goodWindow = 0.25f;    // ±250ms
+    private float missWindow = 0.4f;    // ±400ms（これ以降は自動でMiss）
 
-    [Header("ノーツ情報")]
-    //public float generateTime;  // 生成する時間
-    [SerializeField] private float notesTime = 10000f;
-    [SerializeField] private int laneNumber = 3;
-    [SerializeField] private NoteDataManager.NoteType noteType = NoteDataManager.NoteType.None;
-    //public bool bSpecial;       // 特殊ノーツか
-    //public float duration;      // Holdノーツのみで使用、それ以外では0
-    [SerializeField] public bool bIsRight;       // Slideノーツのみで使用、それ以外ではfalse
-
-    private Result judgmentResult = Result.None;
-
-    private KeyControl[] laneKeys;
-
-    private float deltaTime;
-
-    [Header("判定幅")]
-    [SerializeField] private float PerfectGracePeriod = 50;
-    [SerializeField] private float GreatGracePeriod = 100;
-    [SerializeField] private float BadGracePeriod = 180;
-    [SerializeField] private float activeNotePeriod = 300;
-    [SerializeField] private float overNotePeriod = -300;
-
-    public GameObject TapNotes;
-
-    void Awake()
+    void Start()
     {
-        laneKeys = new KeyControl[6]
-        {
-            Keyboard.current.sKey,
-            Keyboard.current.dKey,
-            Keyboard.current.fKey,
-            Keyboard.current.jKey,
-            Keyboard.current.kKey,
-            Keyboard.current.lKey
-        };
+
+        moveScript = GetComponent<MoveScript>();
     }
 
-    private void Update()
+    void Update()
     {
-        calcDeltaTime();
+        // 判定ライン（0秒）からのズレを計算
+        float timeUntilHit = moveScript.hitTime - MusicManagerScript.songTime;
 
-        switch (noteType)
+        // A. スルー判定（通り過ぎたかどうか）
+        // 絶対値ではなく、そのままの数値が -missWindow より小さくなった時（＝手遅れ）
+        if (timeUntilHit < -missWindow)
         {
-            case NoteDataManager.NoteType.Tap:                
-                TapNoteJudge();
-                break;
-
-            case NoteDataManager.NoteType.Slide:             
-                SlideNoteJudge();
-                break;
+            Judge("Miss", true);
+            return;
         }
 
-        DebugPanel_Output();
-    }
-
-    private void TapNoteJudge()
-    {
-        if (IsPerfect() && laneKeys[laneNumber].wasPressedThisFrame)
+        // 2. 入力チェック
+        // 今のレーンが「判定ラインのスライド範囲内」に入っているか？
+        if (LaneScript.isActiveLane[moveScript.lane])
         {
-            judgmentResult = Result.Perfect;
-
-            Debug.Log(judgmentResult);
-
-            Destroy(this.gameObject);
-        }
-
-        else if (IsGreat() && laneKeys[laneNumber].wasPressedThisFrame)
-        {
-            judgmentResult = Result.Great;
-
-            Debug.Log(judgmentResult);
-
-            Destroy(this.gameObject);
-        }
-
-
-        else if (IsBad() && laneKeys[laneNumber].wasPressedThisFrame)
-        {
-            judgmentResult = Result.Bad;
-
-            Debug.Log(judgmentResult);
-
-            Destroy(this.gameObject);
-        }
-
-        else if (IsMiss() && laneKeys[laneNumber].wasPressedThisFrame)
-        {
-            judgmentResult = Result.Miss;
-
-            Debug.Log(judgmentResult);
-
-            Destroy(this.gameObject);
-        }
-
-        else if(IsOverNotes())
-        {
-            judgmentResult = Result.Miss;
-
-            Debug.Log(judgmentResult);
-
-            Destroy(this.gameObject);
+            CheckInput(timeUntilHit);
         }
     }
 
-    private void SlideNoteJudge()
+    private void CheckInput(float timeUntilHit)
     {
-        if(bIsRight)
+        float absTimeUntilHit = Mathf.Abs(timeUntilHit);
+
+
+        // 自分がいるレーンのキーが押されたか
+        if (GetLaneKeyDown(moveScript.lane))
         {
-            if (IsPerfect() && Keyboard.current.mKey.wasPressedThisFrame)
+            bool isLate = false;
+
+            if (timeUntilHit < 0)
             {
-                judgmentResult = Result.Perfect;
-
-                Debug.Log(judgmentResult);
-
-                Destroy(this.gameObject);
+                isLate = true;
             }
 
-            else if (IsGreat() && Keyboard.current.mKey.wasPressedThisFrame)
-            {
-                judgmentResult = Result.Great;
+            if (absTimeUntilHit <= perfectWindow) Judge("Perfect", isLate);
 
-                Debug.Log(judgmentResult);
+            else if (absTimeUntilHit <= greatWindow) Judge("Great", isLate);
 
-                Destroy(this.gameObject);
-            }
+            else if (absTimeUntilHit <= goodWindow) Judge("Good", isLate);
 
-
-            else if (IsBad() && Keyboard.current.mKey.wasPressedThisFrame)
-            {
-                judgmentResult = Result.Bad;
-
-                Debug.Log(judgmentResult);
-
-                Destroy(this.gameObject);
-            }
-
-            else if (IsMiss() && Keyboard.current.mKey.wasPressedThisFrame)
-            {
-                judgmentResult = Result.Miss;
-
-                Debug.Log(judgmentResult);
-
-                Destroy(this.gameObject);
-            }
-        }
-
-        else if(!bIsRight)
-        {
-            if (IsPerfect() && Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                judgmentResult = Result.Perfect;
-
-                Debug.Log(judgmentResult);
-
-                Destroy(this.gameObject);
-            }
-
-            else if (IsGreat() && Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                judgmentResult = Result.Great;
-
-                Debug.Log(judgmentResult);
-
-                Destroy(this.gameObject);
-            }
-
-
-            else if (IsBad() && Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                judgmentResult = Result.Bad;
-
-                Debug.Log(judgmentResult);
-
-                Destroy(this.gameObject);
-            }
-
-            else if (IsMiss() && Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                judgmentResult = Result.Miss;
-
-                Debug.Log(judgmentResult);
-
-                Destroy(this.gameObject);
-            }
+            else if (absTimeUntilHit <= missWindow) Judge("Miss", isLate);
         }
     }
 
-
-    private void calcDeltaTime()=>    
-        deltaTime = notesTime - CountUpScript.msGameTime;    
-
-    private bool IsPerfect() =>
-        Mathf.Abs(deltaTime) <= PerfectGracePeriod && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
-
-    private bool IsGreat() =>
-        Mathf.Abs(deltaTime) <= GreatGracePeriod && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
-
-    private bool IsBad() =>
-        Mathf.Abs(deltaTime) <= BadGracePeriod && IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
-
-    private bool IsMiss()
+    private void Judge(string result, bool isLate)
     {
-        //bool keyDown = laneKeys[laneNumber].wasPressedThisFrame;
-        //bool laneActive = IsActiveNotes() && LaneScript.isActiveLane[laneNumber];
-        //float adt = Mathf.Abs(deltaTime);
+        SoundEffectScript.Instance.TapNotesSound();
+        // 本来はここでスコア加算やエフェクト生成を呼ぶ
+        
 
-        if (deltaTime < -activeNotePeriod) return true;
+        if (isLate)
+            Debug.Log($"{result}(Late) (Lane: {moveScript.lane}, absTimeUntilHit: {Mathf.FloorToInt((moveScript.hitTime - MusicManagerScript.songTime) * 1000)}ms)");
 
-        return false;
+        else if (!isLate)
+            Debug.Log($"{result}(Fast) (Lane: {moveScript.lane}, absTimeUntilHit: {Mathf.FloorToInt((moveScript.hitTime - MusicManagerScript.songTime) * 1000)}ms)");
+
+        Destroy(this.gameObject);
     }
 
-    private bool IsActiveNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
-        Mathf.Abs(deltaTime) < activeNotePeriod;
-    private bool IsOverNotes() =>  //ここにそのレーン内で最も判定ラインに近いものをアクティブ、そうでないものを非アクティブにする(遥か先にあるのに押して反応してしまうという理不尽を防ぐ)
-        deltaTime < overNotePeriod;
-
-    private void DebugPanel_Output()
+    // キーボード入力の取得（以前のコードを参考に、InputSystem版）
+    private bool GetLaneKeyDown(int laneIndex)
     {
-        deltaTimeText.text = $"Delta time : {Mathf.FloorToInt(deltaTime)} ms";
-
-        judgmentResultText.text = $"Judgment Result : {judgmentResult}";
+        switch (laneIndex)
+        {
+            case 0: return Keyboard.current.sKey.wasPressedThisFrame;
+            case 1: return Keyboard.current.dKey.wasPressedThisFrame;
+            case 2: return Keyboard.current.fKey.wasPressedThisFrame;
+            case 3: return Keyboard.current.jKey.wasPressedThisFrame;
+            case 4: return Keyboard.current.kKey.wasPressedThisFrame;
+            case 5: return Keyboard.current.lKey.wasPressedThisFrame;
+            default: return false;
+        }
     }
 }
