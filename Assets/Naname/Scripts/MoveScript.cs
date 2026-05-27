@@ -2,18 +2,26 @@ using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
-    public float hitTime;
-    public int lane;
+    public float HitTime;
+    public int Lane;
 
-    public static float scrollSpeed = 6000f;
+    public static float ScrollSpeed = 6000f;
     private float judgmentLineY = -1900f;
 
     private RectTransform rectTransform;
+
+    private JudgeScript judgeScript;
+    private bool isMissTriggered = false; // 二重にMissが走らないためのガードフラグ
 
     // 理由：NotesGenerator が生成した直後にすぐ RectTransform を使えるようにするため
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+    }
+
+    void Start()
+    {
+        judgeScript = GetComponent<JudgeScript>();
     }
 
     /// <summary>
@@ -25,10 +33,10 @@ public class MoveScript : MonoBehaviour
             return;
 
         // timeRemaining ←残り何秒で判定ラインに到達すべきかを記録する変数
-        float timeRemaining = hitTime - MusicManagerScript.songTime;
+        float timeRemaining = HitTime - MusicManagerScript.SongTime;
 
         // 「距離 ＝ 時間 × 速さ」 より、現在ノーツがあるべき座標を計算
-        float noteYPos = judgmentLineY + (timeRemaining * scrollSpeed);
+        float noteYPos = judgmentLineY + (timeRemaining * ScrollSpeed);
 
         // 座標を更新
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, noteYPos);
@@ -39,6 +47,19 @@ public class MoveScript : MonoBehaviour
         RefreshPosition();
 
         // timeRemaining ←残り何秒で判定ラインに到達すべきかを記録する変数
-        float timeRemaining = hitTime - MusicManagerScript.songTime;
+        float timeRemaining = HitTime - MusicManagerScript.SongTime;
+
+        // check : オフセットなどを含む判定用の時間を計算
+        float currentSongTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
+
+        if (!isMissTriggered && currentSongTime > HitTime + 0.4f)
+        {
+            isMissTriggered = true;
+
+            if (judgeScript != null)
+            {
+                judgeScript.TriggerMissByThrough();
+            }
+        }
     }
 }
