@@ -6,15 +6,17 @@ public class MusicManagerScript : MonoBehaviour
 {
     public static MusicManagerScript Instance;
 
-    public AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
 
-    public TextMeshProUGUI songTimeText;
+    [SerializeField] private TextMeshProUGUI songTimeText;
 
-    public static float songTime;
-    public static float msSongTime;
+    public static float SongTime;
+    public static float MsSongTime;
 
     private double dspStartTime;
     private bool isPlaying = false;
+
+    public static double SongStartRealTime;
 
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class MusicManagerScript : MonoBehaviour
 
         dspStartTime = AudioSettings.dspTime;
 
+        SongStartRealTime = Time.realtimeSinceStartupAsDouble;
+
         audioSource.Play();
         isPlaying = true;
     }
@@ -51,11 +55,11 @@ public class MusicManagerScript : MonoBehaviour
 
         if (isPlaying)
         {
-            songTime = (float)(AudioSettings.dspTime - dspStartTime);   //  正確な経過秒数 = (floatに変換)(現在の時刻 - 開始時の時刻)
+            SongTime = (float)(AudioSettings.dspTime - dspStartTime);   //  正確な経過秒数 = (floatに変換)(現在の時刻 - 開始時の時刻)
 
-            msSongTime = Mathf.FloorToInt(songTime * 1000);
+            MsSongTime = Mathf.FloorToInt(SongTime * 1000);
 
-            songTimeText.text = $"{msSongTime}";
+            songTimeText.text = $"{MsSongTime}";
         }
     }
 }
