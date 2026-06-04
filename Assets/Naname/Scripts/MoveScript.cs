@@ -4,8 +4,10 @@ public class MoveScript : MonoBehaviour
 {
     public float HitTime;
     public int Lane;
+    public NotesType MyNotesType;
+    public bool IsRight;
 
-    public static float ScrollSpeed = 6000f;
+    public static float ScrollSpeed = 7000f;
     private float judgmentLineY = -1900f;
 
     private RectTransform rectTransform;

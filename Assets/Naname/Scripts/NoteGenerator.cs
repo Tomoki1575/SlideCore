@@ -6,6 +6,16 @@ public class NotesData
 {
     public float HitTime;
     public float Lane;
+    public NotesType notesType;
+    public bool bIsRight;
+}
+
+public enum NotesType
+{
+    Tap,
+    Slide,
+    Hold,
+    Noise
 }
 
 public class NoteGenerator : MonoBehaviour
@@ -13,7 +23,10 @@ public class NoteGenerator : MonoBehaviour
     public static NoteGenerator Instance { get; private set; }
 
     [Header("設定")]
-    [SerializeField] private GameObject notePrefab;
+    [SerializeField] private GameObject tapNotePrefab;       // タップ用
+    [SerializeField] private GameObject slideLeftPrefab;     // 左スライド用
+    [SerializeField] private GameObject slideRightPrefab;    // 右スライド用
+    [SerializeField] private GameObject noiseNotePrefab;     // ノイズ用
     private float spawnOffsetTime;
 
     [Header("譜面データ")]
@@ -52,12 +65,21 @@ public class NoteGenerator : MonoBehaviour
         // 視野角や画面範囲を変えた場合は、この4500を変える
         spawnOffsetTime = 4500f / MoveScript.ScrollSpeed;
 
-        NotesToSpawn.Add(new NotesData { HitTime = 3.9f, Lane = 2 });
-        NotesToSpawn.Add(new NotesData { HitTime = 5.6f, Lane = 3 });
-        NotesToSpawn.Add(new NotesData { HitTime = 8.0f, Lane = 2 });
-        NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 3 });
-        NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 1 });
-        NotesToSpawn.Add(new NotesData { HitTime = 11.0f, Lane = 4 });
+        NotesToSpawn.Add(new NotesData { HitTime = 3.9f, Lane = 2 , notesType = NotesType.Tap , bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 4.0f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 4.1f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 4.2f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 4.3f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 4.4f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 4.5f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 4.6f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 8.0f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 1, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 11.0f, Lane = 4, notesType = NotesType.Tap, bIsRight = false });
+
+        NotesToSpawn.Add(new NotesData { HitTime = 13.0f, Lane = 3, notesType = NotesType.Slide, bIsRight = true });
+        NotesToSpawn.Add(new NotesData { HitTime = 13.0f, Lane = 2, notesType = NotesType.Slide, bIsRight = false });
 
         // HitTimeが早い順にならんでいないといけない為、早い順にリストを並び替える 
         NotesToSpawn.Sort((a, b) => a.HitTime.CompareTo(b.HitTime));
@@ -83,7 +105,25 @@ public class NoteGenerator : MonoBehaviour
     /// </summary>
     private void SpawnNote(NotesData data)
     {
-        GameObject newNote = Instantiate(notePrefab, transform);
+        GameObject prefabToSpawn = tapNotePrefab;
+
+        switch (data.notesType)
+        {
+            case NotesType.Tap:
+                prefabToSpawn = tapNotePrefab;
+                break;
+            case NotesType.Slide:
+                prefabToSpawn = data.bIsRight ? slideRightPrefab : slideLeftPrefab;
+                break;
+            case NotesType.Noise:
+                prefabToSpawn = noiseNotePrefab;
+                break;
+            case NotesType.Hold:
+                prefabToSpawn = tapNotePrefab;
+                break;
+        }
+
+        GameObject newNote = Instantiate(prefabToSpawn, transform);
 
         newNote.transform.localScale = Vector3.one;
 
@@ -93,6 +133,8 @@ public class NoteGenerator : MonoBehaviour
         {
             // HitTime変数を参照し、ノーツが叩かれるべき時間を決める
             moveScript.HitTime = data.HitTime;
+            moveScript.MyNotesType = data.notesType;
+            moveScript.IsRight = data.bIsRight;
 
             // lane変数を参照し、レーンを決める
             float xPos = (data.Lane - 2.5f) * laneSpacing;

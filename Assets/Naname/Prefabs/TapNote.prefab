@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5476624000308350437}
   - component: {fileID: -3804479931365400246}
   m_Layer: 5
-  m_Name: Note
+  m_Name: TapNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd047de308cf7448b2842121fdbe1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitTime: 0
-  lane: 0
+  HitTime: 0
+  Lane: 0
 --- !u!114 &-5476624000308350437
 MonoBehaviour:
   m_ObjectHideFlags: 0
