@@ -1,5 +1,5 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public enum JudgeResult
 {
@@ -21,7 +21,7 @@ public class JudgeScript : MonoBehaviour
     public static float InputOffset { get; private set; } = 0.1f;
 
     void Start()
-    { 
+    {
         moveScript = GetComponent<MoveScript>();
     }
 
@@ -29,12 +29,12 @@ public class JudgeScript : MonoBehaviour
     /// InputManagerScriptでキー入力が検知された瞬間に、ピンポイントで呼び出される判定関数 (double 押された時間)
     /// </summary>
     /// <param name="pressedTime">新Input Systemが記録した、物理的にキーが押された正確な時間(context.time)</param>
-    public void ExecuteJudge(double pressedTime)
+    public bool ExecuteJudge(double pressedTime)
     {
         // いま判定ラインのスライド範囲内（アクティブレーン）に入っているか
         if (!LaneScript.isActiveLane[moveScript.Lane])
         {
-            return;
+            return false;
         }
 
         // Unityのフレームのズレを打ち消す正確な曲の時間を逆算
@@ -47,14 +47,37 @@ public class JudgeScript : MonoBehaviour
 
         float absTimeUntilHit = Mathf.Abs(timeUntilHit);
 
-        // 判定ラインより後ろ（負の数）なら Late（遅い）
+        // 負の数ならLate（遅い）
         bool isLate = timeUntilHit < 0;
 
-        // 判定枠のチェック（enumを渡すように変更）
-        if (absTimeUntilHit <= PerfectWindow) OnNotesJudged(JudgeResult.Perfect, isLate, timeUntilHit);
-        else if (absTimeUntilHit <= GreatWindow) OnNotesJudged(JudgeResult.Great, isLate, timeUntilHit);
-        else if (absTimeUntilHit <= GoodWindow) OnNotesJudged(JudgeResult.Good, isLate, timeUntilHit);
-        else if (absTimeUntilHit <= MissWindow) OnNotesJudged(JudgeResult.Miss, isLate, timeUntilHit);
+        if (absTimeUntilHit <= PerfectWindow)
+        {
+            OnNotesJudged(JudgeResult.Perfect, isLate, timeUntilHit);
+            return true;
+        }
+
+        else if (absTimeUntilHit <= GreatWindow)
+        {
+            OnNotesJudged(JudgeResult.Great, isLate, timeUntilHit);
+            return true;
+        }
+
+        else if (absTimeUntilHit <= GoodWindow)
+        {
+            OnNotesJudged(JudgeResult.Good, isLate, timeUntilHit);
+            return true;
+        }
+
+        else if (absTimeUntilHit <= MissWindow)
+        {
+            OnNotesJudged(JudgeResult.Miss, isLate, timeUntilHit);
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 
     /// <summary>
@@ -90,19 +113,28 @@ public class JudgeScript : MonoBehaviour
         {
             case JudgeResult.Perfect:
                 SoundEffectScript.Instance.TapNotesSound();
+                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane,JudgeResult.Perfect);
                 break;
 
             case JudgeResult.Great:
                 SoundEffectScript.Instance.TapNotesSound();
+                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Great);
                 break;
 
             case JudgeResult.Good:
                 SoundEffectScript.Instance.TapNotesSound();
+                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Good);
+                break;
+
+            case JudgeResult.Miss when !isLate:
+                SoundEffectScript.Instance.TapNotesSound();
+                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Miss);
                 break;
 
             case JudgeResult.Miss:
+                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Miss);
                 break;
-        }       
+        }
 
         if (isLate)
             Debug.Log($"{result}(Late) (Lane: {moveScript.Lane}, absTimeUntilHit: {Mathf.FloorToInt(timeUntilHit * 1000)}ms)");

@@ -144,6 +144,24 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlideLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""92efe58a-6a9c-474e-9215-90fbfb6579f0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlideRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0f0e568-19c8-4052-b499-ebc61fbfb9d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +230,28 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
                     ""action"": ""Lane5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f88ab02-91f8-4d75-b3d2-d1b78f5908a2"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlideLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e034db0-86d2-49cb-a05a-4406ea682e5f"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlideRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,6 +266,8 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         m_Newactionmap_Lane3 = m_Newactionmap.FindAction("Lane3", throwIfNotFound: true);
         m_Newactionmap_Lane4 = m_Newactionmap.FindAction("Lane4", throwIfNotFound: true);
         m_Newactionmap_Lane5 = m_Newactionmap.FindAction("Lane5", throwIfNotFound: true);
+        m_Newactionmap_SlideLeft = m_Newactionmap.FindAction("SlideLeft", throwIfNotFound: true);
+        m_Newactionmap_SlideRight = m_Newactionmap.FindAction("SlideRight", throwIfNotFound: true);
     }
 
     ~@NewActions()
@@ -312,6 +354,8 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Newactionmap_Lane3;
     private readonly InputAction m_Newactionmap_Lane4;
     private readonly InputAction m_Newactionmap_Lane5;
+    private readonly InputAction m_Newactionmap_SlideLeft;
+    private readonly InputAction m_Newactionmap_SlideRight;
     /// <summary>
     /// Provides access to input actions defined in input action map "New action map".
     /// </summary>
@@ -347,6 +391,14 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Newactionmap/Lane5".
         /// </summary>
         public InputAction @Lane5 => m_Wrapper.m_Newactionmap_Lane5;
+        /// <summary>
+        /// Provides access to the underlying input action "Newactionmap/SlideLeft".
+        /// </summary>
+        public InputAction @SlideLeft => m_Wrapper.m_Newactionmap_SlideLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Newactionmap/SlideRight".
+        /// </summary>
+        public InputAction @SlideRight => m_Wrapper.m_Newactionmap_SlideRight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -391,6 +443,12 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
             @Lane5.started += instance.OnLane5;
             @Lane5.performed += instance.OnLane5;
             @Lane5.canceled += instance.OnLane5;
+            @SlideLeft.started += instance.OnSlideLeft;
+            @SlideLeft.performed += instance.OnSlideLeft;
+            @SlideLeft.canceled += instance.OnSlideLeft;
+            @SlideRight.started += instance.OnSlideRight;
+            @SlideRight.performed += instance.OnSlideRight;
+            @SlideRight.canceled += instance.OnSlideRight;
         }
 
         /// <summary>
@@ -420,6 +478,12 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
             @Lane5.started -= instance.OnLane5;
             @Lane5.performed -= instance.OnLane5;
             @Lane5.canceled -= instance.OnLane5;
+            @SlideLeft.started -= instance.OnSlideLeft;
+            @SlideLeft.performed -= instance.OnSlideLeft;
+            @SlideLeft.canceled -= instance.OnSlideLeft;
+            @SlideRight.started -= instance.OnSlideRight;
+            @SlideRight.performed -= instance.OnSlideRight;
+            @SlideRight.canceled -= instance.OnSlideRight;
         }
 
         /// <summary>
@@ -502,5 +566,19 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLane5(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SlideLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSlideLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SlideRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSlideRight(InputAction.CallbackContext context);
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class LaneScript : MonoBehaviour
 {
+    public static LaneScript Instance { get; private set; }
+
     [Header("判定アクティブ時の色")]
     [SerializeField] private Color activeColor = Color.white;
 
@@ -21,6 +23,8 @@ public class LaneScript : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         allLaneImages = new[] { Lane0, Lane1, Lane2, Lane3, Lane4, Lane5 };
 
         for (int i = 0; i < 4; i++)
@@ -31,9 +35,9 @@ public class LaneScript : MonoBehaviour
         ApplyActiveLanes();
     }
 
-    private void Update()
+    public void SlideLane(bool isRight)
     {
-        if (Keyboard.current.mKey.wasPressedThisFrame)
+        if(isRight)
         {
             for (int i = 0; i < canInputLane.Length; i++)
             {
@@ -43,7 +47,7 @@ public class LaneScript : MonoBehaviour
             ApplyActiveLanes();
         }
 
-        if (Keyboard.current.cKey.wasPressedThisFrame)
+        else if(!isRight)
         {
             for (int i = 0; i < canInputLane.Length; i++)
             {
