@@ -6,21 +6,46 @@ public class InputManagerScript : MonoBehaviour
 {
     [SerializeField] private InputActionAsset actions;
 
+    private System.Action<CallbackContext> slideRightHandler, slideLeftHandler;
+    private System.Action<CallbackContext> lane0Handler, lane1Handler,lane2Handler, lane3Handler, lane4Handler, lane5Handler;
+
     private void OnEnable()
     {
         actions.Enable();
 
-        actions.FindAction("Lane0").performed += ctx => OnTap(0, ctx);
-        actions.FindAction("Lane1").performed += ctx => OnTap(1, ctx);
-        actions.FindAction("Lane2").performed += ctx => OnTap(2, ctx);
-        actions.FindAction("Lane3").performed += ctx => OnTap(3, ctx);
-        actions.FindAction("Lane4").performed += ctx => OnTap(4, ctx);
-        actions.FindAction("Lane5").performed += ctx => OnTap(5, ctx);
+        lane0Handler = ctx => OnTap(0, ctx);
+        lane1Handler = ctx => OnTap(1, ctx);
+        lane2Handler = ctx => OnTap(2, ctx);
+        lane3Handler = ctx => OnTap(3, ctx);
+        lane4Handler = ctx => OnTap(4, ctx);
+        lane5Handler = ctx => OnTap(5, ctx);
+        actions.FindAction("Lane0").performed += lane0Handler;
+        actions.FindAction("Lane1").performed += lane1Handler;
+        actions.FindAction("Lane2").performed += lane2Handler;
+        actions.FindAction("Lane3").performed += lane3Handler;
+        actions.FindAction("Lane4").performed += lane4Handler;
+        actions.FindAction("Lane5").performed += lane5Handler;
 
-        actions.FindAction("SlideRight").performed += ctx => OnSlide(true, ctx);
-        actions.FindAction("SlideLeft").performed += ctx => OnSlide(false,ctx);
+        slideRightHandler = ctx => OnSlide(true, ctx);
+        slideLeftHandler = ctx => OnSlide(false, ctx);
+        actions.FindAction("SlideRight").performed += slideRightHandler;
+        actions.FindAction("SlideLeft").performed += slideLeftHandler;
     }
 
+    private void OnDisable()
+    {
+        actions.FindAction("Lane0").performed -= lane0Handler;
+        actions.FindAction("Lane1").performed -= lane1Handler;
+        actions.FindAction("Lane2").performed -= lane2Handler;
+        actions.FindAction("Lane3").performed -= lane3Handler;
+        actions.FindAction("Lane4").performed -= lane4Handler;
+        actions.FindAction("Lane5").performed -= lane5Handler;
+
+        actions.FindAction("SlideRight").performed -= slideRightHandler;
+        actions.FindAction("SlideLeft").performed -= slideLeftHandler;
+
+        actions.Disable();
+    }
 
     /// <summary>
     /// レーン上の特定のボタンが押された時、呼ばれる関数。 {int 何番目のレーンか, InputAction.CallbackContext インプットシステムの専用変数}
@@ -90,12 +115,13 @@ public class InputManagerScript : MonoBehaviour
             if (targetLaneList.Count == 0) continue;
 
             // リストの[0]番目は、そのレーンで「一番手前にいる」ノーツ
-            MoveScript closestNoteMove = targetLaneList[0];　
+            MoveScript closestNoteMove = targetLaneList[0];
             if (closestNoteMove == null) continue;
 
+            // スライド
             if (closestNoteMove.MyNotesType == NotesType.Slide)
             {
-                if ((isRight && closestNoteMove.IsRight) || (!isRight && !closestNoteMove.IsRight))
+                if (isRight == closestNoteMove.IsRight)
                 {
                     JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
                     if (judgeScript != null)

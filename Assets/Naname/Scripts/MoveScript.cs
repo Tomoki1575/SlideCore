@@ -54,6 +54,15 @@ public class MoveScript : MonoBehaviour
         // check : オフセットなどを含む判定用の時間を計算
         float currentSongTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
 
+        if(!isMissTriggered && timeRemaining <= 0 && MyNotesType == NotesType.Noise)
+        {
+            isMissTriggered = true;
+
+            judgeScript.ExecuteNoiseJudge();
+
+            return;
+        }
+
         if (!isMissTriggered && currentSongTime > HitTime + 0.4f)
         {
             isMissTriggered = true;
