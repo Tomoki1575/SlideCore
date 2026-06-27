@@ -65,7 +65,7 @@ public class NoteGenerator : MonoBehaviour
         // éãñÏäpÇ‚âÊñ îÕàÕÇïœÇ¶ÇΩèÍçáÇÕÅAÇ±ÇÃ4500ÇïœÇ¶ÇÈ
         spawnOffsetTime = 4500f / MoveScript.ScrollSpeed;
 
-        NotesToSpawn.Add(new NotesData { HitTime = 3.9f, Lane = 2 , notesType = NotesType.Tap , bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 3.9f, Lane = 2, notesType = NotesType.Tap , bIsRight = false });
         NotesToSpawn.Add(new NotesData { HitTime = 4.0f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
         NotesToSpawn.Add(new NotesData { HitTime = 4.1f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
         NotesToSpawn.Add(new NotesData { HitTime = 4.2f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
@@ -76,7 +76,7 @@ public class NoteGenerator : MonoBehaviour
         NotesToSpawn.Add(new NotesData { HitTime = 8.0f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
         NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
         NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 1, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 11.0f, Lane = 4, notesType = NotesType.Tap, bIsRight = false });
+        NotesToSpawn.Add(new NotesData { HitTime = 11.0f, Lane = 5, notesType = NotesType.Noise, bIsRight = false });
 
         NotesToSpawn.Add(new NotesData { HitTime = 13.0f, Lane = 3, notesType = NotesType.Slide, bIsRight = true });
         NotesToSpawn.Add(new NotesData { HitTime = 13.0f, Lane = 2, notesType = NotesType.Slide, bIsRight = false });

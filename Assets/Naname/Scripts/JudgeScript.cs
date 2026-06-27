@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 
 public enum JudgeResult
@@ -26,28 +26,28 @@ public class JudgeScript : MonoBehaviour
     }
 
     /// <summary>
-    /// InputManagerScript‚ÅƒL[“ü—Í‚ªŒŸ’m‚³‚ê‚½uŠÔ‚ÉAƒsƒ“ƒ|ƒCƒ“ƒg‚ÅŒÄ‚Ño‚³‚ê‚é”»’èŠÖ” (double ‰Ÿ‚³‚ê‚½ŠÔ)
+    /// InputManagerScriptã§ã‚­ãƒ¼å…¥åŠ›ãŒæ¤œçŸ¥ã•ã‚ŒãŸç¬é–“ã«ã€ãƒ”ãƒ³ãƒã‚¤ãƒ³ãƒˆã§å‘¼ã³å‡ºã•ã‚Œã‚‹åˆ¤å®šé–¢æ•° (double æŠ¼ã•ã‚ŒãŸæ™‚é–“)
     /// </summary>
-    /// <param name="pressedTime">VInput System‚ª‹L˜^‚µ‚½A•¨—“I‚ÉƒL[‚ª‰Ÿ‚³‚ê‚½³Šm‚ÈŠÔ(context.time)</param>
+    /// <param name="pressedTime">æ–°Input SystemãŒè¨˜éŒ²ã—ãŸã€ç‰©ç†çš„ã«ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸæ­£ç¢ºãªæ™‚é–“(context.time)</param>
     public bool ExecuteJudge(double pressedTime)
     {
-        // ‚¢‚Ü”»’èƒ‰ƒCƒ“‚ÌƒXƒ‰ƒCƒh”ÍˆÍ“àiƒAƒNƒeƒBƒuƒŒ[ƒ“j‚É“ü‚Á‚Ä‚¢‚é‚©
+        // ã„ã¾åˆ¤å®šãƒ©ã‚¤ãƒ³ã®ã‚¹ãƒ©ã‚¤ãƒ‰ç¯„å›²å†…ï¼ˆã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ¬ãƒ¼ãƒ³ï¼‰ã«å…¥ã£ã¦ã„ã‚‹ã‹
         if (!LaneScript.isActiveLane[moveScript.Lane])
         {
             return false;
         }
 
-        // Unity‚ÌƒtƒŒ[ƒ€‚ÌƒYƒŒ‚ğ‘Å‚¿Á‚·³Šm‚È‹È‚ÌŠÔ‚ğ‹tZ
+        // Unityã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚ºãƒ¬ã‚’æ‰“ã¡æ¶ˆã™æ­£ç¢ºãªæ›²ã®æ™‚é–“ã‚’é€†ç®—
         float exactSongTime = (float)(pressedTime - MusicManagerScript.SongStartRealTime);
 
         exactSongTime -= InputOffset;
 
-        // ”»’èƒ‰ƒCƒ“‚©‚ç‚ÌƒYƒŒ‚ğAOS‚ªŒŸ’m‚µ‚½“ü—ÍŠÔƒx[ƒX‚ÅŒvZ
+        // åˆ¤å®šãƒ©ã‚¤ãƒ³ã‹ã‚‰ã®ã‚ºãƒ¬ã‚’ã€OSãŒæ¤œçŸ¥ã—ãŸå…¥åŠ›æ™‚é–“ãƒ™ãƒ¼ã‚¹ã§è¨ˆç®—
         float timeUntilHit = moveScript.HitTime - exactSongTime;
 
         float absTimeUntilHit = Mathf.Abs(timeUntilHit);
 
-        // •‰‚Ì”‚È‚çLatei’x‚¢j
+        // è² ã®æ•°ãªã‚‰Lateï¼ˆé…ã„ï¼‰
         bool isLate = timeUntilHit < 0;
 
         if (absTimeUntilHit <= PerfectWindow)
@@ -81,16 +81,16 @@ public class JudgeScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ª’N‚à’@‚©‚È‚¢‚Ü‚ÜAƒm[ƒc‚ªŒã‚ë‚Ö’Ê‚è‰ß‚¬‚Ä‚µ‚Ü‚Á‚½‚É
-    /// ©“®‚ÅMiss‚É‚·‚é‚½‚ß‚Ìê—pŠÖ”
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒèª°ã‚‚å©ã‹ãªã„ã¾ã¾ã€ãƒãƒ¼ãƒ„ãŒå¾Œã‚ã¸é€šã‚Šéãã¦ã—ã¾ã£ãŸæ™‚ã«
+    /// è‡ªå‹•ã§Missã«ã™ã‚‹ãŸã‚ã®å°‚ç”¨é–¢æ•°
     /// </summary>
     public void TriggerMissByThrough()
     {
-        // check : ŠÇ—ƒŠƒXƒg‚É‚Â‚¢‚Ä
+        // check : ç®¡ç†ãƒªã‚¹ãƒˆã«ã¤ã„ã¦
         if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
         {
             var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
-            if (targetList.Count > 0 && targetList[0] == moveScript) // MoveScriptƒx[ƒX‚Å”äŠr
+            if (targetList.Count > 0 && targetList[0] == moveScript) // MoveScriptãƒ™ãƒ¼ã‚¹ã§æ¯”è¼ƒ
             {
                 targetList.RemoveAt(0);
             }
@@ -100,14 +100,14 @@ public class JudgeScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ”»’èŒã‚Ìˆ—‚ğs‚¤ŠÖ” (y—ñ‹“Œ^zJudgeResult ”»’è‚É‘Î‚·‚é•]‰¿, bool ’@‚­‚Ì‚ª’x‚·‚¬‚½‚©, float ’@‚­‚Ì‚ÉƒYƒŒ‚½ŠÔ)
+    /// åˆ¤å®šå¾Œã®å‡¦ç†ã‚’è¡Œã†é–¢æ•° (ã€åˆ—æŒ™å‹ã€‘JudgeResult åˆ¤å®šã«å¯¾ã™ã‚‹è©•ä¾¡, bool å©ãã®ãŒé…ã™ããŸã‹, float å©ãã®ã«ã‚ºãƒ¬ãŸæ™‚é–“)
     /// </summary>
-    /// <param name="result">”»’è‚É‘Î‚·‚é•]‰¿</param>@
-    /// <param name="isLate">’@‚­‚Ì‚ª’x‚·‚¬‚½‚©</param>
-    /// <param name="timeUntilHit">’@‚­‚Ì‚ÉƒYƒŒ‚½ŠÔ</param>
+    /// <param name="result">åˆ¤å®šã«å¯¾ã™ã‚‹è©•ä¾¡</param>ã€€
+    /// <param name="isLate">å©ãã®ãŒé…ã™ããŸã‹</param>
+    /// <param name="timeUntilHit">å©ãã®ã«ã‚ºãƒ¬ãŸæ™‚é–“</param>
     private void OnNotesJudged(JudgeResult result, bool isLate, float timeUntilHit)
     {
-        // todo : ‚±‚±‚ÅƒXƒRƒA‰ÁZ‚âƒGƒtƒFƒNƒg¶¬‚ğŒÄ‚Ñ‚½‚¢
+        // todo : ã“ã“ã§ã‚¹ã‚³ã‚¢åŠ ç®—ã‚„ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆã‚’å‘¼ã³ãŸã„
 
         switch (result)
         {
@@ -143,5 +143,35 @@ public class JudgeScript : MonoBehaviour
             Debug.Log($"{result}(Fast) (Lane: {moveScript.Lane}, absTimeUntilHit: {Mathf.FloorToInt(timeUntilHit * 1000)}ms)");
 
         Destroy(this.gameObject);
+    }
+
+    /// <summary>
+    /// ãƒã‚¤ã‚ºãƒãƒ¼ãƒ„ãŒåˆ¤å®šãƒ©ã‚¤ãƒ³ã«é‡ãªã£ãŸç¬é–“ã«ã€MoveScriptã®Updateã‹ã‚‰è‡ªå‹•ã§å‘¼ã³å‡ºã•ã‚Œã‚‹åˆ¤å®šé–¢æ•°
+    /// </summary>
+    public void ExecuteNoiseJudge()
+    {
+        if(!LaneScript.isActiveLane[moveScript.Lane])
+        {
+            // ãƒªã‚¹ãƒˆã‹ã‚‰ã“ã®ãƒãƒ¼ãƒ„ã‚’å‰Šé™¤ï¼ˆTriggerMissByThrough ã®ä¸­èº«ã¨åŒã˜å‡¦ç†ï¼‰
+            if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
+            {
+                var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
+                if (targetList.Count > 0 && targetList[0] == moveScript)
+                {
+                    targetList.RemoveAt(0);
+                }
+            }
+
+            // Perfectåˆ¤å®šã‚’é£›ã°ã™ï¼ˆç¬¬2å¼•æ•°ã¯Lateã‹ã©ã†ã‹ã€‚å›é¿ãªã®ã§é©å½“ã«falseã§OKï¼‰
+            // â€»ãƒã‚¤ã‚ºç”¨ã®SEã‚’é³´ã‚‰ã—ãŸã„å ´åˆã¯ã€OnNotesJudgedã®switchæ–‡ã«å¾Œã§è¿½åŠ ã§ãã¾ã™
+            OnNotesJudged(JudgeResult.Perfect, false, 0f);
+        }
+
+        else
+        {
+            // ã€ã‚¢ã‚¯ãƒ†ã‚£ãƒ– â” æ¥è§¦ï¼ˆMiss!ï¼‰ã€‘
+            // æ—¢å­˜ã®é€šã‚ŠéãMissã®é–¢æ•°ã‚’ãã®ã¾ã¾ä½¿ã„å›ã›ã°ã€ãƒªã‚¹ãƒˆå‰Šé™¤ã‚‚Missæ¼”å‡ºã‚‚ä¸€ç™ºã§å‡¦ç†ã§ãã¾ã™ï¼
+            TriggerMissByThrough();
+        }
     }
 }
