@@ -1,47 +1,41 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static GameDataManager;
 
 [System.Serializable]
 public class NotesData
 {
     public float HitTime;
-    public float Lane;
-    public NotesType notesType;
+    public int Lane;
+    public NoteType noteType;
     public bool bIsRight;
-}
-
-public enum NotesType
-{
-    Tap,
-    Slide,
-    Hold,
-    Noise
 }
 
 public class NoteGenerator : MonoBehaviour
 {
     public static NoteGenerator Instance { get; private set; }
 
-    [Header("İ’è")]
-    [SerializeField] private GameObject tapNotePrefab;       // ƒ^ƒbƒv—p
-    [SerializeField] private GameObject slideLeftPrefab;     // ¶ƒXƒ‰ƒCƒh—p
-    [SerializeField] private GameObject slideRightPrefab;    // ‰EƒXƒ‰ƒCƒh—p
-    [SerializeField] private GameObject noiseNotePrefab;     // ƒmƒCƒY—p
+    [Header("è¨­å®š")]
+    [SerializeField] private GameObject tapNotePrefab;       // ã‚¿ãƒƒãƒ—ç”¨
+    [SerializeField] private GameObject slideLeftPrefab;     // å·¦ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
+    [SerializeField] private GameObject slideRightPrefab;    // å³ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
+    [SerializeField] private GameObject noiseNotePrefab;     // ãƒã‚¤ã‚ºç”¨
+    [SerializeField] private MusicSelection musicSelection;
+
     private float spawnOffsetTime;
 
-    [Header("•ˆ–Êƒf[ƒ^")]
+    [Header("è­œé¢ãƒ‡ãƒ¼ã‚¿")]
     public List<NotesData> NotesToSpawn = new List<NotesData>();
 
-    private float laneSpacing = 250f; // ƒŒ[ƒ““¯m‚ÌŠÔŠu
+    private float laneSpacing = 250f; // ãƒ¬ãƒ¼ãƒ³åŒå£«ã®é–“éš”
 
     private int currentNotesIndex = 0;
 
-    // ŠeƒŒ[ƒ“‚Éu¡‰æ–Ê‚É‘¶İ‚·‚éƒm[ƒc‚ÌMoveScriptv‚ğ•À‚Ñ‡’Ê‚è‚ÉŠi”[‚µ‚Ü‚·
+    // å„ãƒ¬ãƒ¼ãƒ³ã«ã€Œä»Šç”»é¢ã«å­˜åœ¨ã™ã‚‹ãƒãƒ¼ãƒ„ã®MoveScriptã€ã‚’ä¸¦ã³é †é€šã‚Šã«æ ¼ç´ã™ã‚‹
     public List<MoveScript>[] laneNotesLists = new List<MoveScript>[6];
 
     private void Awake()
     {
-        // ƒVƒ“ƒOƒ‹ƒgƒ“‚Ì‰Šú‰»
         if (Instance == null)
         {
             Instance = this;
@@ -52,7 +46,7 @@ public class NoteGenerator : MonoBehaviour
             return;
         }
 
-        // 6ƒŒ[ƒ“•ª‚ÌƒŠƒXƒg‚ğ‰Šú‰»
+        // 6ãƒ¬ãƒ¼ãƒ³åˆ†ã®ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–
         for (int i = 0; i < 6; i++)
         {
             laneNotesLists[i] = new List<MoveScript>();
@@ -61,64 +55,67 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
-        // ”»’èƒ‰ƒCƒ“‚æ‚è4500‚‚¢ˆÊ’u‚Å‰æ–Ê‚©‚çŒ©‚¦n‚ß‚é‚½‚ßA‚»‚±‚Ì’¼‘O‚Å¶¬
-        // ‹–ìŠp‚â‰æ–Ê”ÍˆÍ‚ğ•Ï‚¦‚½ê‡‚ÍA‚±‚Ì4500‚ğ•Ï‚¦‚é
+        // åˆ¤å®šãƒ©ã‚¤ãƒ³ã‚ˆã‚Š4500é«˜ã„ä½ç½®ã§ç”»é¢ã‹ã‚‰è¦‹ãˆå§‹ã‚ã‚‹ãŸã‚ã€ãã“ã®ç›´å‰ã§ç”Ÿæˆ
+        // è¦–é‡è§’ã‚„ç”»é¢ç¯„å›²ã‚’å¤‰ãˆãŸå ´åˆã¯ã€ã“ã®4500ã‚’å¤‰ãˆã‚‹
         spawnOffsetTime = 4500f / MoveScript.ScrollSpeed;
 
-        NotesToSpawn.Add(new NotesData { HitTime = 3.9f, Lane = 2, notesType = NotesType.Tap , bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 4.0f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 4.1f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 4.2f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 4.3f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 4.4f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 4.5f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 4.6f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 8.0f, Lane = 2, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 3, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 9.0f, Lane = 1, notesType = NotesType.Tap, bIsRight = false });
-        NotesToSpawn.Add(new NotesData { HitTime = 11.0f, Lane = 5, notesType = NotesType.Noise, bIsRight = false });
+        // JSONã‹ã‚‰ãƒãƒ¼ãƒ„ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+        TextAsset chart = musicSelection.GetChart();
+        JsonDataConverter.JsonData jsonData = JsonDataConverter.LoadJson(chart);
 
-        NotesToSpawn.Add(new NotesData { HitTime = 13.0f, Lane = 3, notesType = NotesType.Slide, bIsRight = true });
-        NotesToSpawn.Add(new NotesData { HitTime = 13.0f, Lane = 2, notesType = NotesType.Slide, bIsRight = false });
+        TimeConverter.SetSignatureDataList(jsonData.signatures);
 
-        // HitTime‚ª‘‚¢‡‚É‚È‚ç‚ñ‚Å‚¢‚È‚¢‚Æ‚¢‚¯‚È‚¢ˆ×A‘‚¢‡‚ÉƒŠƒXƒg‚ğ•À‚Ñ‘Ö‚¦‚é 
+        foreach (JsonDataConverter.NoteData note in jsonData.notes)
+        {
+            float hitTime = (float)TimeConverter.ConvertBeatToReal(note.beat, jsonData.bpms) - (jsonData.meta.offset / 1000f - 0.4f);
+
+            NotesToSpawn.Add(new NotesData
+            {
+                HitTime   = hitTime,
+                Lane      = note.lane,
+                noteType = note.type,
+                bIsRight  = note.bIsRight
+            });
+        }
+
+        // HitTimeãŒæ—©ã„é †ã«ãªã‚‰ã‚“ã§ã„ãªã„ã¨ã„ã‘ãªã„ç‚ºã€æ—©ã„é †ã«ãƒªã‚¹ãƒˆã‚’ä¸¦ã³æ›¿ãˆã‚‹
         NotesToSpawn.Sort((a, b) => a.HitTime.CompareTo(b.HitTime));
     }
 
     void Update()
     {
-        // ‘S‚Ä‚Ìƒm[ƒc‚ğo‚µI‚í‚Á‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+        // å…¨ã¦ã®ãƒãƒ¼ãƒ„ã‚’å‡ºã—çµ‚ã‚ã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
         if (currentNotesIndex >= NotesToSpawn.Count)
             return;
 
-        // Œ»İ‚Ì‹È‚ÌŠÔ‚ªuoŒ»‚³‚¹‚é‚×‚«ŠÔi’@‚­ŠÔ - æ“Ç‚İŠÔjv‚ğ‰ß‚¬‚½‚ç
-        // Å‰‚±‚±if•¶‚Åì‚Á‚Ä‚½‚ñ‚¾‚¯‚ÇA‚æ‚­l‚¦‚½‚ç‚»‚ê‚¾‚Æ“¯‰Ÿ‚µƒm[ƒc‚ª—ˆ‚½‚¸‚ê‚»‚¤‚¾‚È‚Æv‚Á‚Äwhile‚É‚µ‚½
+        // ç¾åœ¨ã®æ›²ã®æ™‚é–“ãŒã€Œå‡ºç¾ã•ã›ã‚‹ã¹ãæ™‚é–“ï¼ˆå©ãæ™‚é–“ - å…ˆèª­ã¿æ™‚é–“ï¼‰ã€ã‚’éããŸã‚‰
+        // åŒæ™‚æŠ¼ã—ãƒãƒ¼ãƒ„whileã«ã—ãŸ
         while (currentNotesIndex < NotesToSpawn.Count && MusicManagerScript.SongTime >= NotesToSpawn[currentNotesIndex].HitTime - spawnOffsetTime)
         {
             SpawnNote(NotesToSpawn[currentNotesIndex]);
-            currentNotesIndex++; // Ÿ‚Ìƒm[ƒc‚Öi‚İAÄ‚Ñwhile‚ÌğŒ‚ğƒ`ƒFƒbƒN
+            currentNotesIndex++; // æ¬¡ã®ãƒãƒ¼ãƒ„ã¸é€²ã¿ã€å†ã³whileã®æ¡ä»¶ã‚’ãƒã‚§ãƒƒã‚¯
         }
     }
 
     /// <summary>
-    /// List‚Æ‚µ‚Ä‹l‚ß‚Ü‚ê‚½ƒm[ƒcî•ñ‚ğŒ³‚ÉAƒm[ƒc‚Ì¶¬‚·‚éˆÊ’u‚âŠÔ‚ğŠm’è‚³‚¹‚éŠÖ”B
+    /// Listã¨ã—ã¦è©°ã‚è¾¼ã¾ã‚ŒãŸãƒãƒ¼ãƒ„æƒ…å ±ã‚’å…ƒã«ã€ãƒãƒ¼ãƒ„ã®ç”Ÿæˆã™ã‚‹ä½ç½®ã‚„æ™‚é–“ã‚’ç¢ºå®šã•ã›ã‚‹é–¢æ•°ã€‚
     /// </summary>
     private void SpawnNote(NotesData data)
     {
         GameObject prefabToSpawn = tapNotePrefab;
 
-        switch (data.notesType)
+        switch (data.noteType)
         {
-            case NotesType.Tap:
+            case NoteType.Tap:
                 prefabToSpawn = tapNotePrefab;
                 break;
-            case NotesType.Slide:
+            case NoteType.Slide:
                 prefabToSpawn = data.bIsRight ? slideRightPrefab : slideLeftPrefab;
                 break;
-            case NotesType.Noise:
+            case NoteType.Noise:
                 prefabToSpawn = noiseNotePrefab;
                 break;
-            case NotesType.Hold:
+            case NoteType.Hold:
                 prefabToSpawn = tapNotePrefab;
                 break;
         }
@@ -131,26 +128,25 @@ public class NoteGenerator : MonoBehaviour
 
         if (moveScript != null)
         {
-            // HitTime•Ï”‚ğQÆ‚µAƒm[ƒc‚ª’@‚©‚ê‚é‚×‚«ŠÔ‚ğŒˆ‚ß‚é
+            // HitTimeå¤‰æ•°ã‚’å‚ç…§ã—ã€ãƒãƒ¼ãƒ„ãŒå©ã‹ã‚Œã‚‹ã¹ãæ™‚é–“ã‚’æ±ºã‚ã‚‹
             moveScript.HitTime = data.HitTime;
-            moveScript.MyNotesType = data.notesType;
+            moveScript.MyNotesType = data.noteType;
             moveScript.IsRight = data.bIsRight;
 
-            // lane•Ï”‚ğQÆ‚µAƒŒ[ƒ“‚ğŒˆ‚ß‚é
+            // laneå¤‰æ•°ã‚’å‚ç…§ã—ã€ãƒ¬ãƒ¼ãƒ³ã‚’æ±ºã‚ã‚‹
             float xPos = (data.Lane - 2.5f) * laneSpacing;
             RectTransform rect = newNote.GetComponent<RectTransform>();
             rect.anchoredPosition = new Vector2(xPos, 0);
-            moveScript.Lane = (int)data.Lane;
+            moveScript.Lane = data.Lane;
 
-            // ZÀ•W‚Ìƒf[ƒ^‚ğÁ‚·
+            // Zåº§æ¨™ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
             Vector3 fixedPos = rect.localPosition;
             fixedPos.z = 0f;
             rect.localPosition = fixedPos;
 
-            // ƒm[ƒc‚ÌÀ•W‚ğ‚¢‚¶‚Á‚½‚½‚ßAˆê“xƒm[ƒc‚ÌÀ•W‚ğŒvZ‚µ‚È‚¨‚·
+            // ãƒãƒ¼ãƒ„ã®åº§æ¨™ã‚’ã„ã˜ã£ãŸãŸã‚ã€ä¸€åº¦ãƒãƒ¼ãƒ„ã®åº§æ¨™ã‚’è¨ˆç®—ã—ãªãŠã™
             moveScript.RefreshPosition();
 
-            // --- š’Ç‰ÁF¶¬‚µ‚½ƒm[ƒc‚ğŠY“–‚·‚éƒŒ[ƒ“‚ÌƒŠƒXƒg‚É“o˜^ ---
             if (moveScript.Lane >= 0 && moveScript.Lane < 6)
             {
                 laneNotesLists[moveScript.Lane].Add(moveScript);

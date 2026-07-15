@@ -88,7 +88,7 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
     ""name"": ""New Actions"",
     ""maps"": [
         {
-            ""name"": ""New action map"",
+            ""name"": ""GameSceneMaps"",
             ""id"": ""4e3e3794-2cf5-4192-a73e-3f23d0678444"",
             ""actions"": [
                 {
@@ -254,25 +254,79 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TitleSceneMaps"",
+            ""id"": ""28bc3710-485c-4dcb-a452-fbe39df68a9c"",
+            ""actions"": [
+                {
+                    ""name"": ""TitleToSelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""371e7b6e-2f5d-465c-b263-ad383573e582"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d2d0af9c-dd37-46d3-b0e4-b540c865f009"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TitleToSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86a42489-f3d0-45e4-b07b-24176a732d84"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TitleToSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c4258a0-f3b6-45b7-b6d8-6687c7468f7c"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TitleToSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // New action map
-        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_Lane0 = m_Newactionmap.FindAction("Lane0", throwIfNotFound: true);
-        m_Newactionmap_Lane1 = m_Newactionmap.FindAction("Lane1", throwIfNotFound: true);
-        m_Newactionmap_Lane2 = m_Newactionmap.FindAction("Lane2", throwIfNotFound: true);
-        m_Newactionmap_Lane3 = m_Newactionmap.FindAction("Lane3", throwIfNotFound: true);
-        m_Newactionmap_Lane4 = m_Newactionmap.FindAction("Lane4", throwIfNotFound: true);
-        m_Newactionmap_Lane5 = m_Newactionmap.FindAction("Lane5", throwIfNotFound: true);
-        m_Newactionmap_SlideLeft = m_Newactionmap.FindAction("SlideLeft", throwIfNotFound: true);
-        m_Newactionmap_SlideRight = m_Newactionmap.FindAction("SlideRight", throwIfNotFound: true);
+        // GameSceneMaps
+        m_GameSceneMaps = asset.FindActionMap("GameSceneMaps", throwIfNotFound: true);
+        m_GameSceneMaps_Lane0 = m_GameSceneMaps.FindAction("Lane0", throwIfNotFound: true);
+        m_GameSceneMaps_Lane1 = m_GameSceneMaps.FindAction("Lane1", throwIfNotFound: true);
+        m_GameSceneMaps_Lane2 = m_GameSceneMaps.FindAction("Lane2", throwIfNotFound: true);
+        m_GameSceneMaps_Lane3 = m_GameSceneMaps.FindAction("Lane3", throwIfNotFound: true);
+        m_GameSceneMaps_Lane4 = m_GameSceneMaps.FindAction("Lane4", throwIfNotFound: true);
+        m_GameSceneMaps_Lane5 = m_GameSceneMaps.FindAction("Lane5", throwIfNotFound: true);
+        m_GameSceneMaps_SlideLeft = m_GameSceneMaps.FindAction("SlideLeft", throwIfNotFound: true);
+        m_GameSceneMaps_SlideRight = m_GameSceneMaps.FindAction("SlideRight", throwIfNotFound: true);
+        // TitleSceneMaps
+        m_TitleSceneMaps = asset.FindActionMap("TitleSceneMaps", throwIfNotFound: true);
+        m_TitleSceneMaps_TitleToSelect = m_TitleSceneMaps.FindAction("TitleToSelect", throwIfNotFound: true);
     }
 
     ~@NewActions()
     {
-        UnityEngine.Debug.Assert(!m_Newactionmap.enabled, "This will cause a leak and performance issues, NewActions.Newactionmap.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_GameSceneMaps.enabled, "This will cause a leak and performance issues, NewActions.GameSceneMaps.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TitleSceneMaps.enabled, "This will cause a leak and performance issues, NewActions.TitleSceneMaps.Disable() has not been called.");
     }
 
     /// <summary>
@@ -345,64 +399,64 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // New action map
-    private readonly InputActionMap m_Newactionmap;
-    private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
-    private readonly InputAction m_Newactionmap_Lane0;
-    private readonly InputAction m_Newactionmap_Lane1;
-    private readonly InputAction m_Newactionmap_Lane2;
-    private readonly InputAction m_Newactionmap_Lane3;
-    private readonly InputAction m_Newactionmap_Lane4;
-    private readonly InputAction m_Newactionmap_Lane5;
-    private readonly InputAction m_Newactionmap_SlideLeft;
-    private readonly InputAction m_Newactionmap_SlideRight;
+    // GameSceneMaps
+    private readonly InputActionMap m_GameSceneMaps;
+    private List<IGameSceneMapsActions> m_GameSceneMapsActionsCallbackInterfaces = new List<IGameSceneMapsActions>();
+    private readonly InputAction m_GameSceneMaps_Lane0;
+    private readonly InputAction m_GameSceneMaps_Lane1;
+    private readonly InputAction m_GameSceneMaps_Lane2;
+    private readonly InputAction m_GameSceneMaps_Lane3;
+    private readonly InputAction m_GameSceneMaps_Lane4;
+    private readonly InputAction m_GameSceneMaps_Lane5;
+    private readonly InputAction m_GameSceneMaps_SlideLeft;
+    private readonly InputAction m_GameSceneMaps_SlideRight;
     /// <summary>
-    /// Provides access to input actions defined in input action map "New action map".
+    /// Provides access to input actions defined in input action map "GameSceneMaps".
     /// </summary>
-    public struct NewactionmapActions
+    public struct GameSceneMapsActions
     {
         private @NewActions m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public NewactionmapActions(@NewActions wrapper) { m_Wrapper = wrapper; }
+        public GameSceneMapsActions(@NewActions wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/Lane0".
+        /// Provides access to the underlying input action "GameSceneMaps/Lane0".
         /// </summary>
-        public InputAction @Lane0 => m_Wrapper.m_Newactionmap_Lane0;
+        public InputAction @Lane0 => m_Wrapper.m_GameSceneMaps_Lane0;
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/Lane1".
+        /// Provides access to the underlying input action "GameSceneMaps/Lane1".
         /// </summary>
-        public InputAction @Lane1 => m_Wrapper.m_Newactionmap_Lane1;
+        public InputAction @Lane1 => m_Wrapper.m_GameSceneMaps_Lane1;
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/Lane2".
+        /// Provides access to the underlying input action "GameSceneMaps/Lane2".
         /// </summary>
-        public InputAction @Lane2 => m_Wrapper.m_Newactionmap_Lane2;
+        public InputAction @Lane2 => m_Wrapper.m_GameSceneMaps_Lane2;
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/Lane3".
+        /// Provides access to the underlying input action "GameSceneMaps/Lane3".
         /// </summary>
-        public InputAction @Lane3 => m_Wrapper.m_Newactionmap_Lane3;
+        public InputAction @Lane3 => m_Wrapper.m_GameSceneMaps_Lane3;
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/Lane4".
+        /// Provides access to the underlying input action "GameSceneMaps/Lane4".
         /// </summary>
-        public InputAction @Lane4 => m_Wrapper.m_Newactionmap_Lane4;
+        public InputAction @Lane4 => m_Wrapper.m_GameSceneMaps_Lane4;
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/Lane5".
+        /// Provides access to the underlying input action "GameSceneMaps/Lane5".
         /// </summary>
-        public InputAction @Lane5 => m_Wrapper.m_Newactionmap_Lane5;
+        public InputAction @Lane5 => m_Wrapper.m_GameSceneMaps_Lane5;
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/SlideLeft".
+        /// Provides access to the underlying input action "GameSceneMaps/SlideLeft".
         /// </summary>
-        public InputAction @SlideLeft => m_Wrapper.m_Newactionmap_SlideLeft;
+        public InputAction @SlideLeft => m_Wrapper.m_GameSceneMaps_SlideLeft;
         /// <summary>
-        /// Provides access to the underlying input action "Newactionmap/SlideRight".
+        /// Provides access to the underlying input action "GameSceneMaps/SlideRight".
         /// </summary>
-        public InputAction @SlideRight => m_Wrapper.m_Newactionmap_SlideRight;
+        public InputAction @SlideRight => m_Wrapper.m_GameSceneMaps_SlideRight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        public InputActionMap Get() { return m_Wrapper.m_GameSceneMaps; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -410,9 +464,9 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="NewactionmapActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="GameSceneMapsActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(GameSceneMapsActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -420,11 +474,11 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="NewactionmapActions" />
-        public void AddCallbacks(INewactionmapActions instance)
+        /// <seealso cref="GameSceneMapsActions" />
+        public void AddCallbacks(IGameSceneMapsActions instance)
         {
-            if (instance == null || m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GameSceneMapsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameSceneMapsActionsCallbackInterfaces.Add(instance);
             @Lane0.started += instance.OnLane0;
             @Lane0.performed += instance.OnLane0;
             @Lane0.canceled += instance.OnLane0;
@@ -457,8 +511,8 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="NewactionmapActions" />
-        private void UnregisterCallbacks(INewactionmapActions instance)
+        /// <seealso cref="GameSceneMapsActions" />
+        private void UnregisterCallbacks(IGameSceneMapsActions instance)
         {
             @Lane0.started -= instance.OnLane0;
             @Lane0.performed -= instance.OnLane0;
@@ -487,12 +541,12 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="NewactionmapActions.UnregisterCallbacks(INewactionmapActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GameSceneMapsActions.UnregisterCallbacks(IGameSceneMapsActions)" />.
         /// </summary>
-        /// <seealso cref="NewactionmapActions.UnregisterCallbacks(INewactionmapActions)" />
-        public void RemoveCallbacks(INewactionmapActions instance)
+        /// <seealso cref="GameSceneMapsActions.UnregisterCallbacks(IGameSceneMapsActions)" />
+        public void RemoveCallbacks(IGameSceneMapsActions instance)
         {
-            if (m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GameSceneMapsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -502,27 +556,123 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="NewactionmapActions.AddCallbacks(INewactionmapActions)" />
-        /// <seealso cref="NewactionmapActions.RemoveCallbacks(INewactionmapActions)" />
-        /// <seealso cref="NewactionmapActions.UnregisterCallbacks(INewactionmapActions)" />
-        public void SetCallbacks(INewactionmapActions instance)
+        /// <seealso cref="GameSceneMapsActions.AddCallbacks(IGameSceneMapsActions)" />
+        /// <seealso cref="GameSceneMapsActions.RemoveCallbacks(IGameSceneMapsActions)" />
+        /// <seealso cref="GameSceneMapsActions.UnregisterCallbacks(IGameSceneMapsActions)" />
+        public void SetCallbacks(IGameSceneMapsActions instance)
         {
-            foreach (var item in m_Wrapper.m_NewactionmapActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GameSceneMapsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GameSceneMapsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="NewactionmapActions" /> instance referencing this action map.
+    /// Provides a new <see cref="GameSceneMapsActions" /> instance referencing this action map.
     /// </summary>
-    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
+    public GameSceneMapsActions @GameSceneMaps => new GameSceneMapsActions(this);
+
+    // TitleSceneMaps
+    private readonly InputActionMap m_TitleSceneMaps;
+    private List<ITitleSceneMapsActions> m_TitleSceneMapsActionsCallbackInterfaces = new List<ITitleSceneMapsActions>();
+    private readonly InputAction m_TitleSceneMaps_TitleToSelect;
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "New action map" which allows adding and removing callbacks.
+    /// Provides access to input actions defined in input action map "TitleSceneMaps".
     /// </summary>
-    /// <seealso cref="NewactionmapActions.AddCallbacks(INewactionmapActions)" />
-    /// <seealso cref="NewactionmapActions.RemoveCallbacks(INewactionmapActions)" />
-    public interface INewactionmapActions
+    public struct TitleSceneMapsActions
+    {
+        private @NewActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TitleSceneMapsActions(@NewActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TitleSceneMaps/TitleToSelect".
+        /// </summary>
+        public InputAction @TitleToSelect => m_Wrapper.m_TitleSceneMaps_TitleToSelect;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TitleSceneMaps; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TitleSceneMapsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TitleSceneMapsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TitleSceneMapsActions" />
+        public void AddCallbacks(ITitleSceneMapsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TitleSceneMapsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TitleSceneMapsActionsCallbackInterfaces.Add(instance);
+            @TitleToSelect.started += instance.OnTitleToSelect;
+            @TitleToSelect.performed += instance.OnTitleToSelect;
+            @TitleToSelect.canceled += instance.OnTitleToSelect;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TitleSceneMapsActions" />
+        private void UnregisterCallbacks(ITitleSceneMapsActions instance)
+        {
+            @TitleToSelect.started -= instance.OnTitleToSelect;
+            @TitleToSelect.performed -= instance.OnTitleToSelect;
+            @TitleToSelect.canceled -= instance.OnTitleToSelect;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TitleSceneMapsActions.UnregisterCallbacks(ITitleSceneMapsActions)" />.
+        /// </summary>
+        /// <seealso cref="TitleSceneMapsActions.UnregisterCallbacks(ITitleSceneMapsActions)" />
+        public void RemoveCallbacks(ITitleSceneMapsActions instance)
+        {
+            if (m_Wrapper.m_TitleSceneMapsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TitleSceneMapsActions.AddCallbacks(ITitleSceneMapsActions)" />
+        /// <seealso cref="TitleSceneMapsActions.RemoveCallbacks(ITitleSceneMapsActions)" />
+        /// <seealso cref="TitleSceneMapsActions.UnregisterCallbacks(ITitleSceneMapsActions)" />
+        public void SetCallbacks(ITitleSceneMapsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TitleSceneMapsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TitleSceneMapsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TitleSceneMapsActions" /> instance referencing this action map.
+    /// </summary>
+    public TitleSceneMapsActions @TitleSceneMaps => new TitleSceneMapsActions(this);
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "GameSceneMaps" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="GameSceneMapsActions.AddCallbacks(IGameSceneMapsActions)" />
+    /// <seealso cref="GameSceneMapsActions.RemoveCallbacks(IGameSceneMapsActions)" />
+    public interface IGameSceneMapsActions
     {
         /// <summary>
         /// Method invoked when associated input action "Lane0" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -580,5 +730,20 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSlideRight(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TitleSceneMaps" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TitleSceneMapsActions.AddCallbacks(ITitleSceneMapsActions)" />
+    /// <seealso cref="TitleSceneMapsActions.RemoveCallbacks(ITitleSceneMapsActions)" />
+    public interface ITitleSceneMapsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "TitleToSelect" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTitleToSelect(InputAction.CallbackContext context);
     }
 }

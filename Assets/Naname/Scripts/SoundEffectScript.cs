@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.Audio;
-
+using static GameDataManager;
 public class SoundEffectScript : MonoBehaviour
 {
     private AudioSource audioSource;
-    public AudioClip tapSE;
+    [SerializeField] private AudioClip tapSE;
+    [SerializeField] private AudioClip slideSE;
 
     public static SoundEffectScript Instance;
 
@@ -18,8 +18,17 @@ public class SoundEffectScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void TapNotesSound()
+    public void TapNotesSound(NoteType notesType)
     {
-        audioSource.PlayOneShot(tapSE);
+        switch (notesType)
+        {
+            case NoteType.Tap:
+                audioSource.PlayOneShot(tapSE);
+                break;
+            case NoteType.Slide:
+                audioSource.PlayOneShot(slideSE);
+                break;
+        }
+
     }
 }

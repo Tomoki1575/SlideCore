@@ -681,7 +681,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1900,7 +1900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000f976ead73220478603c57b6f46c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapSE: {fileID: 8300000, guid: 262b9826fa908c6468d4b9344ed5bb94, type: 3}
+  tapSE: {fileID: 8300000, guid: 2c22016921ece174bbcdbbc27d0956d2, type: 3}
+  slideSE: {fileID: 8300000, guid: b650bfcc4d51b8d45941ea4647cde76f, type: 3}
 --- !u!114 &1303195363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1928,10 +1929,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perfectUIPrefab: {fileID: 700510036113408051, guid: 9c5d053b0beca954fb9d4367322ec0a9, type: 3}
   greatUIPrefab: {fileID: 5260448947405199663, guid: 0c3ec0d5d6ea8f3418cc89b83eeb42ec, type: 3}
+  greatFastUIPrefab: {fileID: 5260448947405199663, guid: e8c612d00588b89449a63b0c19eb0b7c, type: 3}
+  greatLateUIPrefab: {fileID: 5260448947405199663, guid: 1e1851f4dddba814c87ace248cb36487, type: 3}
   goodUIPrefab: {fileID: 5795349081097301351, guid: c591c541c13dccb479b051dbf7aec74d, type: 3}
+  goodFastUIPrefab: {fileID: 5795349081097301351, guid: 80557bc2bfd61f9459b1311583bb0a8d, type: 3}
+  goodLateUIPrefab: {fileID: 5795349081097301351, guid: d3858053051145243aac570af7a2eaf5, type: 3}
   missUIPrefab: {fileID: 3387587530183051095, guid: 19effdec17ed6434b80fb3f7d3ca3fe5, type: 3}
+  missFastUIPrefab: {fileID: 3387587530183051095, guid: b1e1720a219bea449a6af9671fbb14f0, type: 3}
+  missLateUIPrefab: {fileID: 3387587530183051095, guid: 262358e24fb001f4187e46810dc38fc9, type: 3}
   judgeUIParent: {fileID: 908802395}
   comboText: {fileID: 1593594427}
+  isTimingFeedbackMode: 1
 --- !u!114 &1303195365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2076,7 +2084,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Combo:9
+  m_text: Combo:8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2181,7 +2189,7 @@ Transform:
   m_GameObject: {fileID: 1718929601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 200, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2203,6 +2211,7 @@ MonoBehaviour:
   slideLeftPrefab: {fileID: 4081623201811727396, guid: 1798cf5b628ea664893784bcbae49e90, type: 3}
   slideRightPrefab: {fileID: 4081623201811727396, guid: 9e4b68ac1d350c749936509c65a04cab, type: 3}
   noiseNotePrefab: {fileID: 8988809383757903149, guid: 20821b99babee864ea291635b38041b9, type: 3}
+  musicSelection: {fileID: 11400000, guid: 278fbfc304a79014d84e76abea6546b8, type: 2}
   NotesToSpawn: []
 --- !u!1 &1772193830
 GameObject:

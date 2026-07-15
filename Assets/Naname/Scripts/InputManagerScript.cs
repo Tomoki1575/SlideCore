@@ -1,24 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
+using static GameDataManager;
+using UnityEngine.SceneManagement;
 
 public class InputManagerScript : MonoBehaviour
 {
     [SerializeField] private InputActionAsset actions;
 
     private System.Action<CallbackContext> slideRightHandler, slideLeftHandler;
-    private System.Action<CallbackContext> lane0Handler, lane1Handler,lane2Handler, lane3Handler, lane4Handler, lane5Handler;
+    private System.Action<CallbackContext> lane0Handler, lane1Handler, lane2Handler, lane3Handler, lane4Handler, lane5Handler;
 
     private void OnEnable()
     {
         actions.Enable();
 
-        lane0Handler = ctx => OnTap(0, ctx);
-        lane1Handler = ctx => OnTap(1, ctx);
-        lane2Handler = ctx => OnTap(2, ctx);
-        lane3Handler = ctx => OnTap(3, ctx);
-        lane4Handler = ctx => OnTap(4, ctx);
-        lane5Handler = ctx => OnTap(5, ctx);
+        lane0Handler = ctx => OnLaneTap(0, ctx);
+        lane1Handler = ctx => OnLaneTap(1, ctx);
+        lane2Handler = ctx => OnLaneTap(2, ctx);
+        lane3Handler = ctx => OnLaneTap(3, ctx);
+        lane4Handler = ctx => OnLaneTap(4, ctx);
+        lane5Handler = ctx => OnLaneTap(5, ctx);
         actions.FindAction("Lane0").performed += lane0Handler;
         actions.FindAction("Lane1").performed += lane1Handler;
         actions.FindAction("Lane2").performed += lane2Handler;
@@ -26,8 +28,8 @@ public class InputManagerScript : MonoBehaviour
         actions.FindAction("Lane4").performed += lane4Handler;
         actions.FindAction("Lane5").performed += lane5Handler;
 
-        slideRightHandler = ctx => OnSlide(true, ctx);
-        slideLeftHandler = ctx => OnSlide(false, ctx);
+        slideRightHandler = ctx => OnLaneSlide(true, ctx);
+        slideLeftHandler = ctx => OnLaneSlide(false, ctx);
         actions.FindAction("SlideRight").performed += slideRightHandler;
         actions.FindAction("SlideLeft").performed += slideLeftHandler;
     }
@@ -48,11 +50,11 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// レーン上の特定のボタンが押された時、呼ばれる関数。 {int 何番目のレーンか, InputAction.CallbackContext インプットシステムの専用変数}
+    /// レーン上の特定のボタンが押された時、呼ばれる関数 {int 何番目のレーンか, InputAction.CallbackContext インプットシステムの専用変数}
     /// </summary>
     /// <param name="laneIndex">何番目のレーンか</param>
     /// <param name="context"></param>
-    private void OnTap(int laneIndex, InputAction.CallbackContext context)
+    private void OnLaneTap(int laneIndex, InputAction.CallbackContext context)
     {
         double exactTime = context.time;
 
@@ -68,7 +70,7 @@ public class InputManagerScript : MonoBehaviour
 
             if (closestNoteMove != null)
             {
-                if (closestNoteMove.MyNotesType != NotesType.Tap) return;
+                if (closestNoteMove.MyNotesType != NoteType.Tap) return;
 
                 bool wasJudged = false;
 
@@ -91,11 +93,11 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// スライドボタンが押された時、呼ばれる関数。 {bool 右スライドか？, InputAction.CallbackContext インプットシステムの専用変数}
+    /// スライドボタンが押された時、呼ばれる関数 {bool 右スライドか？, InputAction.CallbackContext インプットシステムの専用変数}
     /// </summary>
     /// <param name="isRight">右スライドか？</param>
     /// <param name="context"></param>
-    private void OnSlide(bool isRight, InputAction.CallbackContext context)
+    private void OnLaneSlide(bool isRight, InputAction.CallbackContext context)
     {
         double exactTime = context.time;
 
@@ -119,7 +121,7 @@ public class InputManagerScript : MonoBehaviour
             if (closestNoteMove == null) continue;
 
             // スライド
-            if (closestNoteMove.MyNotesType == NotesType.Slide)
+            if (closestNoteMove.MyNotesType == NoteType.Slide)
             {
                 if (isRight == closestNoteMove.IsRight)
                 {
@@ -137,4 +139,6 @@ public class InputManagerScript : MonoBehaviour
             }
         }
     }
+
+
 }
