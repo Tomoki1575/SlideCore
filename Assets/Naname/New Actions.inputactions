@@ -2,7 +2,7 @@
     "name": "New Actions",
     "maps": [
         {
-            "name": "New action map",
+            "name": "GameSceneMaps",
             "id": "4e3e3794-2cf5-4192-a73e-3f23d0678444",
             "actions": [
                 {
@@ -164,6 +164,56 @@
                     "processors": "",
                     "groups": "",
                     "action": "SlideRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "TitleSceneMaps",
+            "id": "28bc3710-485c-4dcb-a452-fbe39df68a9c",
+            "actions": [
+                {
+                    "name": "TitleToSelect",
+                    "type": "Button",
+                    "id": "371e7b6e-2f5d-465c-b263-ad383573e582",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d2d0af9c-dd37-46d3-b0e4-b540c865f009",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TitleToSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86a42489-f3d0-45e4-b07b-24176a732d84",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TitleToSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c4258a0-f3b6-45b7-b6d8-6687c7468f7c",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TitleToSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

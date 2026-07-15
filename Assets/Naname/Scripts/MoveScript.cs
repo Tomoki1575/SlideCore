@@ -1,10 +1,11 @@
 using UnityEngine;
+using static GameDataManager;
 
 public class MoveScript : MonoBehaviour
 {
     public float HitTime;
     public int Lane;
-    public NotesType MyNotesType;
+    public NoteType MyNotesType;
     public bool IsRight;
 
     public static float ScrollSpeed = 7000f;
@@ -54,7 +55,7 @@ public class MoveScript : MonoBehaviour
         // check : オフセットなどを含む判定用の時間を計算
         float currentSongTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
 
-        if(!isMissTriggered && timeRemaining <= 0 && MyNotesType == NotesType.Noise)
+        if(!isMissTriggered && timeRemaining <= 0 && MyNotesType == NoteType.Noise)
         {
             isMissTriggered = true;
 

@@ -4,28 +4,39 @@ using UnityEngine;
 public class JudgeUIScript : MonoBehaviour
 {
     [SerializeField] private RectTransform perfectUIPrefab;
+
     [SerializeField] private RectTransform greatUIPrefab;
+    [SerializeField] private RectTransform greatFastUIPrefab;
+    [SerializeField] private RectTransform greatLateUIPrefab;
+
     [SerializeField] private RectTransform goodUIPrefab;
+    [SerializeField] private RectTransform goodFastUIPrefab;
+    [SerializeField] private RectTransform goodLateUIPrefab;
+
     [SerializeField] private RectTransform missUIPrefab;
+    [SerializeField] private RectTransform missFastUIPrefab;
+    [SerializeField] private RectTransform missLateUIPrefab;
 
     [SerializeField] private RectTransform judgeUIParent;
 
-    [SerializeField] private TextMeshProUGUI comboText; 
+    [SerializeField] private TextMeshProUGUI comboText;
     private int currentCombo = 0;
 
 
-    public static JudgeUIScript Instanse { get; private set; }
+    public static JudgeUIScript Instance { get; private set; }
 
     private GameObject[] activeJudgeObjects = new GameObject[6];
 
+    [SerializeField] private bool isTimingFeedbackMode = false;
+
     private void Awake()
     {
-        Instanse = this;
+        Instance = this;
 
         if (comboText != null) comboText.text = "";
     }
 
-    public void JudgeOutput(int lane, JudgeResult result)
+    public void JudgeOutput(int lane, JudgeResult result, bool isLate)
     {
         if (activeJudgeObjects[lane] != null)
         {
@@ -42,17 +53,17 @@ public class JudgeUIScript : MonoBehaviour
                 break;
 
             case JudgeResult.Great:
-                judgeUIObj = Instantiate(greatUIPrefab.gameObject, judgeUIParent);
+                judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? greatLateUIPrefab : greatFastUIPrefab) : greatUIPrefab).gameObject, judgeUIParent);
                 currentCombo++;
                 break;
 
             case JudgeResult.Good:
-                judgeUIObj = Instantiate(goodUIPrefab.gameObject, judgeUIParent);
+                judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? goodLateUIPrefab : goodFastUIPrefab) : goodUIPrefab).gameObject, judgeUIParent);
                 currentCombo++;
                 break;
 
             case JudgeResult.Miss:
-                judgeUIObj = Instantiate(missUIPrefab.gameObject, judgeUIParent);
+                judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? missLateUIPrefab : missFastUIPrefab) : missUIPrefab).gameObject, judgeUIParent);
                 currentCombo = 0;
                 break;
         }

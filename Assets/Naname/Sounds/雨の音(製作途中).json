@@ -7,7 +7,7 @@
         "difficulty": "-",
         "musicName": "雨の音(short).wav",
         "musicPath": "..\\..\\..\\..\\よく使う\\unity関連\\unity保存先\\SlideCore_Git\\Assets\\Naname\\Sounds\\雨の音(short).wav",
-        "offset": -1700
+        "offset": -1730
     },
     "bpms": [
         {
@@ -195,6 +195,90 @@
                 "tick": 0
             },
             "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 14,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 9,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 13,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 5,
+            "type": 5,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 0,
             "type": 1,
             "bSpecial": false,
             "pairIndex": -1,

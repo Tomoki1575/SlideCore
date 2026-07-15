@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using static GameDataManager;
 
 public enum JudgeResult
 {
@@ -52,25 +53,25 @@ public class JudgeScript : MonoBehaviour
 
         if (absTimeUntilHit <= PerfectWindow)
         {
-            OnNotesJudged(JudgeResult.Perfect, isLate, timeUntilHit);
+            OnNotesJudged(JudgeResult.Perfect, isLate, timeUntilHit, moveScript.MyNotesType);
             return true;
         }
 
         else if (absTimeUntilHit <= GreatWindow)
         {
-            OnNotesJudged(JudgeResult.Great, isLate, timeUntilHit);
+            OnNotesJudged(JudgeResult.Great, isLate, timeUntilHit, moveScript.MyNotesType);
             return true;
         }
 
         else if (absTimeUntilHit <= GoodWindow)
         {
-            OnNotesJudged(JudgeResult.Good, isLate, timeUntilHit);
+            OnNotesJudged(JudgeResult.Good, isLate, timeUntilHit, moveScript.MyNotesType);
             return true;
         }
 
         else if (absTimeUntilHit <= MissWindow)
         {
-            OnNotesJudged(JudgeResult.Miss, isLate, timeUntilHit);
+            OnNotesJudged(JudgeResult.Miss, isLate, timeUntilHit, moveScript.MyNotesType);
             return true;
         }
 
@@ -96,7 +97,7 @@ public class JudgeScript : MonoBehaviour
             }
         }
 
-        OnNotesJudged(JudgeResult.Miss, true, -MissWindow);
+        OnNotesJudged(JudgeResult.Miss, true, -MissWindow, moveScript.MyNotesType);
     }
 
     /// <summary>
@@ -105,34 +106,34 @@ public class JudgeScript : MonoBehaviour
     /// <param name="result">判定に対する評価</param>　
     /// <param name="isLate">叩くのが遅すぎたか</param>
     /// <param name="timeUntilHit">叩くのにズレた時間</param>
-    private void OnNotesJudged(JudgeResult result, bool isLate, float timeUntilHit)
+    private void OnNotesJudged(JudgeResult result, bool isLate, float timeUntilHit,NoteType noteType)
     {
         // todo : ここでスコア加算やエフェクト生成を呼びたい
 
         switch (result)
         {
             case JudgeResult.Perfect:
-                SoundEffectScript.Instance.TapNotesSound();
-                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane,JudgeResult.Perfect);
+                SoundEffectScript.Instance.TapNotesSound(noteType);
+                JudgeUIScript.Instance.JudgeOutput(moveScript.Lane,JudgeResult.Perfect,isLate);
                 break;
 
             case JudgeResult.Great:
-                SoundEffectScript.Instance.TapNotesSound();
-                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Great);
+                SoundEffectScript.Instance.TapNotesSound(noteType);
+                JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Great, isLate);
                 break;
 
             case JudgeResult.Good:
-                SoundEffectScript.Instance.TapNotesSound();
-                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Good);
+                SoundEffectScript.Instance.TapNotesSound(noteType);
+                JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Good, isLate);
                 break;
 
             case JudgeResult.Miss when !isLate:
-                SoundEffectScript.Instance.TapNotesSound();
-                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Miss);
+                SoundEffectScript.Instance.TapNotesSound(noteType);
+                JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Miss, isLate);
                 break;
 
             case JudgeResult.Miss:
-                JudgeUIScript.Instanse.JudgeOutput(moveScript.Lane, JudgeResult.Miss);
+                JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Miss, isLate);
                 break;
         }
 
@@ -164,7 +165,7 @@ public class JudgeScript : MonoBehaviour
 
             // Perfect判定を飛ばす（第2引数はLateかどうか。回避なので適当にfalseでOK）
             // ※ノイズ用のSEを鳴らしたい場合は、OnNotesJudgedのswitch文に後で追加できます
-            OnNotesJudged(JudgeResult.Perfect, false, 0f);
+            OnNotesJudged(JudgeResult.Perfect, false, 0f, moveScript.MyNotesType);
         }
 
         else
