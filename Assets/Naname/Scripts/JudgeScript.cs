@@ -14,9 +14,9 @@ public class JudgeScript : MonoBehaviour
 {
     private MoveScript moveScript;
 
-    private const float PerfectWindow = 0.05f;
-    private const float GreatWindow = 0.10f;
-    private const float GoodWindow = 0.25f;
+    private const float PerfectWindow = 0.06f;
+    private const float GreatWindow = 0.12f;
+    private const float GoodWindow = 0.24f;
     private const float MissWindow = 0.4f;
 
     public static float InputOffset { get; private set; } = 0.1f;
