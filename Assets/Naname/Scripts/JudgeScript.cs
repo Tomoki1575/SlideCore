@@ -14,10 +14,10 @@ public class JudgeScript : MonoBehaviour
 {
     private MoveScript moveScript;
 
-    private const float PerfectWindow = 0.06f;
-    private const float GreatWindow = 0.12f;
-    private const float GoodWindow = 0.24f;
-    private const float MissWindow = 0.4f;
+    public const float PerfectWindow = 0.06f;
+    public const float GreatWindow = 0.12f;
+    public const float GoodWindow = 0.24f;
+    public const float MissWindow = 0.4f;
 
     public static float InputOffset { get; private set; } = 0.1f;
 
@@ -100,6 +100,37 @@ public class JudgeScript : MonoBehaviour
         OnNotesJudged(JudgeResult.Miss, true, -MissWindow, moveScript.MyNotesType);
     }
 
+
+    /// <summary>
+    /// ノイズノーツが判定ラインに重なった瞬間に、MoveScriptのUpdateから自動で呼び出される判定関数
+    /// </summary>
+    public void ExecuteNoiseJudge()
+    {
+        if (!LaneScript.isActiveLane[moveScript.Lane])
+        {
+            // リストからこのノーツを削除（TriggerMissByThrough の中身と同じ処理）
+            if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
+            {
+                var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
+                if (targetList.Count > 0 && targetList[0] == moveScript)
+                {
+                    targetList.RemoveAt(0);
+                }
+            }
+
+            // Perfect判定を飛ばす（第2引数はLateかどうか。回避なので適当にfalseでOK）
+            // ※ノイズ用のSEを鳴らしたい場合は、OnNotesJudgedのswitch文に後で追加できます
+            OnNotesJudged(JudgeResult.Perfect, false, 0f, moveScript.MyNotesType);
+        }
+
+        else
+        {
+            // 【アクティブ ➔ 接触（Miss!）】
+            // 既存の通り過ぎMissの関数をそのまま使い回せば、リスト削除もMiss演出も一発で処理できます！
+            TriggerMissByThrough();
+        }
+    }
+
     /// <summary>
     /// 判定後の処理を行う関数 (【列挙型】JudgeResult 判定に対する評価, bool 叩くのが遅すぎたか, float 叩くのにズレた時間)
     /// </summary>
@@ -144,35 +175,5 @@ public class JudgeScript : MonoBehaviour
             Debug.Log($"{result}(Fast) (Lane: {moveScript.Lane}, absTimeUntilHit: {Mathf.FloorToInt(timeUntilHit * 1000)}ms)");
 
         Destroy(this.gameObject);
-    }
-
-    /// <summary>
-    /// ノイズノーツが判定ラインに重なった瞬間に、MoveScriptのUpdateから自動で呼び出される判定関数
-    /// </summary>
-    public void ExecuteNoiseJudge()
-    {
-        if(!LaneScript.isActiveLane[moveScript.Lane])
-        {
-            // リストからこのノーツを削除（TriggerMissByThrough の中身と同じ処理）
-            if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
-            {
-                var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
-                if (targetList.Count > 0 && targetList[0] == moveScript)
-                {
-                    targetList.RemoveAt(0);
-                }
-            }
-
-            // Perfect判定を飛ばす（第2引数はLateかどうか。回避なので適当にfalseでOK）
-            // ※ノイズ用のSEを鳴らしたい場合は、OnNotesJudgedのswitch文に後で追加できます
-            OnNotesJudged(JudgeResult.Perfect, false, 0f, moveScript.MyNotesType);
-        }
-
-        else
-        {
-            // 【アクティブ ➔ 接触（Miss!）】
-            // 既存の通り過ぎMissの関数をそのまま使い回せば、リスト削除もMiss演出も一発で処理できます！
-            TriggerMissByThrough();
-        }
     }
 }

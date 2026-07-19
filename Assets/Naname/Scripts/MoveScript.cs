@@ -46,24 +46,39 @@ public class MoveScript : MonoBehaviour
         // check : オフセットなどを含む判定用の時間を計算
         float currentSongTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
 
-        if (!isMissTriggered && timeRemaining <= 0 && MyNotesType == NoteType.Noise)
+
+        // ノーツを消す処理
+        if (!isMissTriggered)
         {
-            isMissTriggered = true;
-
-            judgeScript.ExecuteNoiseJudge();
-
-            return;
-        }
-
-        float missDeadline = (MyNotesType == NoteType.Hold) ? EndHitTime : HitTime + 0.4f;
-
-        if (!isMissTriggered && currentSongTime > missDeadline)
-        {
-            isMissTriggered = true;
-
-            if (judgeScript != null)
+            switch (MyNotesType)
             {
-                judgeScript.TriggerMissByThrough();
+                case NoteType.Noise:
+                    // ノイズの場合、叩かれるべき時間が過ぎた瞬間判定されるため、その瞬間消す
+                    if (timeRemaining <= 0)
+                    {
+                        isMissTriggered = true;
+
+                        judgeScript.ExecuteNoiseJudge();
+                    }
+                    break;
+
+                case NoteType.Hold:
+                    // 帯の部分が流れ終わってから、貼り付けておいた始点を消す
+                    if (MusicManagerScript.SongTime >= EndHitTime)
+                    {
+                        isMissTriggered = true;
+                        judgeScript.TriggerMissByThrough();
+                    }
+                    break;
+
+                default:
+                    // ホールド以外のノーツにおいて、叩かれずにそのまま流れたら（遅missの判定になる時間まで叩かれなかったら）ノーツを消す
+                    if (currentSongTime > HitTime + JudgeScript.MissWindow)
+                    {
+                        isMissTriggered = true;
+                        judgeScript.TriggerMissByThrough();
+                    }
+                    break;
             }
         }
     }
