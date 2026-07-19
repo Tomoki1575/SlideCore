@@ -2189,7 +2189,7 @@ Transform:
   m_GameObject: {fileID: 1718929601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 200, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2211,6 +2211,8 @@ MonoBehaviour:
   slideLeftPrefab: {fileID: 4081623201811727396, guid: 1798cf5b628ea664893784bcbae49e90, type: 3}
   slideRightPrefab: {fileID: 4081623201811727396, guid: 9e4b68ac1d350c749936509c65a04cab, type: 3}
   noiseNotePrefab: {fileID: 8988809383757903149, guid: 20821b99babee864ea291635b38041b9, type: 3}
+  holdStartNotePrefab: {fileID: 6114595056001937290, guid: c11e87aacf5c36142a6efaee89154e35, type: 3}
+  holdBandNotePrefab: {fileID: 2481273614434393733, guid: 2b753204214c8254198873380e26c44d, type: 3}
   musicSelection: {fileID: 11400000, guid: 278fbfc304a79014d84e76abea6546b8, type: 2}
   NotesToSpawn: []
 --- !u!1 &1772193830
