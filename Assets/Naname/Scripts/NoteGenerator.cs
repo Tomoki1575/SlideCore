@@ -52,6 +52,8 @@ public class NoteGenerator : MonoBehaviour
 
     void Start()
     {
+        ResultCounterScript.ResetCounts();
+
         // 判定ラインより4500高い位置で画面から見え始めるため、そこの直前で生成
         // 視野角や画面範囲を変えた場合は、この4500を変える
         spawnOffsetTime = 4500f / MoveScript.ScrollSpeed;
@@ -93,6 +95,10 @@ public class NoteGenerator : MonoBehaviour
 
         // HitTimeが早い順にならんでいないといけない為、早い順にリストを並び替える
         NotesToSpawn.Sort((a, b) => a.HitTime.CompareTo(b.HitTime));
+
+        // 最大コンボ数を計算
+        foreach (var n in NotesToSpawn)
+            ResultCounterScript.TotalJudgments += (n.noteType == NoteType.Hold) ? 2 : 1;
     }
 
     void Update()
@@ -148,8 +154,9 @@ public class NoteGenerator : MonoBehaviour
             moveScript.EndHitTime = data.EndHitTime;
 
             // lane変数を参照し、レーンを決める
-            float xPos = (data.Lane - 2.5f) * laneSpacing;
             RectTransform rect = newNote.GetComponent<RectTransform>();
+            float xPos = (data.Lane - 2.5f) * laneSpacing;
+
             rect.anchoredPosition = new Vector2(xPos, 0);
             moveScript.Lane = data.Lane;
 

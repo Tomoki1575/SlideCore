@@ -1788,7 +1788,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 54f64e6e11372434a8a37073ad10b820, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
@@ -1888,6 +1888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1303195360}
   songTimeText: {fileID: 1152031503}
+  musicSelection: {fileID: 11400000, guid: e710a6c2afe5c38449ed74d3072627cc, type: 2}
 --- !u!114 &1303195362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,6 +1916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: {fileID: -944628639613478452, guid: 071c4f3e59d4ed94d809dcf911298a95, type: 3}
+  slideCooldown: 0.08
 --- !u!114 &1303195364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,7 +2215,7 @@ MonoBehaviour:
   noiseNotePrefab: {fileID: 8988809383757903149, guid: 20821b99babee864ea291635b38041b9, type: 3}
   holdStartNotePrefab: {fileID: 6114595056001937290, guid: c11e87aacf5c36142a6efaee89154e35, type: 3}
   holdBandNotePrefab: {fileID: 2481273614434393733, guid: 2b753204214c8254198873380e26c44d, type: 3}
-  musicSelection: {fileID: 11400000, guid: 278fbfc304a79014d84e76abea6546b8, type: 2}
+  musicSelection: {fileID: 11400000, guid: e710a6c2afe5c38449ed74d3072627cc, type: 2}
   NotesToSpawn: []
 --- !u!1 &1772193830
 GameObject:

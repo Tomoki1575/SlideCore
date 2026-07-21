@@ -20,7 +20,6 @@ public class JudgeUIScript : MonoBehaviour
     [SerializeField] private RectTransform judgeUIParent;
 
     [SerializeField] private TextMeshProUGUI comboText;
-    private int currentCombo = 0;
 
 
     public static JudgeUIScript Instance { get; private set; }
@@ -49,22 +48,18 @@ public class JudgeUIScript : MonoBehaviour
         {
             case JudgeResult.Perfect:
                 judgeUIObj = Instantiate(perfectUIPrefab.gameObject, judgeUIParent);
-                currentCombo++;
                 break;
 
             case JudgeResult.Great:
                 judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? greatLateUIPrefab : greatFastUIPrefab) : greatUIPrefab).gameObject, judgeUIParent);
-                currentCombo++;
                 break;
 
             case JudgeResult.Good:
                 judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? goodLateUIPrefab : goodFastUIPrefab) : goodUIPrefab).gameObject, judgeUIParent);
-                currentCombo++;
                 break;
 
             case JudgeResult.Miss:
                 judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? missLateUIPrefab : missFastUIPrefab) : missUIPrefab).gameObject, judgeUIParent);
-                currentCombo = 0;
                 break;
         }
 
@@ -106,9 +101,9 @@ public class JudgeUIScript : MonoBehaviour
     {
         if (comboText == null) return;
 
-        if (currentCombo >= 2)
+        if (ResultCounterScript.CountCombo >= 2)
         {
-            comboText.text = $"<size=50%>COMBO</size>\n{currentCombo}";
+            comboText.text = $"<size=50%>COMBO</size>\n{ResultCounterScript.CountCombo}";
 
             comboText.transform.localScale = Vector3.one * 1.6f;
         }

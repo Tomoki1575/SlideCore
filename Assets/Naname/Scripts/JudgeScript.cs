@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using static GameDataManager;
 
 public enum JudgeResult
@@ -14,9 +13,9 @@ public class JudgeScript : MonoBehaviour
 {
     private MoveScript moveScript;
 
-    public const float PerfectWindow = 0.06f;
-    public const float GreatWindow = 0.12f;
-    public const float GoodWindow = 0.24f;
+    public const float PerfectWindow = 0.07f;
+    public const float GreatWindow = 0.14f;
+    public const float GoodWindow = 0.21f;
     public const float MissWindow = 0.4f;
 
     public static float InputOffset { get; private set; } = 0.1f;
@@ -27,58 +26,99 @@ public class JudgeScript : MonoBehaviour
     }
 
     /// <summary>
-    /// InputManagerScriptでキー入力が検知された瞬間に、ピンポイントで呼び出される判定関数 (double 押された時間)
+    /// 押された時間を受け取り、「UI表示+SE再生+ノーツ破棄」を行う。
+    /// その後、それが空振りだったか空振りじゃなかったかを返す関数。
+    /// （ホールドノーツ以外）
     /// </summary>
     /// <param name="pressedTime">新Input Systemが記録した、物理的にキーが押された正確な時間(context.time)</param>
     public bool ExecuteJudge(double pressedTime)
     {
-        // いま判定ラインのスライド範囲内（アクティブレーン）に入っているか
-        if (!LaneScript.isActiveLane[moveScript.Lane])
-        {
+        JudgeResult? result = JudgeByTime(pressedTime, out bool isLate, out float timeUntilHit);
+
+        if (result == null) // 空振り
             return false;
+
+        OnNotesJudged(result.Value, isLate, timeUntilHit, moveScript.MyNotesType, true, true);  // UI/SE + 破棄
+        return true;
+    }
+
+    /// <summary>
+    /// （ホールドノーツ専用）
+    /// 押された時間を受け取り、「UI表示+SE再生」を行う。（ホールドノーツは始点を即座に破棄はしない。）
+    /// その後、それが空振りだったか空振りじゃなかったかを返す関数。
+    /// </summary>
+    /// <param name="pressedTime">新Input Systemが記録した、物理的にキーが押された正確な時間(context.time)</param>
+
+    public bool ExecuteHoldStartJudge(double pressedTime)
+    {
+        JudgeResult? result = JudgeByTime(pressedTime, out bool isLate, out float timeUntilHit);
+
+        if (result == null)     // 空振り
+            return false;
+
+        OnNotesJudged(result.Value, isLate, timeUntilHit, moveScript.MyNotesType, destroy: false,true);  // UI/SEだけ（破棄はしない）。
+
+        moveScript.MarkHoldStarted();   // 始点が押せたことを記録
+
+        return true;
+    }
+
+    public void ExecuteHoldEndJudge(float heldRatio)
+    {
+        // まだリストに残っていれば外す（始点を一度も押さなかったHold対策）
+        if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
+        {
+            var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
+
+            if (targetList.Count > 0 && targetList[0] == moveScript)
+            {
+                targetList.RemoveAt(0);
+            }
         }
 
-        // Unityのフレームのズレを打ち消す正確な曲の時間を逆算
-        float exactSongTime = (float)(pressedTime - MusicManagerScript.SongStartRealTime);
+        JudgeResult result;
 
-        exactSongTime -= InputOffset;
+        if (heldRatio >= 0.8f) result = JudgeResult.Perfect;
+        else if (heldRatio >= 0.6f) result = JudgeResult.Great;
+        else if (heldRatio >= 0.4f) result = JudgeResult.Good;
+        else result = JudgeResult.Miss;
+
+        OnNotesJudged(result, isLate: false, timeUntilHit: 0f, moveScript.MyNotesType, destroy: true,false);
+    }
+
+
+    /// <summary>
+    /// 押された時間を受け取り、perfectなどの判定を返す関数
+    /// </summary>
+    /// <param name="pressedTime"></param>
+    /// <param name="isLate"></param>
+    /// <param name="timeUntilHit"></param>
+    /// <returns></returns>
+    private JudgeResult? JudgeByTime(double pressedTime, out bool isLate, out float timeUntilHit)
+    {
+        isLate = false;
+        timeUntilHit = 0f;
+
+        // いま判定ラインのスライド範囲内（アクティブレーン）に入っているか
+        if (!LaneScript.isActiveLane[moveScript.Lane])
+            return null;
+
+        // Unityのフレームのズレを打ち消す正確な曲の時間を逆算
+        float exactSongTime = (float)(pressedTime - MusicManagerScript.SongStartRealTime) - InputOffset;
 
         // 判定ラインからのズレを、OSが検知した入力時間ベースで計算
-        float timeUntilHit = moveScript.HitTime - exactSongTime;
+        timeUntilHit = moveScript.HitTime - exactSongTime;
 
         float absTimeUntilHit = Mathf.Abs(timeUntilHit);
 
         // 負の数ならLate（遅い）
-        bool isLate = timeUntilHit < 0;
+        isLate = timeUntilHit < 0;
 
-        if (absTimeUntilHit <= PerfectWindow)
-        {
-            OnNotesJudged(JudgeResult.Perfect, isLate, timeUntilHit, moveScript.MyNotesType);
-            return true;
-        }
-
-        else if (absTimeUntilHit <= GreatWindow)
-        {
-            OnNotesJudged(JudgeResult.Great, isLate, timeUntilHit, moveScript.MyNotesType);
-            return true;
-        }
-
-        else if (absTimeUntilHit <= GoodWindow)
-        {
-            OnNotesJudged(JudgeResult.Good, isLate, timeUntilHit, moveScript.MyNotesType);
-            return true;
-        }
-
-        else if (absTimeUntilHit <= MissWindow)
-        {
-            OnNotesJudged(JudgeResult.Miss, isLate, timeUntilHit, moveScript.MyNotesType);
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
+        if (absTimeUntilHit <= PerfectWindow) return JudgeResult.Perfect;
+        else if (absTimeUntilHit <= GreatWindow) return JudgeResult.Great;
+        else if (absTimeUntilHit <= GoodWindow) return JudgeResult.Good;
+        else if (absTimeUntilHit <= MissWindow) return JudgeResult.Miss;
+        else return null;   // どの窓にも入らない＝空振り
     }
 
     /// <summary>
@@ -97,7 +137,7 @@ public class JudgeScript : MonoBehaviour
             }
         }
 
-        OnNotesJudged(JudgeResult.Miss, true, -MissWindow, moveScript.MyNotesType);
+        OnNotesJudged(JudgeResult.Miss, true, -MissWindow, moveScript.MyNotesType, true, true);
     }
 
 
@@ -120,7 +160,7 @@ public class JudgeScript : MonoBehaviour
 
             // Perfect判定を飛ばす（第2引数はLateかどうか。回避なので適当にfalseでOK）
             // ※ノイズ用のSEを鳴らしたい場合は、OnNotesJudgedのswitch文に後で追加できます
-            OnNotesJudged(JudgeResult.Perfect, false, 0f, moveScript.MyNotesType);
+            OnNotesJudged(JudgeResult.Perfect, false, 0f, moveScript.MyNotesType, true, true);
         }
 
         else
@@ -137,43 +177,61 @@ public class JudgeScript : MonoBehaviour
     /// <param name="result">判定に対する評価</param>　
     /// <param name="isLate">叩くのが遅すぎたか</param>
     /// <param name="timeUntilHit">叩くのにズレた時間</param>
-    private void OnNotesJudged(JudgeResult result, bool isLate, float timeUntilHit,NoteType noteType)
+    /// <param name="destroy">このノーツを破棄するか</param>　
+    private void OnNotesJudged(JudgeResult result, bool isLate, float timeUntilHit, NoteType noteType, bool destroy, bool isPlaySE)
     {
-        // todo : ここでスコア加算やエフェクト生成を呼びたい
+        // コンボ更新（Missで切れる、それ以外はつながる）
+        if (result == JudgeResult.Miss)
+            ResultCounterScript.ResetCombo();
+
+        else
+            ResultCounterScript.AddCombo();
 
         switch (result)
         {
             case JudgeResult.Perfect:
-                SoundEffectScript.Instance.TapNotesSound(noteType);
-                JudgeUIScript.Instance.JudgeOutput(moveScript.Lane,JudgeResult.Perfect,isLate);
+                ResultCounterScript.CountPerfect++;
+                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
+                JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Perfect, isLate);
                 break;
 
             case JudgeResult.Great:
-                SoundEffectScript.Instance.TapNotesSound(noteType);
+                ResultCounterScript.CountGreat++;
+                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Great, isLate);
                 break;
 
             case JudgeResult.Good:
-                SoundEffectScript.Instance.TapNotesSound(noteType);
+                ResultCounterScript.CountGood++;
+                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Good, isLate);
                 break;
 
             case JudgeResult.Miss when !isLate:
-                SoundEffectScript.Instance.TapNotesSound(noteType);
+                ResultCounterScript.CountMiss++;
+                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Miss, isLate);
                 break;
 
             case JudgeResult.Miss:
+                ResultCounterScript.CountMiss++;
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Miss, isLate);
                 break;
         }
 
-        if (isLate)
-            Debug.Log($"{result}(Late) (Lane: {moveScript.Lane}, absTimeUntilHit: {Mathf.FloorToInt(timeUntilHit * 1000)}ms)");
+        if (destroy)
+            Destroy(this.gameObject);
+    }
 
-        else
-            Debug.Log($"{result}(Fast) (Lane: {moveScript.Lane}, absTimeUntilHit: {Mathf.FloorToInt(timeUntilHit * 1000)}ms)");
+    public void TriggerHoldStartMiss()
+    {
+        var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
 
-        Destroy(this.gameObject);
+        if (targetList.Count > 0 && targetList[0] == moveScript)
+        {
+            targetList.RemoveAt(0);
+        }
+
+        OnNotesJudged(JudgeResult.Miss, isLate: true, -MissWindow, moveScript.MyNotesType, destroy: false,true);
     }
 }

@@ -28,7 +28,9 @@ public class SoundEffectScript : MonoBehaviour
             case NoteType.Slide:
                 audioSource.PlayOneShot(slideSE);
                 break;
+            case NoteType.Hold:
+                audioSource.PlayOneShot(tapSE);
+                break;
         }
-
     }
 }
