@@ -27,35 +27,27 @@ public class LaneScript : MonoBehaviour
 
         allLaneImages = new[] { Lane0, Lane1, Lane2, Lane3, Lane4, Lane5 };
 
-        for (int i = 0; i < 4; i++)
-        {
-            canInputLane[i] = NormalizeLane(canInputLane[i]);
-        }
-
         ApplyActiveLanes();
     }
 
     public void SlideLane(bool isRight)
     {
-        if(isRight)
+        if (isRight)
         {
-            for (int i = 0; i < canInputLane.Length; i++)
-            {
-                canInputLane[i] = NormalizeLane(canInputLane[i] + 1);
-            }
+            if (isActiveLane[5]) return;   // 右端が既にアクティブ＝これ以上右へは壁
 
-            ApplyActiveLanes();
+            for (int i = 0; i < canInputLane.Length; i++)
+                canInputLane[i] += 1;      // NormalizeLane を外して単純に +1
+        }
+        else
+        {
+            if (isActiveLane[0]) return;   // 左端が既にアクティブ＝これ以上左へは壁
+
+            for (int i = 0; i < canInputLane.Length; i++)
+                canInputLane[i] -= 1;
         }
 
-        else if(!isRight)
-        {
-            for (int i = 0; i < canInputLane.Length; i++)
-            {
-                canInputLane[i] = NormalizeLane(canInputLane[i] - 1);
-            }
-
-            ApplyActiveLanes();
-        }
+        ApplyActiveLanes();
     }
 
     private void ApplyActiveLanes()

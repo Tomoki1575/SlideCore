@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using static GameDataManager;
 
 public class MoveScript : MonoBehaviour
@@ -16,13 +16,17 @@ public class MoveScript : MonoBehaviour
     private RectTransform rectTransform;
 
     private JudgeScript judgeScript;
-    private bool isMissTriggered = false; // “ñd‚ÉMiss‚ª‘–‚ç‚È‚¢‚½‚ß‚ÌƒK[ƒhƒtƒ‰ƒO
+    private bool isMissTriggered = false; // äºŒé‡ã«MissãŒèµ°ã‚‰ãªã„ãŸã‚ã®ã‚¬ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 
-    public RectTransform HoldBand;              // ‘Ñin“_ƒm[ƒc‚¾‚¯‚ª‚Âj
-    private const float MaxBandTopY = 2600f;    // ‘Ñ‚Ìã’[‚ÌŒÀŠE
-    public float HoldBaseOffsetY;               // ‘Ñ‚Ì‰º’[
+    public RectTransform HoldBand;              // å¸¯ï¼ˆå§‹ç‚¹ãƒãƒ¼ãƒ„ã ã‘ãŒæŒã¤ï¼‰
+    private const float MaxBandTopY = 2600f;    // å¸¯ã®ä¸Šç«¯ã®é™ç•Œ
+    public float HoldBaseOffsetY;               // å¸¯ã®ä¸‹ç«¯
 
-    // ——RFNotesGenerator ‚ª¶¬‚µ‚½’¼Œã‚É‚·‚® RectTransform ‚ğg‚¦‚é‚æ‚¤‚É‚·‚é‚½‚ß
+    private float heldTime = 0f;   // å¸¯ã®åŒºé–“ä¸­ã€ãƒ¬ãƒ¼ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ãŸç´¯ç©æ™‚é–“ï¼ˆå¸¯éƒ¨åˆ†ã®ã‚³ãƒ³ãƒœã®åˆ†å­ï¼‰
+
+    private bool holdStartJudged = false;
+
+    // ç†ç”±ï¼šNotesGenerator ãŒç”Ÿæˆã—ãŸç›´å¾Œã«ã™ã RectTransform ã‚’ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -40,20 +44,20 @@ public class MoveScript : MonoBehaviour
         if (MyNotesType == NoteType.Hold)
             RefreshHoldBand();
 
-        // timeRemaining ©c‚è‰½•b‚Å”»’èƒ‰ƒCƒ“‚É“’B‚·‚×‚«‚©‚ğ‹L˜^‚·‚é•Ï”
+        // timeRemaining â†æ®‹ã‚Šä½•ç§’ã§åˆ¤å®šãƒ©ã‚¤ãƒ³ã«åˆ°é”ã™ã¹ãã‹ã‚’è¨˜éŒ²ã™ã‚‹å¤‰æ•°
         float timeRemaining = HitTime - MusicManagerScript.SongTime;
 
-        // check : ƒIƒtƒZƒbƒg‚È‚Ç‚ğŠÜ‚Ş”»’è—p‚ÌŠÔ‚ğŒvZ
+        // check : ã‚ªãƒ•ã‚»ãƒƒãƒˆãªã©ã‚’å«ã‚€åˆ¤å®šç”¨ã®æ™‚é–“ã‚’è¨ˆç®—
         float currentSongTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
 
 
-        // ƒm[ƒc‚ğÁ‚·ˆ—
+        // ãƒãƒ¼ãƒ„ã‚’æ¶ˆã™å‡¦ç†
         if (!isMissTriggered)
         {
             switch (MyNotesType)
             {
                 case NoteType.Noise:
-                    // ƒmƒCƒY‚Ìê‡A’@‚©‚ê‚é‚×‚«ŠÔ‚ª‰ß‚¬‚½uŠÔ”»’è‚³‚ê‚é‚½‚ßA‚»‚ÌuŠÔÁ‚·
+                    // ãƒã‚¤ã‚ºã®å ´åˆã€å©ã‹ã‚Œã‚‹ã¹ãæ™‚é–“ãŒéããŸç¬é–“åˆ¤å®šã•ã‚Œã‚‹ãŸã‚ã€ãã®ç¬é–“æ¶ˆã™
                     if (timeRemaining <= 0)
                     {
                         isMissTriggered = true;
@@ -63,16 +67,36 @@ public class MoveScript : MonoBehaviour
                     break;
 
                 case NoteType.Hold:
-                    // ‘Ñ‚Ì•”•ª‚ª—¬‚êI‚í‚Á‚Ä‚©‚çA“\‚è•t‚¯‚Ä‚¨‚¢‚½n“_‚ğÁ‚·
+                    float songTime = MusicManagerScript.SongTime;
+
+                    // å§‹ç‚¹ã‚’ã‚¹ãƒ«ãƒ¼ã—ãŸå ´åˆã€å§‹ç‚¹ã®åˆ¤å®šçª“ã‚’éããŸã‚‰miss
+                    if(!holdStartJudged && currentSongTime > HitTime + JudgeScript.MissWindow)
+                    {
+                        holdStartJudged = true;
+                        judgeScript.TriggerHoldStartMiss();
+                    }
+
+                    // å¸¯ã®åŒºé–“ä¸­ï¼ˆå§‹ç‚¹ã€œçµ‚ç‚¹ï¼‰ã§ã€ãƒ¬ãƒ¼ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ã‚Œã°æŠ¼ã—æ™‚é–“ã‚’è²¯ã‚ã‚‹
+                    if (songTime >= HitTime && songTime < EndHitTime && InputManagerScript.isLanePressed[Lane])
+                    {
+                        heldTime += Time.deltaTime;
+                    }
+
+
+                    // å¸¯ã®éƒ¨åˆ†ãŒæµã‚Œçµ‚ã‚ã£ã¦ã‹ã‚‰ã€è²¼ã‚Šä»˜ã‘ã¦ãŠã„ãŸå§‹ç‚¹ã‚’æ¶ˆã™
                     if (MusicManagerScript.SongTime >= EndHitTime)
                     {
                         isMissTriggered = true;
-                        judgeScript.TriggerMissByThrough();
+
+                        float bandDuration = EndHitTime - HitTime;
+                        float heldRatio = bandDuration > 0f ? heldTime / bandDuration : 0f;
+
+                        judgeScript.ExecuteHoldEndJudge(heldRatio);
                     }
                     break;
 
                 default:
-                    // ƒz[ƒ‹ƒhˆÈŠO‚Ìƒm[ƒc‚É‚¨‚¢‚ÄA’@‚©‚ê‚¸‚É‚»‚Ì‚Ü‚Ü—¬‚ê‚½‚çi’xmiss‚Ì”»’è‚É‚È‚éŠÔ‚Ü‚Å’@‚©‚ê‚È‚©‚Á‚½‚çjƒm[ƒc‚ğÁ‚·
+                    // ãƒ›ãƒ¼ãƒ«ãƒ‰ä»¥å¤–ã®ãƒãƒ¼ãƒ„ã«ãŠã„ã¦ã€å©ã‹ã‚Œãšã«ãã®ã¾ã¾æµã‚ŒãŸã‚‰ï¼ˆé…missã®åˆ¤å®šã«ãªã‚‹æ™‚é–“ã¾ã§å©ã‹ã‚Œãªã‹ã£ãŸã‚‰ï¼‰ãƒãƒ¼ãƒ„ã‚’æ¶ˆã™
                     if (currentSongTime > HitTime + JudgeScript.MissWindow)
                     {
                         isMissTriggered = true;
@@ -84,35 +108,43 @@ public class MoveScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Œ»İƒm[ƒc‚ª‚ ‚é‚×‚«êŠ‚ğŒvZ‚µA‚»‚ÌÀ•W‚Éƒm[ƒc‚ğ”z’u‚·‚éŠÖ”B
-    /// uƒm[ƒc‚ğ“®‚©‚·ŠÖ”v‚Æ‚àŒ¾‚¦‚éB
+    /// ç¾åœ¨ãƒãƒ¼ãƒ„ãŒã‚ã‚‹ã¹ãå ´æ‰€ã‚’è¨ˆç®—ã—ã€ãã®åº§æ¨™ã«ãƒãƒ¼ãƒ„ã‚’é…ç½®ã™ã‚‹é–¢æ•°ã€‚
+    /// ã€Œãƒãƒ¼ãƒ„ã‚’å‹•ã‹ã™é–¢æ•°ã€ã¨ã‚‚è¨€ãˆã‚‹ã€‚
     /// </summary>
     public void RefreshPosition()
     {
-        // u‹——£  ŠÔ ~ ‘¬‚³v ‚æ‚èAŒ»İƒm[ƒc‚ª‚ ‚é‚×‚«À•W‚ğŒvZ
+        // ã€Œè·é›¢ ï¼ æ™‚é–“ Ã— é€Ÿã•ã€ ã‚ˆã‚Šã€ç¾åœ¨ãƒãƒ¼ãƒ„ãŒã‚ã‚‹ã¹ãåº§æ¨™ã‚’è¨ˆç®—
         float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.SongTime) * ScrollSpeed);
 
-        // ƒz[ƒ‹ƒh‚Ìn“_‚Í”»’èƒ‰ƒCƒ“‚æ‚è‰º‚Ö‚Ís‚©‚¸“\‚è•t‚­iŒ©‚½–Ú‚¾‚¯j
+        // ãƒ›ãƒ¼ãƒ«ãƒ‰ã®å§‹ç‚¹ã¯åˆ¤å®šãƒ©ã‚¤ãƒ³ã‚ˆã‚Šä¸‹ã¸ã¯è¡Œã‹ãšè²¼ã‚Šä»˜ãï¼ˆè¦‹ãŸç›®ã ã‘ï¼‰
         if (MyNotesType == NoteType.Hold && noteYPos < judgmentLineY)
         {
             noteYPos = judgmentLineY;
         }
 
-        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, noteYPos);        // À•W‚ğXV
+        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, noteYPos);        // åº§æ¨™ã‚’æ›´æ–°
     }
 
     /// <summary>
-    /// ƒz[ƒ‹ƒhƒm[ƒc‚Ìn“_‚¨‚æ‚Ñ‘Ñ•”•ª‚Ì”z’u‚ğŒˆ’è‚·‚éŠÖ”
+    /// ãƒ›ãƒ¼ãƒ«ãƒ‰ãƒãƒ¼ãƒ„ã®å§‹ç‚¹ãŠã‚ˆã³å¸¯éƒ¨åˆ†ã®é…ç½®ã‚’æ±ºå®šã™ã‚‹é–¢æ•°
     /// </summary>
     public void RefreshHoldBand()
     {
-        // ƒz[ƒ‹ƒhI“_‚ÌŒ»İˆÊ’u‚ğŠÔ‚©‚ç’¼ÚŒvZi‹——£  ŠÔ ~ ‘¬‚³j
+        // ãƒ›ãƒ¼ãƒ«ãƒ‰çµ‚ç‚¹ã®ç¾åœ¨ä½ç½®ã‚’æ™‚é–“ã‹ã‚‰ç›´æ¥è¨ˆç®—ï¼ˆè·é›¢ ï¼ æ™‚é–“ Ã— é€Ÿã•ï¼‰
         float endY = judgmentLineY + (EndHitTime - MusicManagerScript.SongTime) * ScrollSpeed;
 
-        float bandBottom = rectTransform.anchoredPosition.y + HoldBaseOffsetY;      // ‘Ñ‚Ì‰º’[in“_‚É’£‚è•t‚­j
-        float visibleTop = Mathf.Min(endY, MaxBandTopY);     // ã’[‚ğ‰æ–ÊŠO‚Éo‚³‚È‚¢‚æ‚¤‚É‚·‚é
-        float visibleHeight = Mathf.Max(0f, visibleTop - bandBottom);   // ¡•\¦‚·‚é‘Ñ‚Ì‚‚³iÁ”ï‚Åk‚Şj
+        float bandBottom = rectTransform.anchoredPosition.y + HoldBaseOffsetY;      // å¸¯ã®ä¸‹ç«¯ï¼ˆå§‹ç‚¹ã«å¼µã‚Šä»˜ãï¼‰
+        float visibleTop = Mathf.Min(endY, MaxBandTopY);     // ä¸Šç«¯ã‚’ç”»é¢å¤–ã«å‡ºã•ãªã„ã‚ˆã†ã«ã™ã‚‹
+        float visibleHeight = Mathf.Max(0f, visibleTop - bandBottom);   // ä»Šè¡¨ç¤ºã™ã‚‹å¸¯ã®é«˜ã•ï¼ˆæ¶ˆè²»ã§ç¸®ã‚€ï¼‰
 
-        HoldBand.sizeDelta = new Vector2(HoldBand.sizeDelta.x, visibleHeight);  //‘Ñ‚Ì’·‚³‚ğŒˆ’è
+        HoldBand.sizeDelta = new Vector2(HoldBand.sizeDelta.x, visibleHeight);  //å¸¯ã®é•·ã•ã‚’æ±ºå®š
+    }
+
+    /// <summary>
+    /// å§‹ç‚¹ã‚’æŠ¼ã—ã¦åˆ¤å®šã§ããŸã¨ãã€JudgeScriptã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
+    /// </summary>
+    public void MarkHoldStarted()
+    {
+        holdStartJudged = true;
     }
 }

@@ -93,6 +93,9 @@ MonoBehaviour:
   Lane: 0
   MyNotesType: 1
   IsRight: 0
+  EndHitTime: 0
+  HoldBand: {fileID: 0}
+  HoldBaseOffsetY: 0
 --- !u!114 &2164716787168729812
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MusicManagerScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MusicManagerScript : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI songTimeText;
 
+    [SerializeField] private MusicSelection musicSelection;
+
     public static float SongTime;
     public static float MsSongTime;
 
@@ -18,9 +21,20 @@ public class MusicManagerScript : MonoBehaviour
 
     public static double SongStartRealTime;
 
+    private float resultDelay = 1.5f;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        // MusicSelection から音源を自動セット（譜面と音をズレさせないため）
+        if (musicSelection != null && musicSelection.musicData != null)
+        {
+            audioSource.clip = musicSelection.musicData.audioClip;
+        }
     }
 
     /// <summary>
@@ -57,6 +71,13 @@ public class MusicManagerScript : MonoBehaviour
             MsSongTime = Mathf.FloorToInt(SongTime * 1000);
 
             songTimeText.text = $"{MsSongTime}";
+
+            // 曲の長さ＋余韻を過ぎたらリザルトへ
+            if (SongTime >= audioSource.clip.length + resultDelay)
+            {
+                isPlaying = false;
+                SceneManager.LoadScene("ResultScene");
+            }
         }
     }
 }

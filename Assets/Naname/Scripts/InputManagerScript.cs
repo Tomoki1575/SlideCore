@@ -8,8 +8,15 @@ public class InputManagerScript : MonoBehaviour
 {
     [SerializeField] private InputActionAsset actions;
 
+    public static bool[] isLanePressed = new bool[6];
+
+    [SerializeField] private float slideCooldown = 0.05f;   // スライドの最小間隔（秒・調整可）
+    private double lastRightSlideTime = -999;
+    private double lastLeftSlideTime = -999;
+
     private System.Action<CallbackContext> slideRightHandler, slideLeftHandler;
     private System.Action<CallbackContext> lane0Handler, lane1Handler, lane2Handler, lane3Handler, lane4Handler, lane5Handler;
+    private System.Action<CallbackContext> lane0ReleaseHandler, lane1ReleaseHandler, lane2ReleaseHandler, lane3ReleaseHandler, lane4ReleaseHandler, lane5ReleaseHandler;
 
     private void OnEnable()
     {
@@ -28,6 +35,19 @@ public class InputManagerScript : MonoBehaviour
         actions.FindAction("Lane4").performed += lane4Handler;
         actions.FindAction("Lane5").performed += lane5Handler;
 
+        lane0ReleaseHandler = ctx => OnLaneRelease(0);
+        lane1ReleaseHandler = ctx => OnLaneRelease(1);
+        lane2ReleaseHandler = ctx => OnLaneRelease(2);
+        lane3ReleaseHandler = ctx => OnLaneRelease(3);
+        lane4ReleaseHandler = ctx => OnLaneRelease(4);
+        lane5ReleaseHandler = ctx => OnLaneRelease(5);
+        actions.FindAction("Lane0").canceled += lane0ReleaseHandler;
+        actions.FindAction("Lane1").canceled += lane1ReleaseHandler;
+        actions.FindAction("Lane2").canceled += lane2ReleaseHandler;
+        actions.FindAction("Lane3").canceled += lane3ReleaseHandler;
+        actions.FindAction("Lane4").canceled += lane4ReleaseHandler;
+        actions.FindAction("Lane5").canceled += lane5ReleaseHandler;
+
         slideRightHandler = ctx => OnLaneSlide(true, ctx);
         slideLeftHandler = ctx => OnLaneSlide(false, ctx);
         actions.FindAction("SlideRight").performed += slideRightHandler;
@@ -42,6 +62,13 @@ public class InputManagerScript : MonoBehaviour
         actions.FindAction("Lane3").performed -= lane3Handler;
         actions.FindAction("Lane4").performed -= lane4Handler;
         actions.FindAction("Lane5").performed -= lane5Handler;
+
+        actions.FindAction("Lane0").canceled -= lane0ReleaseHandler;
+        actions.FindAction("Lane1").canceled -= lane1ReleaseHandler;
+        actions.FindAction("Lane2").canceled -= lane2ReleaseHandler;
+        actions.FindAction("Lane3").canceled -= lane3ReleaseHandler;
+        actions.FindAction("Lane4").canceled -= lane4ReleaseHandler;
+        actions.FindAction("Lane5").canceled -= lane5ReleaseHandler;
 
         actions.FindAction("SlideRight").performed -= slideRightHandler;
         actions.FindAction("SlideLeft").performed -= slideLeftHandler;
@@ -58,6 +85,8 @@ public class InputManagerScript : MonoBehaviour
     {
         double exactTime = context.time;
 
+        isLanePressed[laneIndex] = true;
+
         if (NoteGenerator.Instance == null || NoteGenerator.Instance.laneNotesLists == null) return;
 
         var targetLaneList = NoteGenerator.Instance.laneNotesLists[laneIndex];
@@ -70,7 +99,8 @@ public class InputManagerScript : MonoBehaviour
 
             if (closestNoteMove != null)
             {
-                if (closestNoteMove.MyNotesType != NoteType.Tap) return;
+                if (closestNoteMove.MyNotesType != NoteType.Tap && closestNoteMove.MyNotesType != NoteType.Hold)
+                    return;
 
                 bool wasJudged = false;
 
@@ -79,8 +109,16 @@ public class InputManagerScript : MonoBehaviour
 
                 if (judgeScript != null)
                 {
-                    // OSが検知した正確な時間を渡して判定を実行する
-                    wasJudged = judgeScript.ExecuteJudge(exactTime);
+                    if (closestNoteMove.MyNotesType == NoteType.Hold)
+                    {
+                        wasJudged = judgeScript.ExecuteHoldStartJudge(exactTime);
+                    }
+
+                    else
+                    {
+                        // OSが検知した正確な時間を渡して判定を実行する
+                        wasJudged = judgeScript.ExecuteJudge(exactTime);
+                    }
 
                     if (wasJudged)
                     {
@@ -93,6 +131,14 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
+    /// レーンのボタンが離された瞬間に呼ばれる。押下フラグを下ろすだけ。
+    /// </summary>
+    private void OnLaneRelease(int laneIndex)
+    {
+        isLanePressed[laneIndex] = false;
+    }
+
+    /// <summary>
     /// スライドボタンが押された時、呼ばれる関数 {bool 右スライドか？, InputAction.CallbackContext インプットシステムの専用変数}
     /// </summary>
     /// <param name="isRight">右スライドか？</param>
@@ -100,6 +146,18 @@ public class InputManagerScript : MonoBehaviour
     private void OnLaneSlide(bool isRight, InputAction.CallbackContext context)
     {
         double exactTime = context.time;
+
+        // 同じ方向のスライドが短時間に連続したら無視（多重判定防止）
+        double lastTime = isRight ? lastRightSlideTime : lastLeftSlideTime;
+
+        if (exactTime - lastTime < slideCooldown)
+            return;
+
+        if (isRight) 
+            lastRightSlideTime = exactTime;
+
+        else
+            lastLeftSlideTime = exactTime;
 
         // レーンを動かす処理
         if (LaneScript.Instance != null)
