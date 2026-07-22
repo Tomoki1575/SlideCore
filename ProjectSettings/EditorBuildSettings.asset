@@ -6,24 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Naname/Scenes/Final/GameScene.unity
-    guid: ace3adf11d7cd9f43bbd94f12c6287fb
-  - enabled: 1
     path: Assets/Naname/Scenes/Final/TitleScene.unity
     guid: d86f389b60575674397bcab2876a49f0
   - enabled: 1
     path: Assets/Naname/Scenes/Final/SelectScene.unity
     guid: 7d46603b8c5af614fa2b8a9a3bc424ea
   - enabled: 1
+    path: Assets/Naname/Scenes/Final/GameScene.unity
+    guid: ace3adf11d7cd9f43bbd94f12c6287fb
+  - enabled: 1
     path: Assets/Naname/Scenes/Final/ResultScene.unity
     guid: 868b1dfb12d01e94e9ae50deb8994914
   - enabled: 0
     path: Assets/Naname/Scenes/Test/NanameScene.unity
     guid: 17ed294b6db22f54bbb9a19bd571fe6b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Porosuke/Scene/Final_Select.unity
     guid: a0a86b040cb76a14fb32c14f709f1251
-  - enabled: 1
+  - enabled: 0
     path: Assets/Porosuke/Scene/Final_Play.unity
     guid: 13ee33dd27a597643a5c614d48b486ed
   m_configObjects:

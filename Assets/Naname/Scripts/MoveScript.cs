@@ -10,7 +10,7 @@ public class MoveScript : MonoBehaviour
 
     public float EndHitTime;
 
-    public static float ScrollSpeed = 7000f;
+    public static float ScrollSpeed = 2500f;
     private float judgmentLineY = -1900f;
 
     private RectTransform rectTransform;

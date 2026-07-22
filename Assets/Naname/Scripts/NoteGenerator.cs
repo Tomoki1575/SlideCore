@@ -37,6 +37,13 @@ public class NoteGenerator : MonoBehaviour
     // 各レーンに「今画面に存在するノーツのMoveScript」を並び順通りに格納する
     public List<MoveScript>[] laneNotesLists = new List<MoveScript>[6];
 
+    // 「鳴っている音楽」と「ノーツ」のズレを直すためのオフセット
+    // こっちはプレイヤーが設定する
+    //
+    // 「目押しではなくリズム押しをした時」に
+    // lateぎみだったら値を増やして、fastぎみだったら値を減らす
+    public static float MusicOffset = 0f;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -66,7 +73,7 @@ public class NoteGenerator : MonoBehaviour
         // 「beat(引数)」から「判定ラインに来る実時間(返り値)」に変換する。
         // 始点・終点で共通して使う
         float ToHitTime(JsonDataConverter.BeatData beat) =>
-            (float)TimeConverter.ConvertBeatToReal(beat, jsonData.bpms) - (jsonData.meta.offset / 1000f - 0.4f);
+            (float)TimeConverter.ConvertBeatToReal(beat, jsonData.bpms) - (jsonData.meta.offset / 1000f - MusicOffset);
 
         // ノーツデータをリストに入れていく
         foreach (JsonDataConverter.NoteData note in jsonData.notes)

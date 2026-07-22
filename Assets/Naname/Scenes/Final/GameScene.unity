@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &212495893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -999,7 +999,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!224 &908802395
 RectTransform:
@@ -1102,7 +1102,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &949273351
 RectTransform:
@@ -1887,8 +1887,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1303195360}
+  musicSelection: {fileID: 11400000, guid: f733c2f9fc40c7c43b5a90c312abdfad, type: 2}
   songTimeText: {fileID: 1152031503}
-  musicSelection: {fileID: 11400000, guid: e710a6c2afe5c38449ed74d3072627cc, type: 2}
 --- !u!114 &1303195362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   noiseNotePrefab: {fileID: 8988809383757903149, guid: 20821b99babee864ea291635b38041b9, type: 3}
   holdStartNotePrefab: {fileID: 6114595056001937290, guid: c11e87aacf5c36142a6efaee89154e35, type: 3}
   holdBandNotePrefab: {fileID: 2481273614434393733, guid: 2b753204214c8254198873380e26c44d, type: 3}
-  musicSelection: {fileID: 11400000, guid: e710a6c2afe5c38449ed74d3072627cc, type: 2}
+  musicSelection: {fileID: 11400000, guid: f733c2f9fc40c7c43b5a90c312abdfad, type: 2}
   NotesToSpawn: []
 --- !u!1 &1772193830
 GameObject:

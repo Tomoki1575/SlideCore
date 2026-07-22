@@ -1,0 +1,6516 @@
+{
+    "meta": {
+        "title": "Untitled",
+        "artist": "anonymous",
+        "chartAuthor": "anonymous",
+        "Description": "",
+        "difficulty": "-",
+        "musicName": "雨の音(short).wav",
+        "musicPath": "..\\..\\..\\..\\よく使う\\unity関連\\unity保存先\\SlideCore_Git\\Assets\\Naname\\Sounds\\雨の音(short).wav",
+        "offset": -1730
+    },
+    "bpms": [
+        {
+            "beat": {
+                "measure": 1,
+                "beat": 1,
+                "tick": 0
+            },
+            "bpm": 139,
+            "speedScale": 1.0
+        }
+    ],
+    "signatures": [
+        {
+            "beat": {
+                "measure": 1,
+                "beat": 1,
+                "tick": 0
+            },
+            "numerator": 4,
+            "denominator": 4
+        }
+    ],
+    "notes": [
+        {
+            "beat": {
+                "measure": 2,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 2,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 3,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 3,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 3,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 4,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 5,
+            "type": 5,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 4,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 5,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 5,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 5,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 5,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 5,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 6,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 6,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 7,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 7,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 7,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 7,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 8,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 19,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 9,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 18,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 9,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 9,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 9,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 9,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 27,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 28,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 5,
+            "type": 5,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 24,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 25,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 10,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 39,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 41,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 37,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 11,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 38,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 45,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 5,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 47,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 42,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 44,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 5,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 12,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 5,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 57,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 56,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 13,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 14,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 15,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 16,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 16,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 17,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 87,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 83,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 91,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 88,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 95,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 18,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 92,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 100,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 102,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 96,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 99,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 106,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 19,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 110,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 103,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 113,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 105,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 109,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 118,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 20,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 122,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 114,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 124,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 117,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 121,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 21,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 130,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 134,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 127,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 138,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 129,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 22,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 142,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 133,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 144,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 137,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 141,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 147,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 23,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 145,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 151,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 148,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 0,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 155,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 152,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 160,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 24,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 0,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 163,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 156,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 159,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 166,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 164,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 25,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 26,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 26,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 176,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 26,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 26,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 27,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 27,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 27,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 27,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 27,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 169,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 27,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 180,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 28,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 28,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 28,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 177,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 28,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 28,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 28,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 188,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 28,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 29,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 29,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 29,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 29,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 183,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 29,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 194,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 30,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 30,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 30,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 5,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 30,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 30,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 189,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 30,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 199,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 31,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 31,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 5,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 31,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 31,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 195,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 31,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 31,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 208,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 32,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 32,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 32,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 32,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 32,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 32,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 210,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 201,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 212,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 207,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 214,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 209,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 215,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 211,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 213,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 218,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 216,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 34,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 34,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 34,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 34,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 34,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 231,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 34,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 35,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 35,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 35,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 35,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 35,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 225,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 35,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 236,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 36,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 36,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 36,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 36,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 232,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 36,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 242,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 36,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 37,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 37,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 37,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 37,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 237,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 37,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 37,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 248,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 38,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 38,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 38,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 38,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 244,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 38,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 39,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 39,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 253,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 39,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 39,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 251,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 39,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 39,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 39,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 262,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 40,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 40,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 40,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 40,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 41,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 41,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 256,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 42,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 266,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 42,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 42,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 273,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 42,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 263,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 42,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 42,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 42,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 43,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 43,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 43,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 44,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 265,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 44,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 44,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 277,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 44,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 275,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 1,
+                "tick": 640
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 2,
+                "tick": 320
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 2,
+                "tick": 800
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 45,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 1,
+                "tick": 240
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 290,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 1,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 2,
+                "tick": 240
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 2,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 287,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 2,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 297,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 46,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 292,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 1,
+                "tick": 240
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 1,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 2,
+                "tick": 240
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 2,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 47,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 48,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 313,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 48,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 312,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 50,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 311,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 50,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 310,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 50,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 51,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 52,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 53,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 54,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 55,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 370,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 371,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 368,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 369,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 373,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 372,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 376,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 377,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 56,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 374,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 57,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 375,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 57,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 380,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 57,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 383,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 57,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 378,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 57,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 5,
+            "type": 5,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 57,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 0,
+            "type": 5,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 58,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 379,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 1,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 59,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 2,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 60,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 1,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 61,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 2,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 62,
+                "beat": 4,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 1,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 3,
+                "tick": 240
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 63,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 449,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 448,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 452,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 454,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 450,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 456,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 451,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 457,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 64,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 453,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 65,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 455,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 65,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 461,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 65,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 65,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 463,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 65,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 458,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 65,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 460,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 466,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 464,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 472,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 66,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 474,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 467,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 476,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 471,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 473,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 67,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 486,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 488,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 484,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": true
+        },
+        {
+            "beat": {
+                "measure": 68,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 485,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 492,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 494,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 5,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 489,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 490,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 5,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 4,
+                "tick": 240
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 5,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 504,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 503,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 4,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 70,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 71,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 1,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 2,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 2,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 3,
+                "tick": 480
+            },
+            "lane": 2,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 3,
+                "tick": 720
+            },
+            "lane": 3,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 4,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 4,
+                "tick": 480
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 72,
+                "beat": 5,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 538,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 73,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 2,
+            "bSpecial": false,
+            "pairIndex": 539,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 75,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 4,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 536,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 75,
+                "beat": 1,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 537,
+            "bIsRight": false
+        }
+    ]
+}

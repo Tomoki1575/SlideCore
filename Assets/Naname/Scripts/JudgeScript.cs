@@ -18,7 +18,9 @@ public class JudgeScript : MonoBehaviour
     public const float GoodWindow = 0.21f;
     public const float MissWindow = 0.4f;
 
-    public static float InputOffset { get; private set; } = 0.1f;
+    // ノーツの「見た目」と「実際の計算による判定」のズレを調整するオフセット
+    // プレイヤーがいじることは無いと思う
+    public static float InputOffset { get; private set; } = 0.03f;
 
     void Start()
     {
