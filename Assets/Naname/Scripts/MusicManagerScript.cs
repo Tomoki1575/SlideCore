@@ -9,9 +9,9 @@ public class MusicManagerScript : MonoBehaviour
 
     [SerializeField] private AudioSource audioSource;
 
-    [SerializeField] private TextMeshProUGUI songTimeText;
-
     [SerializeField] private MusicSelection musicSelection;
+
+    [SerializeField] private TextMeshProUGUI songTimeText;
 
     public static float SongTime;
     public static float MsSongTime;
@@ -25,6 +25,9 @@ public class MusicManagerScript : MonoBehaviour
 
     private void Awake()
     {
+        SongTime = 0f;
+        MsSongTime = 0f;
+
         Instance = this;
     }
 
@@ -34,6 +37,7 @@ public class MusicManagerScript : MonoBehaviour
         if (musicSelection != null && musicSelection.musicData != null)
         {
             audioSource.clip = musicSelection.musicData.audioClip;
+            audioSource.clip.LoadAudioData();
         }
     }
 
@@ -49,22 +53,25 @@ public class MusicManagerScript : MonoBehaviour
         // 音の粒 44100個分 ＝ 1秒
         // といったように、音のデータ量から時間を計算している
 
-        dspStartTime = AudioSettings.dspTime;
+        double scheduleAhead = 0.2;                                  // 少し先に予約（読み込み・準備の余裕）
 
-        SongStartRealTime = Time.realtimeSinceStartupAsDouble;
+        dspStartTime = AudioSettings.dspTime + scheduleAhead;               // 音が鳴る瞬間＝この時刻
+        SongStartRealTime = Time.realtimeSinceStartupAsDouble + scheduleAhead;   // 入力用の時計も同じだけ未来へ
 
-        audioSource.Play();
+        audioSource.PlayScheduled(dspStartTime);                     // その時刻ぴったりに鳴る
         isPlaying = true;
     }
 
     private void Update()
     {
-        if (Keyboard.current.pKey.wasPressedThisFrame && !isPlaying)
+        if (!isPlaying && audioSource.clip.loadState == AudioDataLoadState.Loaded)
         {
             StartSong();
+
+            return;
         }
 
-        if (isPlaying)
+        else if (isPlaying)
         {
             SongTime = (float)(AudioSettings.dspTime - dspStartTime);   //  正確な経過秒数 = (floatに変換)(現在の時刻 - 開始時の時刻)
 

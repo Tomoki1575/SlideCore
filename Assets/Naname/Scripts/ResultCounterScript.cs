@@ -67,7 +67,7 @@ public class ResultCounterScript : MonoBehaviour
         int MaxScore = TotalJudgments;
 
         // ”»’è‚²‚Æ‚Ìd‚İ(Miss ‚Í 0 ‚È‚Ì‚Å‘«‚³‚È‚¢)
-        float weighted = CountPerfect + CountGreat * 0.75f + CountGood * 0.5f;
+        float weighted = CountPerfect + CountGreat * 0.8f + CountGood * 0.5f;
 
         return Mathf.RoundToInt(weighted / MaxScore * 1_000_000f);
     }

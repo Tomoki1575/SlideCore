@@ -16,9 +16,9 @@ MonoBehaviour:
   title: 
   artist: 
   audioClip: {fileID: 8300000, guid: 54f64e6e11372434a8a37073ad10b820, type: 3}
-  levelEasy: 0
-  chartEasy: {fileID: 0}
-  levelNormal: 0
-  chartNormal: {fileID: 0}
-  levelHard: 0
+  levelEasy: 2
+  chartEasy: {fileID: 4900000, guid: 761bc6f73270eaf4c82cff22fc0705c5, type: 3}
+  levelNormal: 4
+  chartNormal: {fileID: 4900000, guid: 15d165160f8f01947aa091aa1e9c2697, type: 3}
+  levelHard: 7
   chartHard: {fileID: 4900000, guid: c5a904d074cc3a547898f67095f71fa0, type: 3}
