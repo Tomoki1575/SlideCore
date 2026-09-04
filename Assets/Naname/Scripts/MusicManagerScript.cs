@@ -34,7 +34,7 @@ public class MusicManagerScript : MonoBehaviour
     private void Start()
     {
         // MusicSelection から音源を自動セット（譜面と音をズレさせないため）
-        if (musicSelection != null && musicSelection.musicData != null)
+        if (musicSelection != null && musicSelection.musicData != null && musicSelection.musicData.audioClip != null)
         {
             audioSource.clip = musicSelection.musicData.audioClip;
             audioSource.clip.LoadAudioData();
@@ -64,6 +64,9 @@ public class MusicManagerScript : MonoBehaviour
 
     private void Update()
     {
+        if (audioSource.clip == null)
+            return;
+
         if (!isPlaying && audioSource.clip.loadState == AudioDataLoadState.Loaded)
         {
             StartSong();

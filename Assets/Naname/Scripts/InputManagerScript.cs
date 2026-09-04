@@ -14,9 +14,9 @@ public class InputManagerScript : MonoBehaviour
     private double lastRightSlideTime = -999;
     private double lastLeftSlideTime = -999;
 
-    private System.Action<CallbackContext> slideRightHandler, slideLeftHandler;
     private System.Action<CallbackContext> lane0Handler, lane1Handler, lane2Handler, lane3Handler, lane4Handler, lane5Handler;
     private System.Action<CallbackContext> lane0ReleaseHandler, lane1ReleaseHandler, lane2ReleaseHandler, lane3ReleaseHandler, lane4ReleaseHandler, lane5ReleaseHandler;
+    private System.Action<CallbackContext> slideRightHandler, slideLeftHandler;
 
     private void OnEnable()
     {
