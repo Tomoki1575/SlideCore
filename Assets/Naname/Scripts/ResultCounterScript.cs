@@ -14,7 +14,6 @@ public enum ScoreRank
     SSS,
     SS,
     S,
-    A_Plus,
     A,
     B,
     C,
@@ -46,7 +45,7 @@ public class ResultCounterScript : MonoBehaviour
         TotalJudgments = 0;
     }
 
-    // ヒット時：コンボを1増やし、最高記録を更新
+    // ヒット時にコンボを増やし、最高記録を更新
     public static void AddCombo()
     {
         CountCombo++;
@@ -94,8 +93,7 @@ public class ResultCounterScript : MonoBehaviour
         if (score >= 1_000_000) return ScoreRank.SSS_Plus;
         if (score >= 990_000) return ScoreRank.SSS;
         if (score >= 980_000) return ScoreRank.SS;
-        if (score >= 960_000) return ScoreRank.S;
-        if (score >= 930_000) return ScoreRank.A_Plus;
+        if (score >= 950_000) return ScoreRank.S;
         if (score >= 900_000) return ScoreRank.A;
         if (score >= 800_000) return ScoreRank.B;
         if (score >= 650_000) return ScoreRank.C;

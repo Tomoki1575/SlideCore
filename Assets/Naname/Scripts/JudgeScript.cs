@@ -13,8 +13,8 @@ public class JudgeScript : MonoBehaviour
 {
     private MoveScript moveScript;
 
-    public const float PerfectWindow = 0.07f;
-    public const float GreatWindow = 0.14f;
+    public const float PerfectWindow = 0.075f;
+    public const float GreatWindow = 0.15f;
     public const float GoodWindow = 0.21f;
     public const float MissWindow = 0.4f;
 

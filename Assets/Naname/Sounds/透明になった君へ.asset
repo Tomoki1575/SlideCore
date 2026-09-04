@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 283fe82c2b2e573458d80be72da10d2b, type: 3}
-  m_Name: Dont
+  m_Name: "\u900F\u660E\u306B\u306A\u3063\u305F\u541B\u3078"
   m_EditorClassIdentifier: 
   jacketImage: {fileID: 0}
-  title: 
-  artist: 
-  audioClip: {fileID: 8300000, guid: 51e56c847f912264da5bc677b5aa815e, type: 3}
+  title: "\u900F\u660E\u306B\u306A\u3063\u305F\u541B\u3078"
+  artist: "\u6D41\u661F\u306E\u30B5\u30A4\u30C8\u30B7\u30FC\u30A4\u30F3\u30B0"
+  audioClip: {fileID: 8300000, guid: cc03aaf0b54076b46b2d4356e32b009a, type: 3}
   levelEasy: 0
   chartEasy: {fileID: 0}
   levelNormal: 0
   chartNormal: {fileID: 0}
-  levelHard: 0
-  chartHard: {fileID: 4900000, guid: dca09a6c77c5c1d4a84d1c0e2a783fbe, type: 3}
+  levelHard: 8
+  chartHard: {fileID: 4900000, guid: ff2caed97f2e3884a92453c2af93e67f, type: 3}

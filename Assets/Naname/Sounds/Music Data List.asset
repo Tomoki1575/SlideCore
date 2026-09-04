@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a16cb00e5969c45b4918e42cd95b7a, type: 3}
-  m_Name: Rain(Normal)
+  m_Script: {fileID: 11500000, guid: e215546139b76cf45af8b95daf2a30af, type: 3}
+  m_Name: Music Data List
   m_EditorClassIdentifier: 
-  musicData: {fileID: 11400000, guid: 95a5e9171e695e547a0bbd0964ce94e8, type: 2}
-  difficulty: 2
+  allTracks:
+  - {fileID: 11400000, guid: 95a5e9171e695e547a0bbd0964ce94e8, type: 2}
+  - {fileID: 11400000, guid: 392f5c22d5c7a224e8b5673b8b6f8bd2, type: 2}
