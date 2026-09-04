@@ -37,7 +37,7 @@ public class LaneScript : MonoBehaviour
             if (isActiveLane[5]) return;   // 右端が既にアクティブ＝これ以上右へは壁
 
             for (int i = 0; i < canInputLane.Length; i++)
-                canInputLane[i] += 1;      // NormalizeLane を外して単純に +1
+                canInputLane[i] += 1;
         }
         else
         {
