@@ -17,6 +17,7 @@ public class InputManagerScript : MonoBehaviour
     private System.Action<CallbackContext> lane0Handler, lane1Handler, lane2Handler, lane3Handler, lane4Handler, lane5Handler;
     private System.Action<CallbackContext> lane0ReleaseHandler, lane1ReleaseHandler, lane2ReleaseHandler, lane3ReleaseHandler, lane4ReleaseHandler, lane5ReleaseHandler;
     private System.Action<CallbackContext> slideRightHandler, slideLeftHandler;
+    private System.Action<CallbackContext> pauseHandler;
 
     private void OnEnable()
     {
@@ -52,6 +53,9 @@ public class InputManagerScript : MonoBehaviour
         slideLeftHandler = ctx => OnLaneSlide(false, ctx);
         actions.FindAction("SlideRight").performed += slideRightHandler;
         actions.FindAction("SlideLeft").performed += slideLeftHandler;
+
+        pauseHandler = ctx => 
+        actions.FindAction("Pause").performed += pauseHandler;
     }
 
     private void OnDisable()

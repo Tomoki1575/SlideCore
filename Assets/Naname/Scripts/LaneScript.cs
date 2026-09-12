@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class LaneScript : MonoBehaviour
@@ -15,11 +14,11 @@ public class LaneScript : MonoBehaviour
     private Image[] allLaneImages;
 
     [Header("各レーンのImageをアタッチ")]
-    public Image Lane0, Lane1, Lane2, Lane3, Lane4, Lane5;
+    [SerializeField] private Image Lane0, Lane1, Lane2, Lane3, Lane4, Lane5;
+
+    public static bool[] isActiveLane = new bool[6];
 
     private int[] canInputLane = new int[4] { 1, 2, 3, 4 };
-
-    public static bool[] isActiveLane = new bool[6];        // 判定時に役に立つ（このスクリプトではあまり使わない）
 
     private void Awake()
     {
@@ -30,6 +29,9 @@ public class LaneScript : MonoBehaviour
         ApplyActiveLanes();
     }
 
+    /// <summary>
+    /// レーンをスライドさせる
+    /// </summary>
     public void SlideLane(bool isRight)
     {
         if (isRight)
@@ -50,38 +52,46 @@ public class LaneScript : MonoBehaviour
         ApplyActiveLanes();
     }
 
+    /// <summary>
+    /// 全レーンの状態と見た目を、現在の入力可能レーンに合わせて更新する
+    /// </summary>
     private void ApplyActiveLanes()
     {
         for (int lane = 0; lane < allLaneImages.Length; lane++)
         {
-            bool isActive = false;
+            bool isActive = IsLaneActive(lane);
 
-            for (int i = 0; i < canInputLane.Length; i++)
-            {
-                if (canInputLane[i] == lane)
-                {
-                    isActive = true; 
-                    break; 
-                }
-            }
-
-            if (isActive)
-            {
-                allLaneImages[lane].color = activeColor;
-                isActiveLane[lane] = true;
-            }
-
-            else
-            {
-                allLaneImages[lane].color = inActiveColor;
-                isActiveLane[lane] = false;
-            }
+            isActiveLane[lane] = isActive;
+            ChangeLaneColor(lane, isActive);
         }
     }
 
-    private int NormalizeLane(int laneNumber) 
-        => ((laneNumber % 6) + 6) % 6;
-    // アクティブレーンをずらした時にはみ出たものを6で割り、その余りを算出するための関数。
-    // 例えば3,4,5,6レーンがアクティブである時、一つずらすと4,5,6,7レーンがアクティブとなる。
-    // しかし7レーンなんてものは存在しない為、7 % 6をすることで1レーン目をアクティブにする。
+    /// <summary>
+    /// レーンがアクティブかどうか判断する
+    /// </summary>
+    private bool IsLaneActive(int lane)
+    {
+        for (int i = 0; i < canInputLane.Length; i++)
+        {
+            if (canInputLane[i] == lane)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /// <summary>
+    /// レーンがアクティブかどうかを見て、色を変える
+    /// </summary>
+    private void ChangeLaneColor(int lane, bool isActive)
+    {
+        if (isActive)
+            allLaneImages[lane].color = activeColor;
+
+        else
+            allLaneImages[lane].color = inActiveColor;
+    }
 }

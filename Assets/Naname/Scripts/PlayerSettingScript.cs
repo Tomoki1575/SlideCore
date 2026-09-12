@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SettingsScript : MonoBehaviour
+public class PlayerSettingsScript : MonoBehaviour
 {
     [SerializeField] private Slider scrollSpeedSlider;
     [SerializeField] private Slider musicOffsetSlider;

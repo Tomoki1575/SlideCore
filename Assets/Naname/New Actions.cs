@@ -162,6 +162,15 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7ee85a1-e8e7-4e26-8b41-41dd8639d750"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -274,6 +283,17 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
                     ""action"": ""SlideRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1160400-0914-4975-b65c-61eed3142944"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -340,6 +360,7 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         m_GameSceneMaps_Lane5 = m_GameSceneMaps.FindAction("Lane5", throwIfNotFound: true);
         m_GameSceneMaps_SlideLeft = m_GameSceneMaps.FindAction("SlideLeft", throwIfNotFound: true);
         m_GameSceneMaps_SlideRight = m_GameSceneMaps.FindAction("SlideRight", throwIfNotFound: true);
+        m_GameSceneMaps_Pause = m_GameSceneMaps.FindAction("Pause", throwIfNotFound: true);
         // TitleSceneMaps
         m_TitleSceneMaps = asset.FindActionMap("TitleSceneMaps", throwIfNotFound: true);
         m_TitleSceneMaps_TitleToSelect = m_TitleSceneMaps.FindAction("TitleToSelect", throwIfNotFound: true);
@@ -432,6 +453,7 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GameSceneMaps_Lane5;
     private readonly InputAction m_GameSceneMaps_SlideLeft;
     private readonly InputAction m_GameSceneMaps_SlideRight;
+    private readonly InputAction m_GameSceneMaps_Pause;
     /// <summary>
     /// Provides access to input actions defined in input action map "GameSceneMaps".
     /// </summary>
@@ -475,6 +497,10 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GameSceneMaps/SlideRight".
         /// </summary>
         public InputAction @SlideRight => m_Wrapper.m_GameSceneMaps_SlideRight;
+        /// <summary>
+        /// Provides access to the underlying input action "GameSceneMaps/Pause".
+        /// </summary>
+        public InputAction @Pause => m_Wrapper.m_GameSceneMaps_Pause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -525,6 +551,9 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
             @SlideRight.started += instance.OnSlideRight;
             @SlideRight.performed += instance.OnSlideRight;
             @SlideRight.canceled += instance.OnSlideRight;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         /// <summary>
@@ -560,6 +589,9 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
             @SlideRight.started -= instance.OnSlideRight;
             @SlideRight.performed -= instance.OnSlideRight;
             @SlideRight.canceled -= instance.OnSlideRight;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         /// <summary>
@@ -752,6 +784,13 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSlideRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPause(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TitleSceneMaps" which allows adding and removing callbacks.

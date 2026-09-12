@@ -183,7 +183,7 @@
                 "tick": 480
             },
             "lane": 2,
-            "type": 4,
+            "type": 1,
             "bSpecial": false,
             "pairIndex": -1,
             "bIsRight": false
@@ -207,7 +207,7 @@
                 "tick": 480
             },
             "lane": 2,
-            "type": 4,
+            "type": 1,
             "bSpecial": false,
             "pairIndex": -1,
             "bIsRight": false
@@ -231,7 +231,7 @@
                 "tick": 480
             },
             "lane": 2,
-            "type": 4,
+            "type": 1,
             "bSpecial": false,
             "pairIndex": -1,
             "bIsRight": false
