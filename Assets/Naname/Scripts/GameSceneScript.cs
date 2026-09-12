@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 enum State
@@ -11,6 +12,13 @@ enum State
 public class GameSceneScript : MonoBehaviour
 {
     private State state;
+
+    public static GameSceneScript Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -41,5 +49,14 @@ public class GameSceneScript : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public bool OnPauseToggle()
+    {
+        state = State.Pause;
+
+        // ƒ|[ƒY‰æ–Ê‚Ìˆ—
+
+        return false;
     }
 }
