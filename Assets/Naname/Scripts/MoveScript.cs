@@ -50,7 +50,6 @@ public class MoveScript : MonoBehaviour
         // check : オフセットなどを含む判定用の時間を計算
         float currentSongTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
 
-
         // ノーツを消す処理
         if (!isMissTriggered)
         {
