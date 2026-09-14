@@ -485,7 +485,7 @@
             "lane": 1,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 41,
+            "pairIndex": 42,
             "bIsRight": false
         },
         {
@@ -530,10 +530,10 @@
                 "beat": 1,
                 "tick": 0
             },
-            "lane": 1,
-            "type": 3,
+            "lane": 4,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": 37,
+            "pairIndex": 46,
             "bIsRight": false
         },
         {
@@ -542,10 +542,10 @@
                 "beat": 1,
                 "tick": 0
             },
-            "lane": 4,
-            "type": 2,
+            "lane": 1,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": 46,
+            "pairIndex": 37,
             "bIsRight": false
         },
         {
@@ -593,7 +593,7 @@
             "lane": 4,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 42,
+            "pairIndex": 41,
             "bIsRight": false
         },
         {
@@ -749,7 +749,7 @@
             "lane": 3,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 63,
+            "pairIndex": 62,
             "bIsRight": false
         },
         {
@@ -782,10 +782,10 @@
                 "beat": 1,
                 "tick": 0
             },
-            "lane": 0,
-            "type": 2,
+            "lane": 3,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": 67,
+            "pairIndex": 59,
             "bIsRight": false
         },
         {
@@ -794,10 +794,10 @@
                 "beat": 1,
                 "tick": 0
             },
-            "lane": 3,
-            "type": 3,
+            "lane": 0,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": 59,
+            "pairIndex": 67,
             "bIsRight": false
         },
         {
@@ -845,7 +845,7 @@
             "lane": 0,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 62,
+            "pairIndex": 63,
             "bIsRight": false
         },
         {
@@ -1265,19 +1265,7 @@
             "lane": 3,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 103,
-            "bIsRight": false
-        },
-        {
-            "beat": {
-                "measure": 33,
-                "beat": 4,
-                "tick": 0
-            },
-            "lane": 3,
-            "type": 3,
-            "bSpecial": false,
-            "pairIndex": 102,
+            "pairIndex": 104,
             "bIsRight": false
         },
         {
@@ -1290,6 +1278,18 @@
             "type": 1,
             "bSpecial": false,
             "pairIndex": -1,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 33,
+                "beat": 4,
+                "tick": 0
+            },
+            "lane": 3,
+            "type": 3,
+            "bSpecial": false,
+            "pairIndex": 102,
             "bIsRight": false
         },
         {
@@ -1394,10 +1394,10 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 4,
-            "type": 1,
+            "lane": 1,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": -1,
+            "pairIndex": 117,
             "bIsRight": false
         },
         {
@@ -1406,10 +1406,10 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 1,
-            "type": 2,
+            "lane": 4,
+            "type": 1,
             "bSpecial": false,
-            "pairIndex": 117,
+            "pairIndex": -1,
             "bIsRight": false
         },
         {
@@ -1445,7 +1445,7 @@
             "lane": 1,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 114,
+            "pairIndex": 113,
             "bIsRight": false
         },
         {
@@ -1625,7 +1625,7 @@
             "lane": 1,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 136,
+            "pairIndex": 135,
             "bIsRight": false
         },
         {
@@ -1658,10 +1658,10 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 4,
-            "type": 2,
+            "lane": 1,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": 138,
+            "pairIndex": 132,
             "bIsRight": false
         },
         {
@@ -1670,10 +1670,10 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 1,
-            "type": 3,
+            "lane": 4,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": 132,
+            "pairIndex": 138,
             "bIsRight": false
         },
         {
@@ -1697,7 +1697,7 @@
             "lane": 4,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 135,
+            "pairIndex": 136,
             "bIsRight": false
         },
         {
@@ -1958,7 +1958,7 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 3,
+            "lane": 4,
             "type": 1,
             "bSpecial": false,
             "pairIndex": -1,
@@ -2002,11 +2002,11 @@
         },
         {
             "beat": {
-                "measure": 46,
-                "beat": 5,
+                "measure": 47,
+                "beat": 1,
                 "tick": 0
             },
-            "lane": 4,
+            "lane": 3,
             "type": 1,
             "bSpecial": false,
             "pairIndex": -1,
@@ -2054,7 +2054,7 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 3,
+            "lane": 4,
             "type": 1,
             "bSpecial": false,
             "pairIndex": -1,
@@ -2273,7 +2273,7 @@
             "lane": 2,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 188,
+            "pairIndex": 189,
             "bIsRight": false
         },
         {
@@ -2294,10 +2294,10 @@
                 "beat": 4,
                 "tick": 0
             },
-            "lane": 2,
-            "type": 3,
+            "lane": 3,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": 186,
+            "pairIndex": 191,
             "bIsRight": false
         },
         {
@@ -2306,10 +2306,10 @@
                 "beat": 4,
                 "tick": 0
             },
-            "lane": 3,
-            "type": 2,
+            "lane": 2,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": 191,
+            "pairIndex": 186,
             "bIsRight": false
         },
         {
@@ -2333,7 +2333,7 @@
             "lane": 3,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 189,
+            "pairIndex": 188,
             "bIsRight": false
         },
         {
@@ -2525,7 +2525,7 @@
             "lane": 2,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 210,
+            "pairIndex": 209,
             "bIsRight": false
         },
         {
@@ -2546,10 +2546,10 @@
                 "beat": 2,
                 "tick": 0
             },
-            "lane": 3,
-            "type": 2,
+            "lane": 2,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": 212,
+            "pairIndex": 207,
             "bIsRight": false
         },
         {
@@ -2558,10 +2558,10 @@
                 "beat": 2,
                 "tick": 0
             },
-            "lane": 2,
-            "type": 3,
+            "lane": 3,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": 207,
+            "pairIndex": 212,
             "bIsRight": false
         },
         {
@@ -2585,7 +2585,7 @@
             "lane": 3,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 209,
+            "pairIndex": 210,
             "bIsRight": false
         },
         {
@@ -3149,7 +3149,7 @@
             "lane": 2,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 262,
+            "pairIndex": 261,
             "bIsRight": false
         },
         {
@@ -3170,10 +3170,10 @@
                 "beat": 1,
                 "tick": 0
             },
-            "lane": 3,
-            "type": 2,
+            "lane": 2,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": 263,
+            "pairIndex": 259,
             "bIsRight": false
         },
         {
@@ -3182,10 +3182,10 @@
                 "beat": 1,
                 "tick": 0
             },
-            "lane": 2,
-            "type": 3,
+            "lane": 3,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": 259,
+            "pairIndex": 263,
             "bIsRight": false
         },
         {
@@ -3197,7 +3197,7 @@
             "lane": 3,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 261,
+            "pairIndex": 262,
             "bIsRight": false
         },
         {
@@ -3269,7 +3269,7 @@
             "lane": 3,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 272,
+            "pairIndex": 273,
             "bIsRight": false
         },
         {
@@ -3302,10 +3302,10 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 3,
-            "type": 3,
+            "lane": 2,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": 269,
+            "pairIndex": 275,
             "bIsRight": false
         },
         {
@@ -3314,10 +3314,10 @@
                 "beat": 3,
                 "tick": 0
             },
-            "lane": 2,
-            "type": 2,
+            "lane": 3,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": 275,
+            "pairIndex": 269,
             "bIsRight": false
         },
         {
@@ -3341,7 +3341,7 @@
             "lane": 2,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 273,
+            "pairIndex": 272,
             "bIsRight": false
         },
         {
@@ -3434,10 +3434,10 @@
                 "beat": 2,
                 "tick": 0
             },
-            "lane": 2,
-            "type": 2,
+            "lane": 4,
+            "type": 1,
             "bSpecial": false,
-            "pairIndex": 286,
+            "pairIndex": -1,
             "bIsRight": false
         },
         {
@@ -3446,10 +3446,10 @@
                 "beat": 2,
                 "tick": 0
             },
-            "lane": 4,
-            "type": 1,
+            "lane": 2,
+            "type": 2,
             "bSpecial": false,
-            "pairIndex": -1,
+            "pairIndex": 286,
             "bIsRight": false
         },
         {
@@ -3473,7 +3473,7 @@
             "lane": 2,
             "type": 3,
             "bSpecial": false,
-            "pairIndex": 283,
+            "pairIndex": 284,
             "bIsRight": false
         },
         {
@@ -3653,19 +3653,7 @@
             "lane": 3,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 303,
-            "bIsRight": false
-        },
-        {
-            "beat": {
-                "measure": 69,
-                "beat": 3,
-                "tick": 0
-            },
-            "lane": 1,
-            "type": 1,
-            "bSpecial": false,
-            "pairIndex": -1,
+            "pairIndex": 302,
             "bIsRight": false
         },
         {
@@ -3678,6 +3666,18 @@
             "type": 3,
             "bSpecial": false,
             "pairIndex": 301,
+            "bIsRight": false
+        },
+        {
+            "beat": {
+                "measure": 69,
+                "beat": 3,
+                "tick": 0
+            },
+            "lane": 1,
+            "type": 1,
+            "bSpecial": false,
+            "pairIndex": -1,
             "bIsRight": false
         },
         {
@@ -3773,7 +3773,7 @@
             "lane": 2,
             "type": 2,
             "bSpecial": false,
-            "pairIndex": 313,
+            "pairIndex": 314,
             "bIsRight": false
         },
         {
@@ -3794,10 +3794,10 @@
                 "beat": 4,
                 "tick": 480
             },
-            "lane": 2,
-            "type": 3,
+            "lane": 3,
+            "type": 1,
             "bSpecial": false,
-            "pairIndex": 311,
+            "pairIndex": -1,
             "bIsRight": false
         },
         {
@@ -3806,10 +3806,10 @@
                 "beat": 4,
                 "tick": 480
             },
-            "lane": 3,
-            "type": 1,
+            "lane": 2,
+            "type": 3,
             "bSpecial": false,
-            "pairIndex": -1,
+            "pairIndex": 311,
             "bIsRight": false
         },
         {

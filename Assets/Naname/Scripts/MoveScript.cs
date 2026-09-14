@@ -39,6 +39,10 @@ public class MoveScript : MonoBehaviour
 
     void Update()
     {
+        // ゲームのステートがポーズ画面だったら早期リターン
+        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State == GameState.Paused)
+            return;
+
         RefreshPosition();
 
         if (MyNotesType == NoteType.Hold)
