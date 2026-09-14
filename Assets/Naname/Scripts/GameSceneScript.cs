@@ -1,62 +1,92 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-enum State
+public enum GameState
 {
-    Start,
-    Play,
-    Pause,
-    End
+    Preparing,
+    Playing,
+    Paused,
+    Finishing
 };
 
 public class GameSceneScript : MonoBehaviour
 {
-    private State state;
+    public GameState State { get; private set; } = GameState.Preparing;
 
     public static GameSceneScript Instance { get; private set; }
+
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Button retryButton;
+
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
+    {        
+        retryButton.onClick.AddListener(PushGotoSelectSceneButton);
+    }
+
+    private void OnDisable()
     {
-        state = State.Start;
+        retryButton.onClick.RemoveListener(PushGotoSelectSceneButton);
     }
 
     private void Update()
     {
-        switch (state)
+        switch (State)
         {
-            case State.Start:
+            case GameState.Preparing:
                 {
                     // 曲のパッケージイラストなどを表示
-                    state = State.Play;
+                    ChangeState(GameState.Playing);
                     break;
                 }
-                
 
-            case State.Play:
+            case GameState.Playing:
                 {
                     // 
                     break;
                 }
 
-            case State.Pause:
+            case GameState.Paused:
                 {
 
                     break;
                 }
         }
+
     }
 
-    public bool OnPauseToggle()
+    public void OnPauseToggle()
     {
-        state = State.Pause;
-
         // ポーズ画面の処理
+        if (pauseMenu == null)
+        {
+            Debug.LogError("[Unassigned] ポーズメニューのUIが割り当てられていません。", this);
+            return;
+        }
 
-        return false;
+        pauseMenu.gameObject.SetActive(true);
+
+        ChangeState(GameState.Paused);
+    }
+
+    // ステートを変更する
+    private void ChangeState(GameState next)
+    {
+        if (next == State)
+            return;
+
+        State = next;
+        Debug.Log("[State] 現在のステート : " + State);
+    }
+
+    private void PushGotoSelectSceneButton()
+    {
+        SceneManager.LoadScene("SelectScene");
     }
 }

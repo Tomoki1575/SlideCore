@@ -110,12 +110,16 @@ public class NoteGenerator : MonoBehaviour
 
     void Update()
     {
+        // ゲームのステートがポーズ画面だったら早期リターン
+        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State == GameState.Paused)
+            return;
+
         // 全てのノーツを出し終わっていたら何もしない
         if (currentNotesIndex >= NotesToSpawn.Count)
             return;
 
         // 現在の曲の時間が「出現させるべき時間（叩くべき時間 - 先読み時間）」を過ぎたら
-        // 同時押しノーツwhileにした
+        // 同時押しノーツの対処をする為にwhileにした
         while (currentNotesIndex < NotesToSpawn.Count && MusicManagerScript.SongTime >= NotesToSpawn[currentNotesIndex].HitTime - spawnOffsetTime)
         {
             SpawnNote(NotesToSpawn[currentNotesIndex]);

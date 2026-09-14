@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
 using static GameDataManager;
-using UnityEngine.SceneManagement;
+using static UnityEngine.InputSystem.InputAction;
 
 public class InputManagerScript : MonoBehaviour
 {
@@ -18,6 +17,14 @@ public class InputManagerScript : MonoBehaviour
     private System.Action<CallbackContext> lane0ReleaseHandler, lane1ReleaseHandler, lane2ReleaseHandler, lane3ReleaseHandler, lane4ReleaseHandler, lane5ReleaseHandler;
     private System.Action<CallbackContext> slideRightHandler, slideLeftHandler;
     private System.Action<CallbackContext> pauseHandler;
+
+    private void Awake()
+    {
+        // isLanePressedはstaticなので、シーンをまたいで値が残る。
+        // 押しっぱなしのままGameSceneを抜けるとtrueが持ち越されるため、開始時に全レーンをfalseで初期化する。
+        for (int i = 0; i < isLanePressed.Length; i++)
+            isLanePressed[i] = false;
+    }
 
     private void OnEnable()
     {
@@ -54,7 +61,7 @@ public class InputManagerScript : MonoBehaviour
         actions.FindAction("SlideRight").performed += slideRightHandler;
         actions.FindAction("SlideLeft").performed += slideLeftHandler;
 
-        pauseHandler = ctx => 
+        pauseHandler = ctx => OnPause();
         actions.FindAction("Pause").performed += pauseHandler;
     }
 
@@ -77,6 +84,8 @@ public class InputManagerScript : MonoBehaviour
         actions.FindAction("SlideRight").performed -= slideRightHandler;
         actions.FindAction("SlideLeft").performed -= slideLeftHandler;
 
+        actions.FindAction("Pause").performed -= pauseHandler;
+
         actions.Disable();
     }
 
@@ -87,6 +96,10 @@ public class InputManagerScript : MonoBehaviour
     /// <param name="context"></param>
     private void OnLaneTap(int laneIndex, InputAction.CallbackContext context)
     {
+        // プレイ中じゃないならレーンをタップしたという入力は受け付けない
+        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State != GameState.Playing)
+            return;
+
         double exactTime = context.time;
 
         isLanePressed[laneIndex] = true;
@@ -135,20 +148,16 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// レーンのボタンが離された瞬間に呼ばれる。押下フラグを下ろすだけ。
-    /// </summary>
-    private void OnLaneRelease(int laneIndex)
-    {
-        isLanePressed[laneIndex] = false;
-    }
-
-    /// <summary>
     /// スライドボタンが押された時、呼ばれる関数 {bool 右スライドか？, InputAction.CallbackContext インプットシステムの専用変数}
     /// </summary>
     /// <param name="isRight">右スライドか？</param>
     /// <param name="context"></param>
     private void OnLaneSlide(bool isRight, InputAction.CallbackContext context)
     {
+        // プレイ中じゃないならスライドキーを押したという入力は受け付けない
+        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State != GameState.Playing)
+            return;
+
         double exactTime = context.time;
 
         // 同じ方向のスライドが短時間に連続したら無視（多重判定防止）
@@ -157,7 +166,7 @@ public class InputManagerScript : MonoBehaviour
         if (exactTime - lastTime < slideCooldown)
             return;
 
-        if (isRight) 
+        if (isRight)
             lastRightSlideTime = exactTime;
 
         else
@@ -172,9 +181,9 @@ public class InputManagerScript : MonoBehaviour
         // レーン移動に合わせてスライドノーツの判定を行う処理
         if (NoteGenerator.Instance == null || NoteGenerator.Instance.laneNotesLists == null) return;
 
-        for (int i = 0; i < 6; i++)
+        // 6レーン全てのリストに叩けるノーツがあるかチェック（スライドノーツの判定は全てのレーンを共有するため）
+        for (int i = 0; i < NoteGenerator.Instance.laneNotesLists.Length; i++)
         {
-            // 6レーン全てのリスト内に叩けるノーツがあるかチェック（スライドノーツの判定は全てのレーンを共有するため）
             var targetLaneList = NoteGenerator.Instance.laneNotesLists[i];
             if (targetLaneList.Count == 0) continue;
 
@@ -202,9 +211,17 @@ public class InputManagerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// レーンのボタンが離された瞬間に呼ばれる。押下フラグを下ろすだけ。
+    /// </summary>
+    private void OnLaneRelease(int laneIndex)
+    {
+        isLanePressed[laneIndex] = false;
+    }
+
     private void OnPause()
     {
-        if(GameSceneScript.Instance != null)
+        if (GameSceneScript.Instance != null)
             GameSceneScript.Instance.OnPauseToggle();
     }
 }

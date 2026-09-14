@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MusicManagerScript : MonoBehaviour
@@ -41,6 +40,44 @@ public class MusicManagerScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // ゲームのステートがポーズ画面だったら早期リターン
+        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State == GameState.Paused )
+        {
+            if (isPlaying)            
+                PauseSong();            
+
+            return;
+        }
+
+        if (audioSource.clip == null)
+            return;
+
+        if (!isPlaying && audioSource.clip.loadState == AudioDataLoadState.Loaded)
+        {
+            StartSong();
+            return;
+        }
+
+        else if (isPlaying)
+        {
+            SongTime = (float)(AudioSettings.dspTime - dspStartTime);   //  正確な経過秒数 = (floatに変換)(現在の時刻 - 開始時の時刻)
+
+            MsSongTime = Mathf.FloorToInt(SongTime * 1000);
+
+            songTimeText.text = $"{MsSongTime}";
+
+            // 曲の長さ＋余韻を過ぎたらリザルトへ
+            if (SongTime >= audioSource.clip.length + resultDelay)
+            {
+                isPlaying = false;
+                SceneManager.LoadScene("ResultScene");
+            }
+        }
+    }
+
+
     /// <summary>
     /// 曲開始時の時間を保持し、曲を再生する関数。
     /// </summary>
@@ -62,32 +99,9 @@ public class MusicManagerScript : MonoBehaviour
         isPlaying = true;
     }
 
-    private void Update()
+    private void PauseSong()
     {
-        if (audioSource.clip == null)
-            return;
-
-        if (!isPlaying && audioSource.clip.loadState == AudioDataLoadState.Loaded)
-        {
-            StartSong();
-
-            return;
-        }
-
-        else if (isPlaying)
-        {
-            SongTime = (float)(AudioSettings.dspTime - dspStartTime);   //  正確な経過秒数 = (floatに変換)(現在の時刻 - 開始時の時刻)
-
-            MsSongTime = Mathf.FloorToInt(SongTime * 1000);
-
-            songTimeText.text = $"{MsSongTime}";
-
-            // 曲の長さ＋余韻を過ぎたらリザルトへ
-            if (SongTime >= audioSource.clip.length + resultDelay)
-            {
-                isPlaying = false;
-                SceneManager.LoadScene("ResultScene");
-            }
-        }
+        audioSource.Pause();
+        isPlaying = false;
     }
 }
