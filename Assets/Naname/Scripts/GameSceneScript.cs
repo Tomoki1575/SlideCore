@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum GameState
 {
@@ -26,7 +26,7 @@ public class GameSceneScript : MonoBehaviour
     }
 
     private void OnEnable()
-    {        
+    {
         retryButton.onClick.AddListener(PushGotoSelectSceneButton);
     }
 
@@ -35,14 +35,24 @@ public class GameSceneScript : MonoBehaviour
         retryButton.onClick.RemoveListener(PushGotoSelectSceneButton);
     }
 
+    private void Start()
+    {
+        FadeManagerScript.Instance.FadeIn();
+
+
+        // 曲のパッケージイラストなどを表示
+    }
+
+
     private void Update()
     {
         switch (State)
         {
             case GameState.Preparing:
                 {
-                    // 曲のパッケージイラストなどを表示
-                    ChangeState(GameState.Playing);
+                    if (!FadeManagerScript.Instance.IsFading)
+                        ChangeState(GameState.Playing);
+
                     break;
                 }
 
