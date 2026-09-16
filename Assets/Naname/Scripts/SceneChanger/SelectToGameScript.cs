@@ -25,6 +25,6 @@ public class SelectToGameScript : MonoBehaviour
         musicSelection.difficulty = difficulty;
 
         // ÉQÅ[ÉÄÉVÅ[ÉìÇ÷
-        SceneManager.LoadScene("GameScene");
+        SceneLoaderScript.Instance.LoadSceneWithFade("GameScene");
     }
 }

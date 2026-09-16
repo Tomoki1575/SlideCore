@@ -26,6 +26,6 @@ public class TitleInputScript : MonoBehaviour
 
     private void TitleToSelectTap()
     {
-        SceneManager.LoadScene("SelectScene");
+        SceneLoaderScript.Instance.LoadSceneWithFade("SelectScene");
     }
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GameState
@@ -97,6 +96,6 @@ public class GameSceneScript : MonoBehaviour
 
     private void PushGotoSelectSceneButton()
     {
-        SceneManager.LoadScene("SelectScene");
+        SceneLoaderScript.Instance.LoadSceneWithFade("SelectScene");
     }
 }

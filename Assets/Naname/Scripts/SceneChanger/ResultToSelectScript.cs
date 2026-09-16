@@ -18,6 +18,6 @@ public class ResultToSelectScript : MonoBehaviour
 
     private void OnResultToSelectButton()
     {
-        SceneManager.LoadScene("SelectScene");
+        SceneLoaderScript.Instance.LoadSceneWithFade("SelectScene");
     }
 }
