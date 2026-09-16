@@ -129,6 +129,6 @@ public class MusicSelectCoreScript : MonoBehaviour
         currentSelection.musicData = music;
         currentSelection.difficulty = difficulty;
 
-        SceneManager.LoadScene("GameScene");
+        SceneLoaderScript.Instance.LoadSceneWithFade("GameScene");
     }
 }

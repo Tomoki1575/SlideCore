@@ -72,7 +72,7 @@ public class MusicManagerScript : MonoBehaviour
             if (SongTime >= audioSource.clip.length + resultDelay)
             {
                 isPlaying = false;
-                SceneManager.LoadScene("ResultScene");
+                SceneLoaderScript.Instance.LoadSceneWithFade("ResultScene");
             }
         }
     }

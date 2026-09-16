@@ -6,24 +6,34 @@ public class FadeManagerScript : MonoBehaviour
 {
     private Canvas fadeCanvas;
     private Image fadePanel;
-
     private Coroutine coroutine;
 
     private Color panelColor = new Color(0, 0, 0, 1);
-
     private float fadeTime = 1f;
 
     public static FadeManagerScript Instance { get; private set; }
 
     private void Awake()
     {
+        // シングルトンの処理
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+
+        DontDestroyOnLoad(gameObject);
 
         // canvasを生成
         GameObject canvasGenerate = new GameObject("FadeCanvas");
         fadeCanvas = canvasGenerate.AddComponent<Canvas>();
         canvasGenerate.AddComponent<CanvasScaler>();
         canvasGenerate.AddComponent<GraphicRaycaster>();
+
+        // cancasGenerateはAwakeの一回でしか生成されないため、あらかじめDDOLにしておく
+        DontDestroyOnLoad(canvasGenerate);
 
         // どのcanvasよりも手前に表示する
         fadeCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -45,40 +55,50 @@ public class FadeManagerScript : MonoBehaviour
         rectTransform.offsetMax = Vector2.zero;
     }
 
-    // フェードアウトの演出を挟む
-    public void FadeOut()
+    /// <summary>
+    /// フェードアウトの演出を挟む
+    /// </summary>
+    public Coroutine FadeOut()
     {
-        if (panelColor.a == 0)
-        {
-            coroutine = StartCoroutine(FadeOutCoroutine());
-        }
+        if (IsFading)
+            return coroutine;
+
+        if (panelColor.a >= 1f)
+            return null;
+
+        coroutine = StartCoroutine(FadeOutCoroutine());
+        return coroutine;
     }
 
-    // フェードインの演出を挟む
-    public void FadeIn()
+    /// <summary>
+    /// フェードインの演出を挟む
+    /// </summary>
+    public Coroutine FadeIn()
     {
-        if (panelColor.a == 1)
-        {
-            coroutine = StartCoroutine(FadeInCoroutine());
-        }
+        if (IsFading)
+            return coroutine;
+
+        if (panelColor.a <= 0f)
+            return null;
+
+        coroutine = StartCoroutine(FadeInCoroutine());
+        return coroutine;
     }
 
     IEnumerator FadeOutCoroutine()
     {
         fadePanel.raycastTarget = true;
 
-
         while (panelColor.a < 1f)
         {
-            // ToDo : 0.05秒ごとに更新だとちょっとカクついて見えるかも?
-            yield return new WaitForSeconds(0.05f);
-            panelColor.a += 1f / (fadeTime * 20);
+            // ラグいとフェードが一気に変わってしまうため、フェードの変化量に上限を設定
+            panelColor.a += Mathf.Min(Time.unscaledDeltaTime, 1f / 30f) / fadeTime;
             fadePanel.color = panelColor;
+            yield return null;
         }
 
         panelColor.a = 1f;
 
-        StopCoroutine(coroutine);
         coroutine = null;
     }
 
@@ -88,15 +108,15 @@ public class FadeManagerScript : MonoBehaviour
 
         while (panelColor.a > 0f)
         {
-            yield return new WaitForSeconds(0.05f);
-            panelColor.a -= 1f / (fadeTime * 20);
+            // ラグいとフェードが一気に変わってしまうため、フェードの変化量に上限を設定
+            panelColor.a -= Mathf.Min(Time.unscaledDeltaTime, 1f / 30f) / fadeTime;
             fadePanel.color = panelColor;
+            yield return null;
         }
 
         panelColor.a = 0f;
 
         fadePanel.raycastTarget = false;
-        StopCoroutine(coroutine);
         coroutine = null;
     }
 
