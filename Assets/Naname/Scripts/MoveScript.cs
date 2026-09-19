@@ -49,10 +49,10 @@ public class MoveScript : MonoBehaviour
             RefreshHoldBand();
 
         // timeRemaining ←残り何秒で判定ラインに到達すべきかを記録する変数
-        float timeRemaining = HitTime - MusicManagerScript.SongTime;
+        float timeRemaining = HitTime - MusicManagerScript.Instance.CurrentSongTime;
 
-        // check : オフセットなどを含む判定用の時間を計算
-        float currentSongTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
+        // オフセットなどを含む判定用の時間を計算
+        float judgeTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
 
         // ノーツを消す処理
         if (!isMissTriggered)
@@ -70,10 +70,10 @@ public class MoveScript : MonoBehaviour
                     break;
 
                 case NoteType.Hold:
-                    float songTime = MusicManagerScript.SongTime;
+                    float songTime = MusicManagerScript.Instance.CurrentSongTime;
 
                     // 始点をスルーした場合、始点の判定窓を過ぎたらmiss
-                    if(!holdStartJudged && currentSongTime > HitTime + JudgeScript.MissWindow)
+                    if(!holdStartJudged && judgeTime > HitTime + JudgeScript.MissWindow)
                     {
                         holdStartJudged = true;
                         judgeScript.TriggerHoldStartMiss();
@@ -87,7 +87,7 @@ public class MoveScript : MonoBehaviour
 
 
                     // 帯の部分が流れ終わってから、貼り付けておいた始点を消す
-                    if (MusicManagerScript.SongTime >= EndHitTime)
+                    if (MusicManagerScript.Instance.CurrentSongTime >= EndHitTime)
                     {
                         isMissTriggered = true;
 
@@ -100,7 +100,7 @@ public class MoveScript : MonoBehaviour
 
                 default:
                     // ホールド以外のノーツにおいて、叩かれずにそのまま流れたら（遅missの判定になる時間まで叩かれなかったら）ノーツを消す
-                    if (currentSongTime > HitTime + JudgeScript.MissWindow)
+                    if (judgeTime > HitTime + JudgeScript.MissWindow)
                     {
                         isMissTriggered = true;
                         judgeScript.TriggerMissByThrough();
@@ -117,7 +117,7 @@ public class MoveScript : MonoBehaviour
     public void RefreshPosition()
     {
         // 「距離 ＝ 時間 × 速さ」 より、現在ノーツがあるべき座標を計算
-        float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.SongTime) * ScrollSpeed);
+        float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.Instance.CurrentSongTime) * ScrollSpeed);
 
         // ホールドの始点は判定ラインより下へは行かず貼り付く（見た目だけ）
         if (MyNotesType == NoteType.Hold && noteYPos < judgmentLineY)
@@ -134,7 +134,7 @@ public class MoveScript : MonoBehaviour
     public void RefreshHoldBand()
     {
         // ホールド終点の現在位置を時間から直接計算（距離 ＝ 時間 × 速さ）
-        float endY = judgmentLineY + (EndHitTime - MusicManagerScript.SongTime) * ScrollSpeed;
+        float endY = judgmentLineY + (EndHitTime - MusicManagerScript.Instance.CurrentSongTime) * ScrollSpeed;
 
         float bandBottom = rectTransform.anchoredPosition.y + HoldBaseOffsetY;      // 帯の下端（始点に張り付く）
         float visibleTop = Mathf.Min(endY, MaxBandTopY);     // 上端を画面外に出さないようにする

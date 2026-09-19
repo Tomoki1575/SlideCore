@@ -32,9 +32,6 @@ public class FadeManagerScript : MonoBehaviour
         canvasGenerate.AddComponent<CanvasScaler>();
         canvasGenerate.AddComponent<GraphicRaycaster>();
 
-        // cancasGenerateはAwakeの一回でしか生成されないため、あらかじめDDOLにしておく
-        DontDestroyOnLoad(canvasGenerate);
-
         // どのcanvasよりも手前に表示する
         fadeCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         fadeCanvas.sortingOrder = 100;
@@ -46,6 +43,9 @@ public class FadeManagerScript : MonoBehaviour
 
         // panelをcanvasの子供に設定
         panelGenerate.transform.SetParent(canvasGenerate.transform, false);
+
+        // canvasをこれがアタッチしているオブジェクトの子供に設定(こうすることでシーンを跨いでもパネルごと残る)
+        canvasGenerate.transform.SetParent(this.transform, false);
 
         // 生成したimageの大きさを画面全体の大きさになるように変更
         RectTransform rectTransform = fadePanel.rectTransform;

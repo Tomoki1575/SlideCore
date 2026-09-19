@@ -120,7 +120,7 @@ public class NoteGenerator : MonoBehaviour
 
         // 現在の曲の時間が「出現させるべき時間（叩くべき時間 - 先読み時間）」を過ぎたら
         // 同時押しノーツの対処をする為にwhileにした
-        while (currentNotesIndex < NotesToSpawn.Count && MusicManagerScript.SongTime >= NotesToSpawn[currentNotesIndex].HitTime - spawnOffsetTime)
+        while (currentNotesIndex < NotesToSpawn.Count && MusicManagerScript.Instance.CurrentSongTime >= NotesToSpawn[currentNotesIndex].HitTime - spawnOffsetTime)
         {
             SpawnNote(NotesToSpawn[currentNotesIndex]);
             currentNotesIndex++; // 次のノーツへ進み、再びwhileの条件をチェック

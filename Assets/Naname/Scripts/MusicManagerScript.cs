@@ -1,10 +1,9 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MusicManagerScript : MonoBehaviour
 {
-    public static MusicManagerScript Instance;
+    public static MusicManagerScript Instance { get; private set; }
 
     [SerializeField] private AudioSource audioSource;
 
@@ -12,68 +11,55 @@ public class MusicManagerScript : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI songTimeText;
 
-    public static float SongTime;
-    public static float MsSongTime;
+    public float CurrentSongTime { get; private set; }
+
+    public float SongLength { get; private set; }
+
+    public static float MsCurrentSongTime;
 
     private double dspStartTime;
-    private bool isPlaying = false;
+    public bool IsMusicPlaying { get; private set; } = false;
 
     public static double SongStartRealTime;
 
-    private float resultDelay = 1.5f;
+    public bool IsMusicStartReady { get; private set; } = false;
 
     private void Awake()
     {
-        SongTime = 0f;
-        MsSongTime = 0f;
+        CurrentSongTime = 0f;
+        MsCurrentSongTime = 0f;
 
         Instance = this;
-    }
 
-    private void Start()
-    {
         // MusicSelection から音源を自動セット（譜面と音をズレさせないため）
         if (musicSelection != null && musicSelection.musicData != null && musicSelection.musicData.audioClip != null)
         {
             audioSource.clip = musicSelection.musicData.audioClip;
             audioSource.clip.LoadAudioData();
+
+            // 曲の長さ
+            SongLength = audioSource.clip.length;
         }
     }
 
     private void Update()
     {
-        // ゲームのステートがポーズ画面だったら早期リターン
-        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State == GameState.Paused )
-        {
-            if (isPlaying)            
-                PauseSong();            
-
-            return;
-        }
-
         if (audioSource.clip == null)
             return;
 
-        if (!isPlaying && audioSource.clip.loadState == AudioDataLoadState.Loaded)
+        if (!IsMusicPlaying && audioSource.clip.loadState == AudioDataLoadState.Loaded)
         {
-            StartSong();
+            IsMusicStartReady = true;
             return;
         }
 
-        else if (isPlaying)
+        else if (IsMusicPlaying)
         {
-            SongTime = (float)(AudioSettings.dspTime - dspStartTime);   //  正確な経過秒数 = (floatに変換)(現在の時刻 - 開始時の時刻)
+            CurrentSongTime = (float)(AudioSettings.dspTime - dspStartTime);   //  正確な経過秒数 = (floatに変換)(現在の時刻 - 開始時の時刻)
 
-            MsSongTime = Mathf.FloorToInt(SongTime * 1000);
+            MsCurrentSongTime = Mathf.FloorToInt(CurrentSongTime * 1000);
 
-            songTimeText.text = $"{MsSongTime}";
-
-            // 曲の長さ＋余韻を過ぎたらリザルトへ
-            if (SongTime >= audioSource.clip.length + resultDelay)
-            {
-                isPlaying = false;
-                SceneLoaderScript.Instance.LoadSceneWithFade("ResultScene");
-            }
+            songTimeText.text = $"{MsCurrentSongTime}";
         }
     }
 
@@ -96,12 +82,12 @@ public class MusicManagerScript : MonoBehaviour
         SongStartRealTime = Time.realtimeSinceStartupAsDouble + scheduleAhead;   // 入力用の時計も同じだけ未来へ
 
         audioSource.PlayScheduled(dspStartTime);                     // その時刻ぴったりに鳴る
-        isPlaying = true;
+        IsMusicPlaying = true;
     }
 
-    private void PauseSong()
+    public void PauseSong()
     {
         audioSource.Pause();
-        isPlaying = false;
+        IsMusicPlaying = false;
     }
 }

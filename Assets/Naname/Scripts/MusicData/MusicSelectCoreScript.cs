@@ -114,8 +114,8 @@ public class MusicSelectCoreScript : MonoBehaviour
 
     private void StartGame(MusicDataManager.Difficulty difficulty)
     {
-        if (currentSelection == null)        
-            return;        
+        if (currentSelection == null)
+            return;
 
         if (musicDataList == null || musicDataList.allTracks == null || currentIndex < 0 || currentIndex >= musicDataList.allTracks.Count)
             return;
