@@ -222,6 +222,6 @@ public class InputManagerScript : MonoBehaviour
     private void OnPause()
     {
         if (GameSceneScript.Instance != null)
-            GameSceneScript.Instance.OnPauseToggle();
+            GameSceneScript.Instance.OnPausePressed();
     }
 }

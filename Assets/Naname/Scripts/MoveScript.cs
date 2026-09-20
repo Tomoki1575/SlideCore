@@ -40,7 +40,7 @@ public class MoveScript : MonoBehaviour
     void Update()
     {
         // ゲームのステートがポーズ画面だったら早期リターン
-        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State == GameState.Paused)
+        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State != GameState.Playing)
             return;
 
         RefreshPosition();
@@ -52,7 +52,7 @@ public class MoveScript : MonoBehaviour
         float timeRemaining = HitTime - MusicManagerScript.Instance.CurrentSongTime;
 
         // オフセットなどを含む判定用の時間を計算
-        float judgeTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.SongStartRealTime) - JudgeScript.InputOffset;
+        float judgeTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.Instance.SongStartRealTime) - JudgeScript.InputOffset;
 
         // ノーツを消す処理
         if (!isMissTriggered)
