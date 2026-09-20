@@ -58,7 +58,7 @@ public class JudgeScript : MonoBehaviour
         if (result == null)     // 空振り
             return false;
 
-        OnNotesJudged(result.Value, isLate, timeUntilHit, moveScript.MyNotesType, destroy: false,true);  // UI/SEだけ（破棄はしない）。
+        OnNotesJudged(result.Value, isLate, timeUntilHit, moveScript.MyNotesType, destroy: false, true);  // UI/SEだけ（破棄はしない）。
 
         moveScript.MarkHoldStarted();   // 始点が押せたことを記録
 
@@ -80,12 +80,12 @@ public class JudgeScript : MonoBehaviour
 
         JudgeResult result;
 
-        if (heldRatio >= 0.8f) result = JudgeResult.Perfect;
-        else if (heldRatio >= 0.6f) result = JudgeResult.Great;
-        else if (heldRatio >= 0.4f) result = JudgeResult.Good;
+        if (heldRatio >= 0.85f) result = JudgeResult.Perfect;
+        else if (heldRatio >= 0.7f) result = JudgeResult.Great;
+        else if (heldRatio >= 0.55f) result = JudgeResult.Good;
         else result = JudgeResult.Miss;
 
-        OnNotesJudged(result, isLate: false, timeUntilHit: 0f, moveScript.MyNotesType, destroy: true,false);
+        OnNotesJudged(result, isLate: false, timeUntilHit: 0f, moveScript.MyNotesType, destroy: true, false);
     }
 
 
@@ -106,7 +106,7 @@ public class JudgeScript : MonoBehaviour
             return null;
 
         // Unityのフレームのズレを打ち消す正確な曲の時間を逆算
-        float exactSongTime = (float)(pressedTime - MusicManagerScript.SongStartRealTime) - InputOffset;
+        float exactSongTime = (float)(pressedTime - MusicManagerScript.Instance.SongStartRealTime) - InputOffset;
 
         // 判定ラインからのズレを、OSが検知した入力時間ベースで計算
         timeUntilHit = moveScript.HitTime - exactSongTime;
@@ -234,6 +234,6 @@ public class JudgeScript : MonoBehaviour
             targetList.RemoveAt(0);
         }
 
-        OnNotesJudged(JudgeResult.Miss, isLate: true, -MissWindow, moveScript.MyNotesType, destroy: false,true);
+        OnNotesJudged(JudgeResult.Miss, isLate: true, -MissWindow, moveScript.MyNotesType, destroy: false, true);
     }
 }
