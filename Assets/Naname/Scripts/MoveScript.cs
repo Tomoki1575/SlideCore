@@ -10,7 +10,6 @@ public class MoveScript : MonoBehaviour
 
     public float EndHitTime;
 
-    public static float ScrollSpeed = 2500f;
     private float judgmentLineY = -1900f;
 
     private RectTransform rectTransform;
@@ -40,7 +39,7 @@ public class MoveScript : MonoBehaviour
     void Update()
     {
         // ゲームのステートがポーズ画面だったら早期リターン
-        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State != GameState.Playing)
+        if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
 
         RefreshPosition();
@@ -117,7 +116,7 @@ public class MoveScript : MonoBehaviour
     public void RefreshPosition()
     {
         // 「距離 ＝ 時間 × 速さ」 より、現在ノーツがあるべき座標を計算
-        float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.Instance.CurrentSongTime) * ScrollSpeed);
+        float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.Instance.CurrentSongTime) * PlayerSettingsScript.NotesSpeed);
 
         // ホールドの始点は判定ラインより下へは行かず貼り付く（見た目だけ）
         if (MyNotesType == NoteType.Hold && noteYPos < judgmentLineY)
@@ -134,7 +133,7 @@ public class MoveScript : MonoBehaviour
     public void RefreshHoldBand()
     {
         // ホールド終点の現在位置を時間から直接計算（距離 ＝ 時間 × 速さ）
-        float endY = judgmentLineY + (EndHitTime - MusicManagerScript.Instance.CurrentSongTime) * ScrollSpeed;
+        float endY = judgmentLineY + (EndHitTime - MusicManagerScript.Instance.CurrentSongTime) * PlayerSettingsScript.NotesSpeed;
 
         float bandBottom = rectTransform.anchoredPosition.y + HoldBaseOffsetY;      // 帯の下端（始点に張り付く）
         float visibleTop = Mathf.Min(endY, MaxBandTopY);     // 上端を画面外に出さないようにする
