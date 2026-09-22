@@ -10,11 +10,11 @@ public enum GameState
     Finishing
 };
 
-public class GameSceneScript : MonoBehaviour
+public class GameSceneManagerScript : MonoBehaviour
 {
     public GameState State { get; private set; } = GameState.Preparing;
 
-    public static GameSceneScript Instance { get; private set; }
+    public static GameSceneManagerScript Instance { get; private set; }
 
     [SerializeField] private GameObject pauseMenu;
 

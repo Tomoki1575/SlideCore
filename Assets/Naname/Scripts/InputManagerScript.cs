@@ -97,7 +97,7 @@ public class InputManagerScript : MonoBehaviour
     private void OnLaneTap(int laneIndex, InputAction.CallbackContext context)
     {
         // プレイ中じゃないならレーンをタップしたという入力は受け付けない
-        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State != GameState.Playing)
+        if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
 
         double exactTime = context.time;
@@ -155,7 +155,7 @@ public class InputManagerScript : MonoBehaviour
     private void OnLaneSlide(bool isRight, InputAction.CallbackContext context)
     {
         // プレイ中じゃないならスライドキーを押したという入力は受け付けない
-        if (GameSceneScript.Instance != null && GameSceneScript.Instance.State != GameState.Playing)
+        if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
 
         double exactTime = context.time;
@@ -221,7 +221,7 @@ public class InputManagerScript : MonoBehaviour
 
     private void OnPause()
     {
-        if (GameSceneScript.Instance != null)
-            GameSceneScript.Instance.OnPausePressed();
+        if (GameSceneManagerScript.Instance != null)
+            GameSceneManagerScript.Instance.OnPausePressed();
     }
 }
