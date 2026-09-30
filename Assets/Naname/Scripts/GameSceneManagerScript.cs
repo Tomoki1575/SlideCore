@@ -159,4 +159,31 @@ public class GameSceneManagerScript : MonoBehaviour
             ChangeState(stateBeforePause);
         }
     }
+
+    /// <summary>
+    /// 別のウィンドウに移った時に呼ばれる
+    /// </summary>
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus) AutoPause();
+    }
+
+    /// <summary>
+    /// アプリがバックエンドに回った時に呼ばれる(特にスマホの為の対策)
+    /// </summary>
+    private void OnApplicationPause(bool isPause)
+    {
+        if(!isPause) AutoPause();
+    }
+
+    /// <summary>
+    /// プレイ中かカウントダウン中のみ自動ポーズ
+    /// </summary>
+    private void AutoPause()
+    {
+        if (State != GameState.Playing && State != GameState.Resuming)
+            return;
+
+        OnPausePressed();
+    }
 }

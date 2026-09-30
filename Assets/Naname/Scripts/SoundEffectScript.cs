@@ -18,7 +18,7 @@ public class SoundEffectScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void TapNotesSound(NoteType notesType)
+    public void PlayNotesSound(NoteType notesType)
     {
         switch (notesType)
         {

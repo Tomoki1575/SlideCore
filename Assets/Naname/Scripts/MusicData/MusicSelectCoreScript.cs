@@ -16,7 +16,7 @@ public class MusicSelectCoreScript : MonoBehaviour
     [Header("曲情報")]
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI artistText;
-
+     
     [Header("難易度ラベル")]
     [SerializeField] private TextMeshProUGUI easyLabelText;
     [SerializeField] private TextMeshProUGUI normalLabelText;
@@ -28,6 +28,8 @@ public class MusicSelectCoreScript : MonoBehaviour
 
     private int currentIndex = 0;
 
+
+
     private void Start()
     {
         easyButton.onClick.AddListener(() => StartGame(MusicDataManager.Difficulty.Easy));
@@ -38,6 +40,9 @@ public class MusicSelectCoreScript : MonoBehaviour
         RefreshPanel();
     }
 
+    /// <summary>
+    /// 画面を更新(セレクトシーン開始時や、曲選択時に別の曲のタイトルを押すとき)
+    /// </summary>
     private void RefreshPanel()
     {
         if (musicDataList == null || musicDataList.allTracks == null || musicDataList.allTracks.Count == 0)
@@ -50,6 +55,8 @@ public class MusicSelectCoreScript : MonoBehaviour
 
         titleText.text = music.title;
         artistText.text = music.artist;
+
+        PreviewSongScript.Instance.PlayPreviewSong(music);
 
         bool hasAudio = music.audioClip != null;    // 音源が無い曲はそもそも遊べない
 
@@ -112,12 +119,12 @@ public class MusicSelectCoreScript : MonoBehaviour
         RefreshPanel();
     }
 
+    /// <summary>
+    /// 今選択されているのが何の曲で、どの難易度なのかを判定した後、ゲームを開始する
+    /// </summary>
     private void StartGame(MusicDataManager.Difficulty difficulty)
     {
-        if (currentSelection == null)
-            return;
-
-        if (musicDataList == null || musicDataList.allTracks == null || currentIndex < 0 || currentIndex >= musicDataList.allTracks.Count)
+        if (currentSelection == null || musicDataList == null || musicDataList.allTracks == null || currentIndex < 0 || currentIndex >= musicDataList.allTracks.Count)
             return;
 
         MusicData music = musicDataList.allTracks[currentIndex];

@@ -99,4 +99,6 @@ public class ResultCounterScript : MonoBehaviour
         if (score >= 650_000) return ScoreRank.C;
         return ScoreRank.D;
     }
+
+
 }
