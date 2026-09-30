@@ -84,7 +84,6 @@ public class MoveScript : MonoBehaviour
                         heldTime += Time.deltaTime;
                     }
 
-
                     // 帯の部分が流れ終わってから、貼り付けておいた始点を消す
                     if (MusicManagerScript.Instance.CurrentSongTime >= EndHitTime)
                     {
@@ -93,7 +92,7 @@ public class MoveScript : MonoBehaviour
                         float bandDuration = EndHitTime - HitTime;
                         float heldRatio = bandDuration > 0f ? heldTime / bandDuration : 0f;
 
-                        judgeScript.ExecuteHoldEndJudge(heldRatio);
+                        judgeScript.ExecuteHoldEndJudge(heldRatio,bandDuration);
                     }
                     break;
 
@@ -116,7 +115,7 @@ public class MoveScript : MonoBehaviour
     public void RefreshPosition()
     {
         // 「距離 ＝ 時間 × 速さ」 より、現在ノーツがあるべき座標を計算
-        float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.Instance.CurrentSongTime) * PlayerSettingsScript.NotesSpeed);
+        float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.Instance.CurrentSongTime) * PlayerOptionsScript.NotesSpeed);
 
         // ホールドの始点は判定ラインより下へは行かず貼り付く（見た目だけ）
         if (MyNotesType == NoteType.Hold && noteYPos < judgmentLineY)
@@ -133,7 +132,7 @@ public class MoveScript : MonoBehaviour
     public void RefreshHoldBand()
     {
         // ホールド終点の現在位置を時間から直接計算（距離 ＝ 時間 × 速さ）
-        float endY = judgmentLineY + (EndHitTime - MusicManagerScript.Instance.CurrentSongTime) * PlayerSettingsScript.NotesSpeed;
+        float endY = judgmentLineY + (EndHitTime - MusicManagerScript.Instance.CurrentSongTime) * PlayerOptionsScript.NotesSpeed;
 
         float bandBottom = rectTransform.anchoredPosition.y + HoldBaseOffsetY;      // 帯の下端（始点に張り付く）
         float visibleTop = Mathf.Min(endY, MaxBandTopY);     // 上端を画面外に出さないようにする

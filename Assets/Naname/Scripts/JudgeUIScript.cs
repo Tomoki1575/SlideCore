@@ -26,8 +26,6 @@ public class JudgeUIScript : MonoBehaviour
 
     private GameObject[] activeJudgeObjects = new GameObject[6];
 
-    [SerializeField] private bool isTimingFeedbackMode = false;
-
     private void Awake()
     {
         Instance = this;
@@ -51,15 +49,15 @@ public class JudgeUIScript : MonoBehaviour
                 break;
 
             case JudgeResult.Great:
-                judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? greatLateUIPrefab : greatFastUIPrefab) : greatUIPrefab).gameObject, judgeUIParent);
+                judgeUIObj = Instantiate((PlayerOptionsScript.IsTimingFeedbackMode ? (isLate ? greatLateUIPrefab : greatFastUIPrefab) : greatUIPrefab).gameObject, judgeUIParent);
                 break;
 
             case JudgeResult.Good:
-                judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? goodLateUIPrefab : goodFastUIPrefab) : goodUIPrefab).gameObject, judgeUIParent);
+                judgeUIObj = Instantiate((PlayerOptionsScript.IsTimingFeedbackMode ? (isLate ? goodLateUIPrefab : goodFastUIPrefab) : goodUIPrefab).gameObject, judgeUIParent);
                 break;
 
             case JudgeResult.Miss:
-                judgeUIObj = Instantiate((isTimingFeedbackMode ? (isLate ? missLateUIPrefab : missFastUIPrefab) : missUIPrefab).gameObject, judgeUIParent);
+                judgeUIObj = Instantiate((PlayerOptionsScript.IsTimingFeedbackMode ? (isLate ? missLateUIPrefab : missFastUIPrefab) : missUIPrefab).gameObject, judgeUIParent);
                 break;
         }
 

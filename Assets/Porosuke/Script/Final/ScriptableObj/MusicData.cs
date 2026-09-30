@@ -7,7 +7,10 @@ public class MusicData : ScriptableObject
     public string title;
     public string artist;
 
+    public int songID;
+
     public AudioClip audioClip;
+    public AudioClip previewClip;
 
     public int levelEasy;
     public TextAsset chartEasy;

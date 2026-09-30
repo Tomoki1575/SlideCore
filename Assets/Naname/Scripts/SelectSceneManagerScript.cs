@@ -21,6 +21,8 @@ public class SelectSceneManagerScript : MonoBehaviour
 
     public void OnCloseOption()
     {
+        OptionDataManager.Save();
+        Debug.Log("[SaveData] ÉZÅ[ÉuÇ≥ÇÍÇ‹ÇµÇΩ");
         optionPanel.SetActive(false);
         IsOptionOpen = false;
     }

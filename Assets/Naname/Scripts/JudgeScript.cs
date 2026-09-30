@@ -13,14 +13,16 @@ public class JudgeScript : MonoBehaviour
 {
     private MoveScript moveScript;
 
-    public const float PerfectWindow = 0.075f;
-    public const float GreatWindow = 0.15f;
-    public const float GoodWindow = 0.21f;
-    public const float MissWindow = 0.4f;
+    public const float PerfectWindow = 0.070f;
+    public const float GreatWindow = 0.14f;
+    public const float GoodWindow = 0.18f;
+    public const float MissWindow = 0.22f;
 
     // ノーツの「見た目」と「実際の計算による判定」のズレを調整するオフセット
     // プレイヤーがいじることは無いと思う
     public static float InputOffset { get; private set; } = 0.03f;
+
+    private JudgeResult holdStartResult = JudgeResult.Miss;
 
     void Start()
     {
@@ -60,12 +62,14 @@ public class JudgeScript : MonoBehaviour
 
         OnNotesJudged(result.Value, isLate, timeUntilHit, moveScript.MyNotesType, destroy: false, true);  // UI/SEだけ（破棄はしない）。
 
+        holdStartResult = result.Value;
+
         moveScript.MarkHoldStarted();   // 始点が押せたことを記録
 
         return true;
     }
 
-    public void ExecuteHoldEndJudge(float heldRatio)
+    public void ExecuteHoldEndJudge(float heldRatio,float bandDuration )
     {
         // まだリストに残っていれば外す（始点を一度も押さなかったHold対策）
         if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
@@ -80,10 +84,21 @@ public class JudgeScript : MonoBehaviour
 
         JudgeResult result;
 
-        if (heldRatio >= 0.85f) result = JudgeResult.Perfect;
-        else if (heldRatio >= 0.7f) result = JudgeResult.Great;
-        else if (heldRatio >= 0.55f) result = JudgeResult.Good;
-        else result = JudgeResult.Miss;
+
+        // 帯が判定窓より短いと、始点のズレだけで帯を食い潰せてしまう。
+        // その場合は押しっぱなしを評価せず、始点の判定をそのまま採用する
+        if (bandDuration < GoodWindow * 2f)
+        {
+            result = holdStartResult;
+        }
+
+        else
+        {
+            if (heldRatio >= 0.85f) result = JudgeResult.Perfect;
+            else if (heldRatio >= 0.7f) result = JudgeResult.Great;
+            else if (heldRatio >= 0.55f) result = JudgeResult.Good;
+            else result = JudgeResult.Miss;
+        }
 
         OnNotesJudged(result, isLate: false, timeUntilHit: 0f, moveScript.MyNotesType, destroy: true, false);
     }
@@ -193,25 +208,25 @@ public class JudgeScript : MonoBehaviour
         {
             case JudgeResult.Perfect:
                 ResultCounterScript.CountPerfect++;
-                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
+                if (isPlaySE) SoundEffectScript.Instance.PlayNotesSound(noteType);
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Perfect, isLate);
                 break;
 
             case JudgeResult.Great:
                 ResultCounterScript.CountGreat++;
-                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
+                if (isPlaySE) SoundEffectScript.Instance.PlayNotesSound(noteType);
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Great, isLate);
                 break;
 
             case JudgeResult.Good:
                 ResultCounterScript.CountGood++;
-                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
+                if (isPlaySE) SoundEffectScript.Instance.PlayNotesSound(noteType);
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Good, isLate);
                 break;
 
             case JudgeResult.Miss when !isLate:
                 ResultCounterScript.CountMiss++;
-                if (isPlaySE) SoundEffectScript.Instance.TapNotesSound(noteType);
+                if (isPlaySE) SoundEffectScript.Instance.PlayNotesSound(noteType);
                 JudgeUIScript.Instance.JudgeOutput(moveScript.Lane, JudgeResult.Miss, isLate);
                 break;
 

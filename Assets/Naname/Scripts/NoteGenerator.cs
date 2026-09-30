@@ -56,7 +56,7 @@ public class NoteGenerator : MonoBehaviour
 
         // 判定ラインより4500高い位置で画面から見え始めるため、そこの直前で生成
         // 視野角や画面範囲を変えた場合は、この4500を変える
-        spawnOffsetTime = 4500f / PlayerSettingsScript.NotesSpeed;
+        spawnOffsetTime = 4500f / PlayerOptionsScript.NotesSpeed;
 
         // JSONからノーツデータを読み込む
         TextAsset chart = musicSelection.GetChart();
@@ -65,7 +65,7 @@ public class NoteGenerator : MonoBehaviour
 
         // 「beat(引数)」から「判定ラインに来る実時間(返り値)」に変換する。
         // 始点・終点で共通して使う
-        float ToHitTime(JsonDataConverter.BeatData beat) => (float)TimeConverter.ConvertBeatToReal(beat, jsonData.bpms) - (jsonData.meta.offset / 1000f - PlayerSettingsScript.MusicOffset);
+        float ToHitTime(JsonDataConverter.BeatData beat) => (float)TimeConverter.ConvertBeatToReal(beat, jsonData.bpms) - (jsonData.meta.offset / 1000f - PlayerOptionsScript.MusicOffset);
 
         // ノーツデータをリストに入れていく
         foreach (JsonDataConverter.NoteData note in jsonData.notes)
@@ -179,7 +179,7 @@ public class NoteGenerator : MonoBehaviour
             if (data.noteType == NoteType.Hold)
             {
                 // 帯の盾の長さを決める（「ホールド時間の長さ」や「ノーツの流れる速度」によって長さが変わる）
-                float bandLength = (data.EndHitTime - data.HitTime) * PlayerSettingsScript.NotesSpeed;
+                float bandLength = (data.EndHitTime - data.HitTime) * PlayerOptionsScript.NotesSpeed;
 
                 // ホールドノーツ（帯部分）をホールドノーツ（始点）の子供にして生成
                 GameObject band = Instantiate(holdBandNotePrefab, newNote.transform);
