@@ -28,6 +28,8 @@ public class GameSceneManagerScript : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI countDownText;
 
+    [SerializeField] private MusicSelection musicSelection;
+
     private void Awake()
     {
         Instance = this;
@@ -61,6 +63,7 @@ public class GameSceneManagerScript : MonoBehaviour
                     // 「曲が流れてからの経過時間」が「曲の長さ ＋ 余韻」を過ぎたらリザルトへ
                     if (MusicManagerScript.Instance.CurrentSongTime >= MusicManagerScript.Instance.SongLength + resultDelay)
                     {
+                        RecordResult();
                         SceneLoaderScript.Instance.LoadSceneWithFade("ResultScene");
                         ChangeState(GameState.Finishing);
                     }
@@ -169,11 +172,12 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// アプリがバックエンドに回った時に呼ばれる(特にスマホの為の対策)
+    /// アプリがバックグラウンドに回った時に呼ばれる(特にスマホの為の対策)
     /// </summary>
     private void OnApplicationPause(bool isPause)
     {
-        if(!isPause) AutoPause();
+        if (isPause)
+            AutoPause();
     }
 
     /// <summary>
@@ -185,5 +189,21 @@ public class GameSceneManagerScript : MonoBehaviour
             return;
 
         OnPausePressed();
+    }
+
+    /// <summary>
+    /// 今回のプレイ結果を記録に反映して、ファイルに保存する
+    /// </summary>
+    private void RecordResult()
+    {
+        if (musicSelection == null || musicSelection.musicData == null)
+        {
+            Debug.LogError("[Unassigned] MusicSelection が割り当てられていません。", this);
+            return;
+        }
+
+        ScoreDataManager.UpdateRecord(musicSelection.musicData.songID, musicSelection.difficulty, ResultCounterScript.GetScore(), ResultCounterScript.MaxCombo, ResultCounterScript.GetBadge());
+
+        ScoreDataManager.Save();
     }
 }

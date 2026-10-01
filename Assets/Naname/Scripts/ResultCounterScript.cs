@@ -86,10 +86,19 @@ public class ResultCounterScript : MonoBehaviour
         return ClearBadge.Finish;
     }
 
+    /// <summary>
+    /// 今プレイした結果のランク
+    /// </summary>
     public static ScoreRank GetRank()
     {
-        int score = GetScore();
+        return GetRank(GetScore());
+    }
 
+    /// <summary>
+    /// 指定したスコアのランク
+    /// </summary>
+    public static ScoreRank GetRank(int score)
+    {
         if (score >= 1_000_000) return ScoreRank.SSS_Plus;
         if (score >= 990_000) return ScoreRank.SSS;
         if (score >= 980_000) return ScoreRank.SS;
@@ -100,5 +109,41 @@ public class ResultCounterScript : MonoBehaviour
         return ScoreRank.D;
     }
 
+    /// <summary>
+    /// 称号を表示用の文字列に変換する（enum名に "+" が使えないため）
+    /// </summary>
+    public static string BadgeToText(ClearBadge badge)
+    {
+        switch (badge)
+        {
+            case ClearBadge.AllPerfect: return "ALL PERFECT";
+            case ClearBadge.FullComboPlus: return "FULL COMBO+";
+            case ClearBadge.FullCombo: return "FULL COMBO";
+            default: return "CLEAR";
+        }
+    }
 
+    /// <summary>
+    /// ランクを表示用の文字列に変換する（同上）
+    /// </summary>
+    public static string RankToText(ScoreRank rank)
+    {
+        if (rank == ScoreRank.SSS_Plus) return "SSS+";
+
+        return rank.ToString();
+    }
+
+    /// <summary>
+    /// 称号を表示用の文字列に変換するやつの短い版（enum名に "+" が使えないため）
+    /// </summary>
+    public static string BadgeToShortText(ClearBadge badge)
+    {
+        switch (badge)
+        {
+            case ClearBadge.AllPerfect: return "AP";
+            case ClearBadge.FullComboPlus: return "FC+";
+            case ClearBadge.FullCombo: return "FC";
+            default: return "CLEAR";
+        }
+    }
 }
