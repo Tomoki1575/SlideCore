@@ -2783,6 +2783,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 897100325}
   EndPauseTime: 0
   countDownText: {fileID: 409076009}
+  musicSelection: {fileID: 11400000, guid: f733c2f9fc40c7c43b5a90c312abdfad, type: 2}
 --- !u!1 &1443517505
 GameObject:
   m_ObjectHideFlags: 0

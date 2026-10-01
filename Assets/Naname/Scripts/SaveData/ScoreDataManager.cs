@@ -127,6 +127,9 @@ public static class ScoreDataManager
     /// </summary>
     public static void UpdateRecord(int songID, MusicDataManager.Difficulty difficulty, int score, int combo, ClearBadge badge)
     {
+        if(songID == 0)
+            return;        
+
         ScoreRecord record = FindRecord(songID, difficulty);
 
         // 初プレイなら、記録を新しく作ってリストに加える
@@ -146,6 +149,5 @@ public static class ScoreDataManager
         if (score > record.maxScore) record.maxScore = score;
         if (combo > record.maxCombo) record.maxCombo = combo;
         if (badge < record.bestBadge) record.bestBadge = badge;
-
     }
 }

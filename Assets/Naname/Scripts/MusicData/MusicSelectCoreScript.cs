@@ -26,9 +26,9 @@ public class MusicSelectCoreScript : MonoBehaviour
     [SerializeField] private GameObject songItemPrefab;
     [SerializeField] private Transform contentParent;
 
+    [SerializeField] private BestScoreDisplayScript bestScoreDisplay;
+
     private int currentIndex = 0;
-
-
 
     private void Start()
     {
@@ -63,6 +63,9 @@ public class MusicSelectCoreScript : MonoBehaviour
         ApplyDifficulty(easyButton, easyLabelText, "Easy", music.chartEasy, music.levelEasy, hasAudio);
         ApplyDifficulty(normalButton, normalLabelText, "Normal", music.chartNormal, music.levelNormal, hasAudio);
         ApplyDifficulty(hardButton, hardLabelText, "Hard", music.chartHard, music.levelHard, hasAudio);
+
+        if (bestScoreDisplay != null) 
+            bestScoreDisplay.Refresh(music);
     }
 
     private void ApplyDifficulty(Button button, TextMeshProUGUI labelText, string difficultyName, TextAsset chart, int level, bool hasAudio)
@@ -71,6 +74,9 @@ public class MusicSelectCoreScript : MonoBehaviour
         button.interactable = hasAudio && (chart != null);
     }
 
+    /// <summary>
+    /// ã»ëIëÇÃÉäÉXÉgÇê∂ê¨
+    /// </summary>
     private void BuildSongList()
     {
         if (musicDataList == null || musicDataList.allTracks == null)
