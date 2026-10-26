@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TouchEffectGeneratorScript : MonoBehaviour
@@ -10,6 +11,9 @@ public class TouchEffectGeneratorScript : MonoBehaviour
     private RectTransform canvasRect;
 
     private static TouchEffectGeneratorScript instance;
+
+    private const string GameSceneName = "GameScene";
+    private bool canGenerate = true;
 
     private void Awake()
     {
@@ -31,16 +35,20 @@ public class TouchEffectGeneratorScript : MonoBehaviour
 
         // 表示優先度を設定
         touchEffectCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        touchEffectCanvas.sortingOrder = 50;
+        touchEffectCanvas.sortingOrder = 150;
 
         // エフェクトのジェネレーターと今回生成したキャンバスで親子関係を結ぶ
         canvasGenerate.transform.SetParent(this.transform, false);
 
         canvasRect = canvasGenerate.GetComponent<RectTransform>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
     {
+        if (!canGenerate) return;
+
         if (Pointer.current == null || !Pointer.current.press.wasPressedThisFrame)
             return;
 
@@ -53,5 +61,15 @@ public class TouchEffectGeneratorScript : MonoBehaviour
 
         RectTransform obj = Instantiate(rippleEffect, canvasRect);
         obj.anchoredPosition = localPos;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        canGenerate = (scene.name != GameSceneName);
     }
 }
