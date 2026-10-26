@@ -15,8 +15,8 @@ public class ResultDisplayScript : MonoBehaviour
     private void Start()
     {
         scoreText.text = ResultCounterScript.GetScore().ToString();
-        rankText.text = ResultCounterScript.GetRank().ToString();
-        badgeText.text = BadgeToText(ResultCounterScript.GetBadge());
+        rankText.text = ResultCounterScript.RankToText(ResultCounterScript.GetRank());
+        badgeText.text = ResultCounterScript.BadgeToText(ResultCounterScript.GetBadge());
 
         perfectText.text = ResultCounterScript.CountPerfect.ToString();
         greatText.text = ResultCounterScript.CountGreat.ToString();
@@ -24,17 +24,7 @@ public class ResultDisplayScript : MonoBehaviour
         missText.text = ResultCounterScript.CountMiss.ToString();
 
         maxComboText.text = ResultCounterScript.MaxCombo.ToString();
-    }
 
-    // enum は "+" を含められないので、バッジだけ表示用に変換
-    private string BadgeToText(ClearBadge badge)
-    {
-        switch (badge)
-        {
-            case ClearBadge.AllPerfect: return "ALL PERFECT";
-            case ClearBadge.FullComboPlus: return "FULL COMBO+";
-            case ClearBadge.FullCombo: return "FULL COMBO";
-            default: return "CLEAR";
-        }
+
     }
 }
