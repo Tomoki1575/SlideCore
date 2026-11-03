@@ -38,7 +38,7 @@ public class MoveScript : MonoBehaviour
 
     void Update()
     {
-        // ゲームのステートがポーズ画面だったら早期リターン
+        // ゲームのステートがPlayingじゃないなら、ノーツを動かさない
         if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
 
@@ -54,63 +54,61 @@ public class MoveScript : MonoBehaviour
         float judgeTime = (float)(Time.realtimeSinceStartupAsDouble - MusicManagerScript.Instance.SongStartRealTime) - JudgeScript.InputOffset;
 
         // ノーツを消す処理
-        if (!isMissTriggered)
+        if (isMissTriggered) return;    // 二重でMissが走らないようにするため
+        
+        switch (MyNotesType)
         {
-            switch (MyNotesType)
-            {
-                case NoteType.Noise:
-                    // ノイズの場合、叩かれるべき時間が過ぎた瞬間判定されるため、その瞬間消す
-                    if (timeRemaining <= 0)
-                    {
-                        isMissTriggered = true;
+            case NoteType.Noise:
+                // ノイズの場合、叩かれるべき時間が過ぎた瞬間判定されるため、その瞬間消す
+                if (timeRemaining <= 0)
+                {
+                    isMissTriggered = true;
+                    judgeScript.ExecuteNoiseJudge();
+                }
+                break;
 
-                        judgeScript.ExecuteNoiseJudge();
-                    }
-                    break;
+            case NoteType.Hold:
+                float songTime = MusicManagerScript.Instance.CurrentSongTime;
 
-                case NoteType.Hold:
-                    float songTime = MusicManagerScript.Instance.CurrentSongTime;
+                // 始点をスルーした場合、始点の判定窓を過ぎたらmiss
+                if(!holdStartJudged && judgeTime > HitTime + JudgeScript.MissWindow)
+                {
+                    holdStartJudged = true;
+                    judgeScript.TriggerHoldStartMiss();
+                }
 
-                    // 始点をスルーした場合、始点の判定窓を過ぎたらmiss
-                    if(!holdStartJudged && judgeTime > HitTime + JudgeScript.MissWindow)
-                    {
-                        holdStartJudged = true;
-                        judgeScript.TriggerHoldStartMiss();
-                    }
+                // 帯の区間中（始点〜終点）で、レーンが押されていれば押し時間を貯める
+                if (songTime >= HitTime && songTime < EndHitTime && InputManagerScript.isLanePressed[Lane])
+                {
+                    heldTime += Time.deltaTime;
+                }
 
-                    // 帯の区間中（始点〜終点）で、レーンが押されていれば押し時間を貯める
-                    if (songTime >= HitTime && songTime < EndHitTime && InputManagerScript.isLanePressed[Lane])
-                    {
-                        heldTime += Time.deltaTime;
-                    }
+                // 帯の部分が流れ終わってから、貼り付けておいた始点を消す
+                if (MusicManagerScript.Instance.CurrentSongTime >= EndHitTime)
+                {
+                    isMissTriggered = true;
 
-                    // 帯の部分が流れ終わってから、貼り付けておいた始点を消す
-                    if (MusicManagerScript.Instance.CurrentSongTime >= EndHitTime)
-                    {
-                        isMissTriggered = true;
+                    float bandDuration = EndHitTime - HitTime;
+                    float heldRatio = bandDuration > 0f ? heldTime / bandDuration : 0f;
 
-                        float bandDuration = EndHitTime - HitTime;
-                        float heldRatio = bandDuration > 0f ? heldTime / bandDuration : 0f;
+                    judgeScript.ExecuteHoldEndJudge(heldRatio,bandDuration);
+                }
+                break;
 
-                        judgeScript.ExecuteHoldEndJudge(heldRatio,bandDuration);
-                    }
-                    break;
-
-                default:
-                    // ホールド以外のノーツにおいて、叩かれずにそのまま流れたら（遅missの判定になる時間まで叩かれなかったら）ノーツを消す
-                    if (judgeTime > HitTime + JudgeScript.MissWindow)
-                    {
-                        isMissTriggered = true;
-                        judgeScript.TriggerMissByThrough();
-                    }
-                    break;
-            }
-        }
+            default:
+                // ホールド以外のノーツにおいて、叩かれずにそのまま流れたら（遅missの判定になる時間まで叩かれなかったら）ノーツを消す
+                if (judgeTime > HitTime + JudgeScript.MissWindow)
+                {
+                    isMissTriggered = true;
+                    judgeScript.TriggerMissByThrough();
+                }
+                break;
+         }       
     }
 
     /// <summary>
-    /// 現在ノーツがあるべき場所を計算し、その座標にノーツを配置する関数。
-    /// 「ノーツを動かす関数」とも言える。
+    /// 現在ノーツがあるべき場所を計算し、その座標に更新する
+    /// 「ノーツを動かす関数」とも言える
     /// </summary>
     public void RefreshPosition()
     {
@@ -127,7 +125,7 @@ public class MoveScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ホールドノーツの始点および帯部分の配置を決定する関数
+    /// ホールドノーツの始点および帯部分の配置を決定する
     /// </summary>
     public void RefreshHoldBand()
     {
