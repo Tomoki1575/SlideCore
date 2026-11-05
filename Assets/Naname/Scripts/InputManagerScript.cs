@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameDataManager;
 using static UnityEngine.InputSystem.InputAction;
@@ -9,7 +9,7 @@ public class InputManagerScript : MonoBehaviour
 
     public static bool[] isLanePressed = new bool[6];
 
-    [SerializeField] private float slideCooldown = 0.05f;   // ƒXƒ‰ƒCƒh‚ÌÅ¬ŠÔŠui•bE’²®‰Âj
+    [SerializeField] private float slideCooldown = 0.05f;   // ã‚¹ãƒ©ã‚¤ãƒ‰ã®æœ€å°é–“éš”ï¼ˆç§’ãƒ»èª¿æ•´å¯ï¼‰
     private double lastRightSlideTime = -999;
     private double lastLeftSlideTime = -999;
 
@@ -20,8 +20,8 @@ public class InputManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        // isLanePressed‚Ístatic‚È‚Ì‚ÅAƒV[ƒ“‚ğ‚Ü‚½‚¢‚Å’l‚ªc‚éB
-        // ‰Ÿ‚µ‚Á‚Ï‚È‚µ‚Ì‚Ü‚ÜGameScene‚ğ”²‚¯‚é‚Ætrue‚ª‚¿‰z‚³‚ê‚é‚½‚ßAŠJn‚É‘SƒŒ[ƒ“‚ğfalse‚Å‰Šú‰»‚·‚éB
+        // isLanePressedã¯staticãªã®ã§ã€ã‚·ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã§å€¤ãŒæ®‹ã‚‹ã€‚
+        // æŠ¼ã—ã£ã±ãªã—ã®ã¾ã¾GameSceneã‚’æŠœã‘ã‚‹ã¨trueãŒæŒã¡è¶Šã•ã‚Œã‚‹ãŸã‚ã€é–‹å§‹æ™‚ã«å…¨ãƒ¬ãƒ¼ãƒ³ã‚’falseã§åˆæœŸåŒ–ã™ã‚‹ã€‚
         for (int i = 0; i < isLanePressed.Length; i++)
             isLanePressed[i] = false;
     }
@@ -90,13 +90,13 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŒ[ƒ“ã‚Ì“Á’è‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½AŒÄ‚Î‚ê‚éŠÖ” {int ‰½”Ô–Ú‚ÌƒŒ[ƒ“‚©, InputAction.CallbackContext ƒCƒ“ƒvƒbƒgƒVƒXƒeƒ€‚Ìê—p•Ï”}
+    /// ãƒ¬ãƒ¼ãƒ³ä¸Šã®ç‰¹å®šã®ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã€å‘¼ã°ã‚Œã‚‹é–¢æ•° {int ä½•ç•ªç›®ã®ãƒ¬ãƒ¼ãƒ³ã‹, InputAction.CallbackContext ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ ã®å°‚ç”¨å¤‰æ•°}
     /// </summary>
-    /// <param name="laneIndex">‰½”Ô–Ú‚ÌƒŒ[ƒ“‚©</param>
+    /// <param name="laneIndex">ä½•ç•ªç›®ã®ãƒ¬ãƒ¼ãƒ³ã‹</param>
     /// <param name="context"></param>
     private void OnLaneTap(int laneIndex, InputAction.CallbackContext context)
     {
-        // ƒvƒŒƒC’†‚¶‚á‚È‚¢‚È‚çƒŒ[ƒ“‚ğƒ^ƒbƒv‚µ‚½‚Æ‚¢‚¤“ü—Í‚Íó‚¯•t‚¯‚È‚¢
+        // ãƒ—ãƒ¬ã‚¤ä¸­ã˜ã‚ƒãªã„ãªã‚‰ãƒ¬ãƒ¼ãƒ³ã‚’ã‚¿ãƒƒãƒ—ã—ãŸã¨ã„ã†å…¥åŠ›ã¯å—ã‘ä»˜ã‘ãªã„
         if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
 
@@ -108,10 +108,10 @@ public class InputManagerScript : MonoBehaviour
 
         var targetLaneList = NoteGenerator.Instance.laneNotesLists[laneIndex];
 
-        // ‚»‚ÌƒŒ[ƒ“‚ÌƒŠƒXƒg‚Éƒm[ƒc‚ª1‚ÂˆÈã‘¶İ‚·‚éê‡‚Ì‚İˆ—‚·‚é
+        // ãã®ãƒ¬ãƒ¼ãƒ³ã®ãƒªã‚¹ãƒˆã«ãƒãƒ¼ãƒ„ãŒ1ã¤ä»¥ä¸Šå­˜åœ¨ã™ã‚‹å ´åˆã®ã¿å‡¦ç†ã™ã‚‹
         if (targetLaneList.Count > 0)
         {
-            // ƒŠƒXƒg‚Ì[0]”Ô–Ú‚ÍA‚»‚ÌƒŒ[ƒ“‚Åuˆê”Ôè‘O‚É‚¢‚évƒm[ƒc
+            // ãƒªã‚¹ãƒˆã®[0]ç•ªç›®ã¯ã€ãã®ãƒ¬ãƒ¼ãƒ³ã§ã€Œä¸€ç•ªæ‰‹å‰ã«ã„ã‚‹ã€ãƒãƒ¼ãƒ„
             MoveScript closestNoteMove = targetLaneList[0];
 
             if (closestNoteMove != null)
@@ -121,7 +121,7 @@ public class InputManagerScript : MonoBehaviour
 
                 bool wasJudged = false;
 
-                // ƒm[ƒc‚ÉƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éJudgeScript‚ğæ“¾
+                // ãƒãƒ¼ãƒ„ã«ã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹JudgeScriptã‚’å–å¾—
                 JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
 
                 if (judgeScript != null)
@@ -133,13 +133,13 @@ public class InputManagerScript : MonoBehaviour
 
                     else
                     {
-                        // OS‚ªŒŸ’m‚µ‚½³Šm‚ÈŠÔ‚ğ“n‚µ‚Ä”»’è‚ğÀs‚·‚é
+                        // OSãŒæ¤œçŸ¥ã—ãŸæ­£ç¢ºãªæ™‚é–“ã‚’æ¸¡ã—ã¦åˆ¤å®šã‚’å®Ÿè¡Œã™ã‚‹
                         wasJudged = judgeScript.ExecuteJudge(exactTime);
                     }
 
                     if (wasJudged)
                     {
-                        // ‚±‚ê‚ğ‚µ‚È‚¢‚ÆAŸ‚Ìƒm[ƒc‚ğ’@‚«‚És‚Á‚½‚Æ‚«‚ÉŒÃ‚¢ƒm[ƒc‚ª×–‚‚ğ‚·‚é
+                        // ã“ã‚Œã‚’ã—ãªã„ã¨ã€æ¬¡ã®ãƒãƒ¼ãƒ„ã‚’å©ãã«è¡Œã£ãŸã¨ãã«å¤ã„ãƒãƒ¼ãƒ„ãŒé‚ªé­”ã‚’ã™ã‚‹
                         targetLaneList.RemoveAt(0);
                     }
                 }
@@ -148,19 +148,19 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒ‰ƒCƒhƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½AŒÄ‚Î‚ê‚éŠÖ” {bool ‰EƒXƒ‰ƒCƒh‚©H, InputAction.CallbackContext ƒCƒ“ƒvƒbƒgƒVƒXƒeƒ€‚Ìê—p•Ï”}
+    /// ã‚¹ãƒ©ã‚¤ãƒ‰ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã€å‘¼ã°ã‚Œã‚‹é–¢æ•° {bool å³ã‚¹ãƒ©ã‚¤ãƒ‰ã‹ï¼Ÿ, InputAction.CallbackContext ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ ã®å°‚ç”¨å¤‰æ•°}
     /// </summary>
-    /// <param name="isRight">‰EƒXƒ‰ƒCƒh‚©H</param>
+    /// <param name="isRight">å³ã‚¹ãƒ©ã‚¤ãƒ‰ã‹ï¼Ÿ</param>
     /// <param name="context"></param>
     private void OnLaneSlide(bool isRight, InputAction.CallbackContext context)
     {
-        // ƒvƒŒƒC’†‚¶‚á‚È‚¢‚È‚çƒXƒ‰ƒCƒhƒL[‚ğ‰Ÿ‚µ‚½‚Æ‚¢‚¤“ü—Í‚Íó‚¯•t‚¯‚È‚¢
+        // ãƒ—ãƒ¬ã‚¤ä¸­ã˜ã‚ƒãªã„ãªã‚‰ã‚¹ãƒ©ã‚¤ãƒ‰ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ã„ã†å…¥åŠ›ã¯å—ã‘ä»˜ã‘ãªã„
         if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
 
         double exactTime = context.time;
 
-        // “¯‚¶•ûŒü‚ÌƒXƒ‰ƒCƒh‚ª’ZŠÔ‚É˜A‘±‚µ‚½‚ç–³‹i‘½d”»’è–h~j
+        // åŒã˜æ–¹å‘ã®ã‚¹ãƒ©ã‚¤ãƒ‰ãŒçŸ­æ™‚é–“ã«é€£ç¶šã—ãŸã‚‰ç„¡è¦–ï¼ˆå¤šé‡åˆ¤å®šé˜²æ­¢ï¼‰
         double lastTime = isRight ? lastRightSlideTime : lastLeftSlideTime;
 
         if (exactTime - lastTime < slideCooldown)
@@ -172,26 +172,26 @@ public class InputManagerScript : MonoBehaviour
         else
             lastLeftSlideTime = exactTime;
 
-        // ƒŒ[ƒ“‚ğ“®‚©‚·ˆ—
+        // ãƒ¬ãƒ¼ãƒ³ã‚’å‹•ã‹ã™å‡¦ç†
         if (LaneScript.Instance != null)
         {
             LaneScript.Instance.SlideLane(isRight);
         }
 
-        // ƒŒ[ƒ“ˆÚ“®‚É‡‚í‚¹‚ÄƒXƒ‰ƒCƒhƒm[ƒc‚Ì”»’è‚ğs‚¤ˆ—
+        // ãƒ¬ãƒ¼ãƒ³ç§»å‹•ã«åˆã‚ã›ã¦ã‚¹ãƒ©ã‚¤ãƒ‰ãƒãƒ¼ãƒ„ã®åˆ¤å®šã‚’è¡Œã†å‡¦ç†
         if (NoteGenerator.Instance == null || NoteGenerator.Instance.laneNotesLists == null) return;
 
-        // 6ƒŒ[ƒ“‘S‚Ä‚ÌƒŠƒXƒg‚É’@‚¯‚éƒm[ƒc‚ª‚ ‚é‚©ƒ`ƒFƒbƒNiƒXƒ‰ƒCƒhƒm[ƒc‚Ì”»’è‚Í‘S‚Ä‚ÌƒŒ[ƒ“‚ğ‹¤—L‚·‚é‚½‚ßj
+        // 6ãƒ¬ãƒ¼ãƒ³å…¨ã¦ã®ãƒªã‚¹ãƒˆã«å©ã‘ã‚‹ãƒãƒ¼ãƒ„ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆã‚¹ãƒ©ã‚¤ãƒ‰ãƒãƒ¼ãƒ„ã®åˆ¤å®šã¯å…¨ã¦ã®ãƒ¬ãƒ¼ãƒ³ã‚’å…±æœ‰ã™ã‚‹ãŸã‚ï¼‰
         for (int i = 0; i < NoteGenerator.Instance.laneNotesLists.Length; i++)
         {
             var targetLaneList = NoteGenerator.Instance.laneNotesLists[i];
             if (targetLaneList.Count == 0) continue;
 
-            // ƒŠƒXƒg‚Ì[0]”Ô–Ú‚ÍA‚»‚ÌƒŒ[ƒ“‚Åuˆê”Ôè‘O‚É‚¢‚évƒm[ƒc
+            // ãƒªã‚¹ãƒˆã®[0]ç•ªç›®ã¯ã€ãã®ãƒ¬ãƒ¼ãƒ³ã§ã€Œä¸€ç•ªæ‰‹å‰ã«ã„ã‚‹ã€ãƒãƒ¼ãƒ„
             MoveScript closestNoteMove = targetLaneList[0];
             if (closestNoteMove == null) continue;
 
-            // ƒXƒ‰ƒCƒh
+            // ã‚¹ãƒ©ã‚¤ãƒ‰
             if (closestNoteMove.MyNotesType == NoteType.Slide)
             {
                 if (isRight == closestNoteMove.IsRight)
@@ -212,14 +212,14 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŒ[ƒ“‚Ìƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½uŠÔ‚ÉŒÄ‚Î‚ê‚éB‰Ÿ‰ºƒtƒ‰ƒO‚ğ‰º‚ë‚·‚¾‚¯B
+    /// ãƒ¬ãƒ¼ãƒ³ã®ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸç¬é–“ã«å‘¼ã°ã‚Œã‚‹ã€‚æŠ¼ä¸‹ãƒ•ãƒ©ã‚°ã‚’ä¸‹ã‚ã™ã ã‘ã€‚
     /// </summary>
     private void OnLaneRelease(int laneIndex)
     {
         isLanePressed[laneIndex] = false;
     }
 
-    private void OnPause()
+    public void OnPause()
     {
         if (GameSceneManagerScript.Instance != null)
             GameSceneManagerScript.Instance.OnPausePressed();

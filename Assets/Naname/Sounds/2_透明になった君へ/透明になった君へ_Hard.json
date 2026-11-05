@@ -1,14 +1,14 @@
 {
-    "meta": {
-        "title": "Untitled",
-        "artist": "anonymous",
-        "chartAuthor": "anonymous",
-        "Description": "",
-        "difficulty": "-",
-        "musicName": "透明になった君へ.wav",
-        "musicPath": "..\\..\\..\\..\\よく使う\\unity関連\\unity保存先\\SlideCore_Git\\Assets\\Naname\\Sounds\\2_透明になった君へ\\透明になった君へ.wav",
-        "offset": -5
-    },
+  "meta": {
+    "title": "Untitled",
+    "artist": "anonymous",
+    "chartAuthor": "anonymous",
+    "Description": "",
+    "difficulty": "-",
+    "musicName": "透明になった君へ.wav",
+    "musicPath": "..\\..\\..\\..\\SlideCoreProject\\Assets\\Naname\\Sounds\\2_透明になった君へ\\透明になった君へ.wav",
+    "offset": -5
+  },
     "bpms": [
         {
             "beat": {

@@ -1,14 +1,14 @@
 {
-    "meta": {
-        "title": "Untitled",
-        "artist": "anonymous",
-        "chartAuthor": "anonymous",
-        "Description": "",
-        "difficulty": "-",
-        "musicName": "雨の音(short).wav",
-        "musicPath": "..\\..\\..\\..\\よく使う\\unity関連\\unity保存先\\SlideCore_Git\\Assets\\Naname\\Sounds\\雨の音(short).wav",
-        "offset": -1730
-    },
+  "meta": {
+    "title": "Untitled",
+    "artist": "anonymous",
+    "chartAuthor": "anonymous",
+    "Description": "",
+    "difficulty": "-",
+    "musicName": "雨の音.wav",
+    "musicPath": "..\\..\\..\\..\\SlideCoreProject\\Assets\\Naname\\Sounds\\1_雨の音\\雨の音.wav",
+    "offset": -1730
+  },
     "bpms": [
         {
             "beat": {
