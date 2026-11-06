@@ -93,7 +93,6 @@ public class InputManagerScript : MonoBehaviour
     /// レーン上の特定のボタンが押された時、呼ばれる関数 {int 何番目のレーンか, InputAction.CallbackContext インプットシステムの専用変数}
     /// </summary>
     /// <param name="laneIndex">何番目のレーンか</param>
-    /// <param name="context"></param>
     private void OnLaneTap(int laneIndex, InputAction.CallbackContext context)
     {
         // プレイ中じゃないならレーンをタップしたという入力は受け付けない
@@ -113,36 +112,32 @@ public class InputManagerScript : MonoBehaviour
         {
             // リストの[0]番目は、そのレーンで「一番手前にいる」ノーツ
             MoveScript closestNoteMove = targetLaneList[0];
+            if (closestNoteMove == null) return;
+            
+            if (closestNoteMove.MyNotesType != NoteType.Tap && closestNoteMove.MyNotesType != NoteType.Hold)
+                return;
 
-            if (closestNoteMove != null)
+            bool wasJudged = false;
+
+            // ノーツにアタッチされているJudgeScriptを取得
+            JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
+            if (judgeScript == null) return;
+                
+            if (closestNoteMove.MyNotesType == NoteType.Hold)
             {
-                if (closestNoteMove.MyNotesType != NoteType.Tap && closestNoteMove.MyNotesType != NoteType.Hold)
-                    return;
+                wasJudged = judgeScript.ExecuteHoldStartJudge(exactTime);
+            }
 
-                bool wasJudged = false;
+            else
+            {
+                // OSが検知した正確な時間を渡して判定を実行する
+                wasJudged = judgeScript.ExecuteJudge(exactTime);
+            }
 
-                // ノーツにアタッチされているJudgeScriptを取得
-                JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
-
-                if (judgeScript != null)
-                {
-                    if (closestNoteMove.MyNotesType == NoteType.Hold)
-                    {
-                        wasJudged = judgeScript.ExecuteHoldStartJudge(exactTime);
-                    }
-
-                    else
-                    {
-                        // OSが検知した正確な時間を渡して判定を実行する
-                        wasJudged = judgeScript.ExecuteJudge(exactTime);
-                    }
-
-                    if (wasJudged)
-                    {
-                        // これをしないと、次のノーツを叩きに行ったときに古いノーツが邪魔をする
-                        targetLaneList.RemoveAt(0);
-                    }
-                }
+            if (wasJudged)
+            {
+                 // これをしないと、次のノーツを叩きに行ったときに古いノーツが邪魔をする
+                 targetLaneList.RemoveAt(0);
             }
         }
     }
@@ -192,21 +187,17 @@ public class InputManagerScript : MonoBehaviour
             if (closestNoteMove == null) continue;
 
             // スライド
-            if (closestNoteMove.MyNotesType == NoteType.Slide)
-            {
-                if (isRight == closestNoteMove.IsRight)
-                {
-                    JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
-                    if (judgeScript != null)
-                    {
-                        bool wasJudged = judgeScript.ExecuteJudge(exactTime);
+            if (closestNoteMove.MyNotesType == NoteType.Slide && isRight == closestNoteMove.IsRight)
+            {   
+                JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
+                if (judgeScript == null) continue;
+                    
+                bool wasJudged = judgeScript.ExecuteJudge(exactTime);
 
-                        if (wasJudged)
-                        {
-                            targetLaneList.RemoveAt(0);
-                        }
-                    }
-                }
+                if (wasJudged)
+                {
+                    targetLaneList.RemoveAt(0);
+                }    
             }
         }
     }

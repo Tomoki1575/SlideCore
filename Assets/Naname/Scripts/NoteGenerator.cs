@@ -11,6 +11,7 @@ public class NotesData
     public NoteType noteType;
     public bool bIsRight;
 }
+
 public class NoteGenerator : MonoBehaviour
 {
     public static NoteGenerator Instance { get; private set; }
@@ -110,7 +111,7 @@ public class NoteGenerator : MonoBehaviour
         if (currentNotesIndex >= NotesToSpawn.Count)
             return;
 
-        // 現在の曲の時間が「出現させるべき時間（叩くべき時間 - 先読み時間）」を過ぎたら
+        // 現在の曲の時間が「出現させるべき時間（叩くべき時間 - 先読み時間）」を過ぎたら処理を行う
         // 同時押しノーツの対処をする為にwhileにした
         while (currentNotesIndex < NotesToSpawn.Count && MusicManagerScript.Instance.CurrentSongTime >= NotesToSpawn[currentNotesIndex].HitTime - spawnOffsetTime)
         {
@@ -120,12 +121,12 @@ public class NoteGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// Listとして詰め込まれたノーツ情報を元に、ノーツの生成する位置や時間を確定させる関数。
+    /// Listとして詰め込まれたノーツ情報を元に、ノーツの生成する位置や時間を確定させる
     /// </summary>
     private void SpawnNote(NotesData data)
     {
+        // 生成されるべきノーツの種類を受け取り、実際に特定の場所に生成する
         GameObject prefabToSpawn = tapNotePrefab;
-
         switch (data.noteType)
         {
             case NoteType.Tap:
@@ -141,58 +142,53 @@ public class NoteGenerator : MonoBehaviour
                 prefabToSpawn = holdStartNotePrefab;
                 break;
         }
-
         GameObject newNote = Instantiate(prefabToSpawn, transform);
-
         newNote.transform.localScale = Vector3.one;
 
         MoveScript moveScript = newNote.GetComponent<MoveScript>();
 
-        if (moveScript != null)
+        if (moveScript == null)
+            return;
+  
+        // HitTime変数を参照し、ノーツが叩かれるべき時間を決める
+        moveScript.HitTime = data.HitTime;
+        moveScript.MyNotesType = data.noteType;
+        moveScript.IsRight = data.bIsRight;
+        moveScript.EndHitTime = data.EndHitTime;
+
+        // lane変数を参照し、レーンを決める
+        RectTransform rect = newNote.GetComponent<RectTransform>();
+        float xPos = (data.Lane - 2.5f) * laneSpacing;
+
+        rect.anchoredPosition = new Vector2(xPos, 0);
+        moveScript.Lane = data.Lane;
+
+        // Z座標のデータを消す
+        Vector3 fixedPos = rect.localPosition;
+        fixedPos.z = 0f;
+        rect.localPosition = fixedPos;
+
+         // ノーツの座標をいじったため、一度ノーツの座標を計算しなおす
+        moveScript.RefreshPosition();
+
+        if (moveScript.Lane >= 0 && moveScript.Lane < 6)       
+             laneNotesLists[moveScript.Lane].Add(moveScript);       
+
+        // ホールドノーツにおいては帯の生成位置や長さも計算する
+        if (data.noteType == NoteType.Hold)
         {
-            // HitTime変数を参照し、ノーツが叩かれるべき時間を決める
-            moveScript.HitTime = data.HitTime;
-            moveScript.MyNotesType = data.noteType;
-            moveScript.IsRight = data.bIsRight;
-            moveScript.EndHitTime = data.EndHitTime;
+             // 帯の盾の長さを決める（「ホールド時間の長さ」や「ノーツの流れる速度」によって長さが変わる）
+            float bandLength = (data.EndHitTime - data.HitTime) * PlayerOptionsScript.NotesSpeed;
+             // ホールドノーツ（帯部分）をホールドノーツ（始点）の子供にして生成
+            GameObject band = Instantiate(holdBandNotePrefab, newNote.transform);
+            RectTransform bandRect = band.GetComponent<RectTransform>();
+            bandRect.pivot = new Vector2(0.5f, 0f);          // 下端を基準にする
+            bandRect.anchoredPosition = new Vector2(0f, rect.rect.height * 0.5f);        // 始点より少し上
+            bandRect.sizeDelta = new Vector2(bandRect.sizeDelta.x, bandLength);
 
-            // lane変数を参照し、レーンを決める
-            RectTransform rect = newNote.GetComponent<RectTransform>();
-            float xPos = (data.Lane - 2.5f) * laneSpacing;
-
-            rect.anchoredPosition = new Vector2(xPos, 0);
-            moveScript.Lane = data.Lane;
-
-            // Z座標のデータを消す
-            Vector3 fixedPos = rect.localPosition;
-            fixedPos.z = 0f;
-            rect.localPosition = fixedPos;
-
-            // ノーツの座標をいじったため、一度ノーツの座標を計算しなおす
-            moveScript.RefreshPosition();
-
-            if (moveScript.Lane >= 0 && moveScript.Lane < 6)
-            {
-                laneNotesLists[moveScript.Lane].Add(moveScript);
-            }
-
-            if (data.noteType == NoteType.Hold)
-            {
-                // 帯の盾の長さを決める（「ホールド時間の長さ」や「ノーツの流れる速度」によって長さが変わる）
-                float bandLength = (data.EndHitTime - data.HitTime) * PlayerOptionsScript.NotesSpeed;
-
-                // ホールドノーツ（帯部分）をホールドノーツ（始点）の子供にして生成
-                GameObject band = Instantiate(holdBandNotePrefab, newNote.transform);
-                RectTransform bandRect = band.GetComponent<RectTransform>();
-                bandRect.pivot = new Vector2(0.5f, 0f);          // 下端を基準にする
-                bandRect.anchoredPosition = new Vector2(0f, rect.rect.height * 0.5f);        // 始点より少し上
-                bandRect.sizeDelta = new Vector2(bandRect.sizeDelta.x, bandLength);
-
-
-                moveScript.HoldBaseOffsetY = rect.rect.height * 0.5f;
-                moveScript.HoldBand = bandRect;
-                moveScript.RefreshHoldBand();
-            }
-        }
+            moveScript.HoldBaseOffsetY = rect.rect.height * 0.5f;
+            moveScript.HoldBand = bandRect;
+            moveScript.RefreshHoldBand();
+        }       
     }
 }

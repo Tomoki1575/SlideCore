@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class DebugPanelOutputScript : MonoBehaviour
@@ -7,9 +7,12 @@ public class DebugPanelOutputScript : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.qKey.wasPressedThisFrame && Keyboard.current.shiftKey.isPressed)
+#if UNITY_EDITOR
+        // [DebugCommand] < / + d > : デバッグパネルの表示・非表示を切り替え
+        if (Keyboard.current.slashKey.wasPressedThisFrame && Keyboard.current.dKey.isPressed)
         {
             debugPanel.SetActive(!debugPanel.activeSelf);
         }
+#endif
     }
 }

@@ -39,7 +39,7 @@ public class GameSceneManagerScript : MonoBehaviour
     {
         FadeManagerScript.Instance.FadeIn();
 
-        // ‹È‚ÌƒpƒbƒP[ƒWƒCƒ‰ƒXƒg‚È‚Ç‚ğ•\¦
+        // æ›²ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚¤ãƒ©ã‚¹ãƒˆãªã©ã‚’è¡¨ç¤º
     }
 
 
@@ -60,7 +60,7 @@ public class GameSceneManagerScript : MonoBehaviour
 
             case GameState.Playing:
                 {
-                    // u‹È‚ª—¬‚ê‚Ä‚©‚ç‚ÌŒo‰ßŠÔv‚ªu‹È‚Ì’·‚³ { —]‰Cv‚ğ‰ß‚¬‚½‚çƒŠƒUƒ‹ƒg‚Ö
+                    // ã€Œæ›²ãŒæµã‚Œã¦ã‹ã‚‰ã®çµŒéæ™‚é–“ã€ãŒã€Œæ›²ã®é•·ã• ï¼‹ ä½™éŸ»ã€ã‚’éããŸã‚‰ãƒªã‚¶ãƒ«ãƒˆã¸
                     if (MusicManagerScript.Instance.CurrentSongTime >= MusicManagerScript.Instance.SongLength + resultDelay)
                     {
                         RecordResult();
@@ -80,33 +80,37 @@ public class GameSceneManagerScript : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// è«¸ã€…ã®å‡¦ç†ã‚’æ­¢ã‚ã¤ã¤ï¼Œãƒãƒ¼ã‚ºç”»é¢ã‚’é–‹ã(é–‰ã˜ãŸæ™‚ã«å…ƒã®ã‚¹ãƒ†ãƒ¼ãƒˆã«æˆ»ã‚Œã‚‹ã‚ˆã†ã«è¨˜éŒ²ã—ã¦ãŠã)
+    /// </summary>
     public void OnPausePressed()
     {
         countDownText.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(true);
 
-        if (State != GameState.Resuming)    // ƒJƒEƒ“ƒgƒ_ƒEƒ“’†‚ÉEscape‚ğ‰Ÿ‚·‚ÆGameState.Resuming‚ª“ü‚Á‚Ä‚µ‚Ü‚¤ˆ×A‚»‚ê‚Ì‘Îô
-            stateBeforePause = State;   // ƒXƒe[ƒg‚Ì–ß‚èæ‚ğŠo‚¦‚Ä‚¨‚­
+        if (State != GameState.Resuming)    // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ä¸­ã«Escapeã‚’æŠ¼ã™ã¨GameState.ResumingãŒå…¥ã£ã¦ã—ã¾ã†ç‚ºã€ãã‚Œã®å¯¾ç­–
+            stateBeforePause = State;   // ã‚¹ãƒ†ãƒ¼ãƒˆã®æˆ»ã‚Šå…ˆã‚’è¦šãˆã¦ãŠã
 
         MusicManagerScript.Instance.PauseSong();
         ChangeState(GameState.Paused);
     }
 
     /// <summary>
-    /// ƒƒO‚ğo‚µ‚È‚ª‚çƒXƒe[ƒg‚ğ•ÏX‚·‚é(‘½d”»’è‘ÎôÏ‚İ)
+    /// ãƒ­ã‚°ã‚’å‡ºã—ãªãŒã‚‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¤‰æ›´ã™ã‚‹(å¤šé‡åˆ¤å®šå¯¾ç­–æ¸ˆã¿)
     /// </summary>
     private void ChangeState(GameState next)
     {
-        // ‘½d”»’è‚Ì‘Îô
+        // å¤šé‡åˆ¤å®šã®å¯¾ç­–
         if (next == State)
             return;
 
         State = next;
-        Debug.Log("[State] Œ»İ‚ÌƒXƒe[ƒg : " + State);
+        Debug.Log("[State] ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆ : " + State);
     }
 
     /// <summary>
-    /// ‹È‚ğ‚â‚è’¼‚·ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½(ƒ{ƒ^ƒ“ƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒXƒyƒNƒ^[‚©‚çİ’è)
+    /// æ›²ã‚’ã‚„ã‚Šç›´ã™ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸ(ãƒœã‚¿ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ã‹ã‚‰è¨­å®š)
     /// </summary>
     public void OnRetryGame()
     {
@@ -114,7 +118,7 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ‹È‘I‘ğ‰æ–Ê‚É–ß‚éƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½(ƒ{ƒ^ƒ“ƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒXƒyƒNƒ^[‚©‚çİ’è)
+    /// æ›²é¸æŠç”»é¢ã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸ(ãƒœã‚¿ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ã‹ã‚‰è¨­å®š)
     /// </summary>
     public void OnPushGotoSelectSceneButton()
     {
@@ -122,19 +126,19 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-	/// ‹È‚ğÄŠJ‚·‚éƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½(ƒ{ƒ^ƒ“ƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒXƒyƒNƒ^[‚©‚çİ’è)
+	/// æ›²ã‚’å†é–‹ã™ã‚‹ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸ(ãƒœã‚¿ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ã‹ã‚‰è¨­å®š)
 	/// </summary>
     public void OnContinueGame()
     {
         if (countDownText == null)
         {
-            Debug.LogError("[Unassigned] ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ÌUI‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚Ü‚¹‚ñB", this);
+            Debug.LogError("[Unassigned] ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã®UIãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", this);
             return;
         }
 
         pauseMenu.gameObject.SetActive(false);
 
-        // ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ğ3‚É‰Šú‰»
+        // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’3ã«åˆæœŸåŒ–
         EndPauseTime = EndPauseSec;
 
         countDownText.gameObject.SetActive(true);
@@ -143,7 +147,7 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ|[ƒY‚©‚ç–ß‚éÛ‚ÉAƒJƒEƒ“ƒgƒ_ƒEƒ“‚µ‚È‚ª‚ç–ß‚é
+    /// ãƒãƒ¼ã‚ºã‹ã‚‰æˆ»ã‚‹éš›ã«ã€ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã—ãªãŒã‚‰æˆ»ã‚‹
     /// </summary>
     private void TickCountDown()
     {
@@ -155,7 +159,7 @@ public class GameSceneManagerScript : MonoBehaviour
         {
             countDownText.gameObject.SetActive(false);
 
-            // ‹È‚ªn‚Ü‚Á‚Ä‚¢‚½‚Æ‚«‚¾‚¯ÄŠJˆ—‚ª—v‚é
+            // æ›²ãŒå§‹ã¾ã£ã¦ã„ãŸã¨ãã ã‘å†é–‹å‡¦ç†ãŒè¦ã‚‹
             if (stateBeforePause == GameState.Playing)
                 MusicManagerScript.Instance.ResumeSong();
 
@@ -164,7 +168,7 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// •Ê‚ÌƒEƒBƒ“ƒhƒE‚ÉˆÚ‚Á‚½‚ÉŒÄ‚Î‚ê‚é
+    /// åˆ¥ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ç§»ã£ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
     private void OnApplicationFocus(bool hasFocus)
     {
@@ -172,7 +176,7 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒAƒvƒŠ‚ªƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚É‰ñ‚Á‚½‚ÉŒÄ‚Î‚ê‚é(“Á‚ÉƒXƒ}ƒz‚Ìˆ×‚Ì‘Îô)
+    /// ã‚¢ãƒ—ãƒªãŒãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã«å›ã£ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹(ç‰¹ã«ã‚¹ãƒãƒ›ã®ç‚ºã®å¯¾ç­–)
     /// </summary>
     private void OnApplicationPause(bool isPause)
     {
@@ -181,7 +185,7 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒC’†‚©ƒJƒEƒ“ƒgƒ_ƒEƒ“’†‚Ì‚İ©“®ƒ|[ƒY
+    /// ãƒ—ãƒ¬ã‚¤ä¸­ã‹ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ä¸­ã®ã¿è‡ªå‹•ãƒãƒ¼ã‚º
     /// </summary>
     private void AutoPause()
     {
@@ -192,13 +196,13 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ¡‰ñ‚ÌƒvƒŒƒCŒ‹‰Ê‚ğ‹L˜^‚É”½‰f‚µ‚ÄAƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚é
+    /// ä»Šå›ã®ãƒ—ãƒ¬ã‚¤çµæœã‚’è¨˜éŒ²ã«åæ˜ ã—ã¦ã€ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹
     /// </summary>
     private void RecordResult()
     {
         if (musicSelection == null || musicSelection.musicData == null)
         {
-            Debug.LogError("[Unassigned] MusicSelection ‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚Ü‚¹‚ñB", this);
+            Debug.LogError("[Unassigned] MusicSelection ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", this);
             return;
         }
 
