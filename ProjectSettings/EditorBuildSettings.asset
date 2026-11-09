@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Naname/Scenes/Test/TouchTestScene.unity
+    guid: cac2b94e3cbe8854884d0c45cccfbcb3
+  - enabled: 1
     path: Assets/Naname/Scenes/Final/TitleScene.unity
     guid: d86f389b60575674397bcab2876a49f0
   - enabled: 1

@@ -18,9 +18,9 @@ public class JudgeScript : MonoBehaviour
     public const float GoodWindow = 0.18f;
     public const float MissWindow = 0.22f;
 
-    // ノーツの「見た目」と「実際の計算による判定」のズレを調整するオフセット
-    // プレイヤーがいじることは無いと思う
-    public static float InputOffset { get; private set; } = 0.03f;
+    public const float NoteLifetimeMargin = 0.08f;      // 入力遅延を吸収するために、ノーツの生存時間を伸ばす
+
+    public const float InputOffset = 0.03f;      // ノーツの「見た目」と「実際の計算による判定」のズレを調整するオフセット。基本的にプレイヤーがいじることは無い
 
     private JudgeResult holdStartResult = JudgeResult.Miss;
 
@@ -34,7 +34,6 @@ public class JudgeScript : MonoBehaviour
     /// その後、それが空振りだったか空振りじゃなかったかを返す関数。
     /// （ホールドノーツ以外）
     /// </summary>
-    /// <param name="pressedTime">新Input Systemが記録した、物理的にキーが押された正確な時間(context.time)</param>
     public bool ExecuteJudge(double pressedTime)
     {
         JudgeResult? result = JudgeByTime(pressedTime, out bool isLate, out float timeUntilHit);
@@ -51,8 +50,6 @@ public class JudgeScript : MonoBehaviour
     /// 押された時間を受け取り、「UI表示+SE再生」を行う。（ホールドノーツは始点を即座に破棄はしない。）
     /// その後、それが空振りだったか空振りじゃなかったかを返す関数。
     /// </summary>
-    /// <param name="pressedTime">新Input Systemが記録した、物理的にキーが押された正確な時間(context.time)</param>
-
     public bool ExecuteHoldStartJudge(double pressedTime)
     {
         JudgeResult? result = JudgeByTime(pressedTime, out bool isLate, out float timeUntilHit);
@@ -69,7 +66,7 @@ public class JudgeScript : MonoBehaviour
         return true;
     }
 
-    public void ExecuteHoldEndJudge(float heldRatio,float bandDuration )
+    public void ExecuteHoldEndJudge(float heldRatio, float bandDuration)
     {
         // まだリストに残っていれば外す（始点を一度も押さなかったHold対策）
         if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
@@ -83,7 +80,6 @@ public class JudgeScript : MonoBehaviour
         }
 
         JudgeResult result;
-
 
         // 帯が判定窓より短いと、始点のズレだけで帯を食い潰せてしまう。
         // その場合は押しっぱなしを評価せず、始点の判定をそのまま採用する
@@ -139,26 +135,6 @@ public class JudgeScript : MonoBehaviour
     }
 
     /// <summary>
-    /// プレイヤーが誰も叩かないまま、ノーツが後ろへ通り過ぎてしまった時に
-    /// 自動でMissにするための専用関数
-    /// </summary>
-    public void TriggerMissByThrough()
-    {
-        // check : 管理リストについて
-        if (NoteGenerator.Instance != null && NoteGenerator.Instance.laneNotesLists != null)
-        {
-            var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
-            if (targetList.Count > 0 && targetList[0] == moveScript) // MoveScriptベースで比較
-            {
-                targetList.RemoveAt(0);
-            }
-        }
-
-        OnNotesJudged(JudgeResult.Miss, true, -MissWindow, moveScript.MyNotesType, true, true);
-    }
-
-
-    /// <summary>
     /// ノイズノーツが判定ラインに重なった瞬間に、MoveScriptのUpdateから自動で呼び出される判定関数
     /// </summary>
     public void ExecuteNoiseJudge()
@@ -175,15 +151,11 @@ public class JudgeScript : MonoBehaviour
                 }
             }
 
-            // Perfect判定を飛ばす（第2引数はLateかどうか。回避なので適当にfalseでOK）
-            // ※ノイズ用のSEを鳴らしたい場合は、OnNotesJudgedのswitch文に後で追加できます
             OnNotesJudged(JudgeResult.Perfect, false, 0f, moveScript.MyNotesType, true, true);
         }
 
         else
         {
-            // 【アクティブ ➔ 接触（Miss!）】
-            // 既存の通り過ぎMissの関数をそのまま使い回せば、リスト削除もMiss演出も一発で処理できます！
             TriggerMissByThrough();
         }
     }
@@ -237,18 +209,40 @@ public class JudgeScript : MonoBehaviour
         }
 
         if (destroy)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 
+    /// <summary>
+    /// 叩かれないまま判定を過ぎたノーツをMissにして、その場で破棄する。<br/>
+    /// レーンのリストからも取り除くので、次のノーツが叩けるようになる。
+    /// </summary>
+    public void TriggerMissByThrough()
+    {
+        if (NoteGenerator.Instance == null || NoteGenerator.Instance.laneNotesLists == null)
+            return;
+
+        var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
+        if (targetList.Count > 0 && targetList[0] == moveScript) // MoveScriptベースで比較        
+            targetList.RemoveAt(0);
+
+        OnNotesJudged(JudgeResult.Miss, isLate: true, -MissWindow, moveScript.MyNotesType, destroy: true, true);
+    }
+
+    /// <summary>
+    /// Hold の始点が叩かれないまま過ぎた時に、始点だけをMissにする。帯の判定がまだ残っているので、ノーツは破棄しない。<br/>
+    /// レーンのリストからは取り除くので、次のノーツが叩けるようになる。
+    /// </summary>
     public void TriggerHoldStartMiss()
     {
+        if (NoteGenerator.Instance == null || NoteGenerator.Instance.laneNotesLists == null)
+            return;
+
         var targetList = NoteGenerator.Instance.laneNotesLists[moveScript.Lane];
 
         if (targetList.Count > 0 && targetList[0] == moveScript)
-        {
             targetList.RemoveAt(0);
-        }
 
+        // 始点でMissだった時に、帯まで一緒に消さないようにする
         OnNotesJudged(JudgeResult.Miss, isLate: true, -MissWindow, moveScript.MyNotesType, destroy: false, true);
     }
 }

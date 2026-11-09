@@ -346,6 +346,34 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TouchTestMaps"",
+            ""id"": ""76e32162-baf9-4e86-91d5-d0033f015d58"",
+            ""actions"": [
+                {
+                    ""name"": ""TouchPress"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""400167d2-d2b9-42b4-bbc2-0b1aa6e51aab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cba5894e-5a0e-4cb5-a431-ec91d8525cf4"",
+                    ""path"": ""<Touchscreen>/touch*/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -364,12 +392,16 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         // TitleSceneMaps
         m_TitleSceneMaps = asset.FindActionMap("TitleSceneMaps", throwIfNotFound: true);
         m_TitleSceneMaps_TitleToSelect = m_TitleSceneMaps.FindAction("TitleToSelect", throwIfNotFound: true);
+        // TouchTestMaps
+        m_TouchTestMaps = asset.FindActionMap("TouchTestMaps", throwIfNotFound: true);
+        m_TouchTestMaps_TouchPress = m_TouchTestMaps.FindAction("TouchPress", throwIfNotFound: true);
     }
 
     ~@NewActions()
     {
         UnityEngine.Debug.Assert(!m_GameSceneMaps.enabled, "This will cause a leak and performance issues, NewActions.GameSceneMaps.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_TitleSceneMaps.enabled, "This will cause a leak and performance issues, NewActions.TitleSceneMaps.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TouchTestMaps.enabled, "This will cause a leak and performance issues, NewActions.TouchTestMaps.Disable() has not been called.");
     }
 
     /// <summary>
@@ -721,6 +753,102 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="TitleSceneMapsActions" /> instance referencing this action map.
     /// </summary>
     public TitleSceneMapsActions @TitleSceneMaps => new TitleSceneMapsActions(this);
+
+    // TouchTestMaps
+    private readonly InputActionMap m_TouchTestMaps;
+    private List<ITouchTestMapsActions> m_TouchTestMapsActionsCallbackInterfaces = new List<ITouchTestMapsActions>();
+    private readonly InputAction m_TouchTestMaps_TouchPress;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TouchTestMaps".
+    /// </summary>
+    public struct TouchTestMapsActions
+    {
+        private @NewActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TouchTestMapsActions(@NewActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TouchTestMaps/TouchPress".
+        /// </summary>
+        public InputAction @TouchPress => m_Wrapper.m_TouchTestMaps_TouchPress;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TouchTestMaps; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TouchTestMapsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TouchTestMapsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TouchTestMapsActions" />
+        public void AddCallbacks(ITouchTestMapsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TouchTestMapsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TouchTestMapsActionsCallbackInterfaces.Add(instance);
+            @TouchPress.started += instance.OnTouchPress;
+            @TouchPress.performed += instance.OnTouchPress;
+            @TouchPress.canceled += instance.OnTouchPress;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TouchTestMapsActions" />
+        private void UnregisterCallbacks(ITouchTestMapsActions instance)
+        {
+            @TouchPress.started -= instance.OnTouchPress;
+            @TouchPress.performed -= instance.OnTouchPress;
+            @TouchPress.canceled -= instance.OnTouchPress;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TouchTestMapsActions.UnregisterCallbacks(ITouchTestMapsActions)" />.
+        /// </summary>
+        /// <seealso cref="TouchTestMapsActions.UnregisterCallbacks(ITouchTestMapsActions)" />
+        public void RemoveCallbacks(ITouchTestMapsActions instance)
+        {
+            if (m_Wrapper.m_TouchTestMapsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TouchTestMapsActions.AddCallbacks(ITouchTestMapsActions)" />
+        /// <seealso cref="TouchTestMapsActions.RemoveCallbacks(ITouchTestMapsActions)" />
+        /// <seealso cref="TouchTestMapsActions.UnregisterCallbacks(ITouchTestMapsActions)" />
+        public void SetCallbacks(ITouchTestMapsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TouchTestMapsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TouchTestMapsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TouchTestMapsActions" /> instance referencing this action map.
+    /// </summary>
+    public TouchTestMapsActions @TouchTestMaps => new TouchTestMapsActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "GameSceneMaps" which allows adding and removing callbacks.
     /// </summary>
@@ -806,5 +934,20 @@ public partial class @NewActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTitleToSelect(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TouchTestMaps" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TouchTestMapsActions.AddCallbacks(ITouchTestMapsActions)" />
+    /// <seealso cref="TouchTestMapsActions.RemoveCallbacks(ITouchTestMapsActions)" />
+    public interface ITouchTestMapsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "TouchPress" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTouchPress(InputAction.CallbackContext context);
     }
 }

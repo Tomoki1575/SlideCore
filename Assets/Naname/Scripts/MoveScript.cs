@@ -25,7 +25,6 @@ public class MoveScript : MonoBehaviour
 
     private bool holdStartJudged = false;
 
-    // 理由：NotesGenerator が生成した直後にすぐ RectTransform を使えるようにするため
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -71,7 +70,7 @@ public class MoveScript : MonoBehaviour
                 float songTime = MusicManagerScript.Instance.CurrentSongTime;
 
                 // 始点をスルーした場合、始点の判定窓を過ぎたらmiss
-                if(!holdStartJudged && judgeTime > HitTime + JudgeScript.MissWindow)
+                if(!holdStartJudged && judgeTime > HitTime + JudgeScript.MissWindow + JudgeScript.NoteLifetimeMargin)
                 {
                     holdStartJudged = true;
                     judgeScript.TriggerHoldStartMiss();
@@ -96,8 +95,8 @@ public class MoveScript : MonoBehaviour
                 break;
 
             default:
-                // ホールド以外のノーツにおいて、叩かれずにそのまま流れたら（遅missの判定になる時間まで叩かれなかったら）ノーツを消す
-                if (judgeTime > HitTime + JudgeScript.MissWindow)
+                // ホールドや、ノイズ以外のノーツにおいて、叩かれずにそのまま流れたら（遅missの判定になる時間まで叩かれなかったら）ノーツを消す
+                if (judgeTime > HitTime + JudgeScript.MissWindow + JudgeScript.NoteLifetimeMargin)
                 {
                     isMissTriggered = true;
                     judgeScript.TriggerMissByThrough();
@@ -116,10 +115,8 @@ public class MoveScript : MonoBehaviour
         float noteYPos = judgmentLineY + ((HitTime - MusicManagerScript.Instance.CurrentSongTime) * PlayerOptionsScript.NotesSpeed);
 
         // ホールドの始点は判定ラインより下へは行かず貼り付く（見た目だけ）
-        if (MyNotesType == NoteType.Hold && noteYPos < judgmentLineY)
-        {
-            noteYPos = judgmentLineY;
-        }
+        if (MyNotesType == NoteType.Hold && noteYPos < judgmentLineY)        
+            noteYPos = judgmentLineY;        
 
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, noteYPos);        // 座標を更新
     }
