@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class BestScoreDisplayScript : MonoBehaviour
@@ -8,7 +8,7 @@ public class BestScoreDisplayScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hardScoreText;
 
     /// <summary>
-    /// �I�Ȓ��̋Ȃ��ς�����Ƃ��ɌĂ΂��(MusicSelectCoreScript.RefreshPanel ����)
+    /// 選曲中の曲が変わったときに呼ばれる(MusicSelectCoreScript.RefreshPanelから)
     /// </summary>
     public void Refresh(MusicData music)
     {
@@ -17,16 +17,23 @@ public class BestScoreDisplayScript : MonoBehaviour
         ApplyRecord(hardScoreText, music, MusicDataManager.Difficulty.Hard);
     }
 
+    /// <summary>
+    /// スコアやランクの変数をテキストに変換<br/>もし未プレイなら「---」と表示
+    /// </summary>
     private void ApplyRecord(TextMeshProUGUI text, MusicData music, MusicDataManager.Difficulty difficulty)
     {
         if (text == null)
-            return;
+            return;        
 
-        ScoreRecord record = (music != null)
-            ? ScoreDataManager.FindRecord(music.songID, difficulty)
-            : null;
+        ScoreRecord record;
 
-        // ���v���C�Ȃ�L�^�����݂��Ȃ�
+        if (music != null)
+            record = ScoreDataManager.FindRecord(music.songID, difficulty);
+
+        else
+            record = null;
+
+        // 未プレイなら記録が存在しない
         if (record == null)
         {
             text.text = "---";

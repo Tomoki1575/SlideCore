@@ -30,18 +30,12 @@ public class InputManagerScript : MonoBehaviour
     {
         actions.Enable();
 
-        lane0Handler = ctx => OnLaneTap(0, ctx);
-        lane1Handler = ctx => OnLaneTap(1, ctx);
-        lane2Handler = ctx => OnLaneTap(2, ctx);
-        lane3Handler = ctx => OnLaneTap(3, ctx);
-        lane4Handler = ctx => OnLaneTap(4, ctx);
-        lane5Handler = ctx => OnLaneTap(5, ctx);
-        actions.FindAction("Lane0").performed += lane0Handler;
-        actions.FindAction("Lane1").performed += lane1Handler;
-        actions.FindAction("Lane2").performed += lane2Handler;
-        actions.FindAction("Lane3").performed += lane3Handler;
-        actions.FindAction("Lane4").performed += lane4Handler;
-        actions.FindAction("Lane5").performed += lane5Handler;
+        lane0Handler = ctx => OnLaneTap(0, ctx.time);
+        lane1Handler = ctx => OnLaneTap(1, ctx.time);
+        lane2Handler = ctx => OnLaneTap(2, ctx.time);
+        lane3Handler = ctx => OnLaneTap(3, ctx.time);
+        lane4Handler = ctx => OnLaneTap(4, ctx.time);
+        lane5Handler = ctx => OnLaneTap(5, ctx.time);
 
         lane0ReleaseHandler = ctx => OnLaneRelease(0);
         lane1ReleaseHandler = ctx => OnLaneRelease(1);
@@ -49,6 +43,19 @@ public class InputManagerScript : MonoBehaviour
         lane3ReleaseHandler = ctx => OnLaneRelease(3);
         lane4ReleaseHandler = ctx => OnLaneRelease(4);
         lane5ReleaseHandler = ctx => OnLaneRelease(5);
+
+        slideRightHandler = ctx => OnLaneSlide(true, ctx.time);
+        slideLeftHandler = ctx => OnLaneSlide(false, ctx.time);
+
+        pauseHandler = ctx => OnPause();
+
+        actions.FindAction("Lane0").performed += lane0Handler;
+        actions.FindAction("Lane1").performed += lane1Handler;
+        actions.FindAction("Lane2").performed += lane2Handler;
+        actions.FindAction("Lane3").performed += lane3Handler;
+        actions.FindAction("Lane4").performed += lane4Handler;
+        actions.FindAction("Lane5").performed += lane5Handler;
+
         actions.FindAction("Lane0").canceled += lane0ReleaseHandler;
         actions.FindAction("Lane1").canceled += lane1ReleaseHandler;
         actions.FindAction("Lane2").canceled += lane2ReleaseHandler;
@@ -56,12 +63,9 @@ public class InputManagerScript : MonoBehaviour
         actions.FindAction("Lane4").canceled += lane4ReleaseHandler;
         actions.FindAction("Lane5").canceled += lane5ReleaseHandler;
 
-        slideRightHandler = ctx => OnLaneSlide(true, ctx);
-        slideLeftHandler = ctx => OnLaneSlide(false, ctx);
         actions.FindAction("SlideRight").performed += slideRightHandler;
         actions.FindAction("SlideLeft").performed += slideLeftHandler;
 
-        pauseHandler = ctx => OnPause();
         actions.FindAction("Pause").performed += pauseHandler;
     }
 
@@ -90,16 +94,14 @@ public class InputManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// レーン上の特定のボタンが押された時、呼ばれる関数 {int 何番目のレーンか, InputAction.CallbackContext インプットシステムの専用変数}
+    /// 指定されたレーンを見て、最も判定ラインに近いノーツをリストから判別し、然るべき判定をする。<br/>その後、リストから削除する。
     /// </summary>
     /// <param name="laneIndex">何番目のレーンか</param>
-    private void OnLaneTap(int laneIndex, InputAction.CallbackContext context)
+    public void OnLaneTap(int laneIndex, double exactTime)
     {
         // プレイ中じゃないならレーンをタップしたという入力は受け付けない
         if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
-
-        double exactTime = context.time;
 
         isLanePressed[laneIndex] = true;
 
@@ -113,7 +115,7 @@ public class InputManagerScript : MonoBehaviour
             // リストの[0]番目は、そのレーンで「一番手前にいる」ノーツ
             MoveScript closestNoteMove = targetLaneList[0];
             if (closestNoteMove == null) return;
-            
+
             if (closestNoteMove.MyNotesType != NoteType.Tap && closestNoteMove.MyNotesType != NoteType.Hold)
                 return;
 
@@ -122,7 +124,7 @@ public class InputManagerScript : MonoBehaviour
             // ノーツにアタッチされているJudgeScriptを取得
             JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
             if (judgeScript == null) return;
-                
+
             if (closestNoteMove.MyNotesType == NoteType.Hold)
             {
                 wasJudged = judgeScript.ExecuteHoldStartJudge(exactTime);
@@ -134,26 +136,23 @@ public class InputManagerScript : MonoBehaviour
                 wasJudged = judgeScript.ExecuteJudge(exactTime);
             }
 
+            // これをしないと、次のノーツを叩きに行ったときに古いノーツが邪魔をする
             if (wasJudged)
-            {
-                 // これをしないと、次のノーツを叩きに行ったときに古いノーツが邪魔をする
-                 targetLaneList.RemoveAt(0);
-            }
+                targetLaneList.RemoveAt(0);
         }
     }
 
+
     /// <summary>
-    /// スライドボタンが押された時、呼ばれる関数 {bool 右スライドか？, InputAction.CallbackContext インプットシステムの専用変数}
+    /// 指定されたレーンを見て、最も判定ラインに近いノーツをリストから判別し、然るべき判定をする。<br/>その後、リストから削除する。<br/>
+    /// 「左右どちらの方向のノーツか」と言う属性を持つため、スライドノーツ専用である。
     /// </summary>
     /// <param name="isRight">右スライドか？</param>
-    /// <param name="context"></param>
-    private void OnLaneSlide(bool isRight, InputAction.CallbackContext context)
+    public void OnLaneSlide(bool isRight, double exactTime)
     {
         // プレイ中じゃないならスライドキーを押したという入力は受け付けない
         if (GameSceneManagerScript.Instance != null && GameSceneManagerScript.Instance.State != GameState.Playing)
             return;
-
-        double exactTime = context.time;
 
         // 同じ方向のスライドが短時間に連続したら無視（多重判定防止）
         double lastTime = isRight ? lastRightSlideTime : lastLeftSlideTime;
@@ -188,28 +187,29 @@ public class InputManagerScript : MonoBehaviour
 
             // スライド
             if (closestNoteMove.MyNotesType == NoteType.Slide && isRight == closestNoteMove.IsRight)
-            {   
+            {
                 JudgeScript judgeScript = closestNoteMove.GetComponent<JudgeScript>();
                 if (judgeScript == null) continue;
-                    
+
                 bool wasJudged = judgeScript.ExecuteJudge(exactTime);
 
                 if (wasJudged)
-                {
                     targetLaneList.RemoveAt(0);
-                }    
             }
         }
     }
 
     /// <summary>
-    /// レーンのボタンが離された瞬間に呼ばれる。押下フラグを下ろすだけ。
+    /// レーンのボタンが離された瞬間に呼ばれる。<br/>押下フラグを下ろすだけ。
     /// </summary>
-    private void OnLaneRelease(int laneIndex)
+    public void OnLaneRelease(int laneIndex)
     {
         isLanePressed[laneIndex] = false;
     }
 
+    /// <summary>
+    /// ポーズ画面を開く。
+    /// </summary>
     public void OnPause()
     {
         if (GameSceneManagerScript.Instance != null)

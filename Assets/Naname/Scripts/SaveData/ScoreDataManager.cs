@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -14,15 +14,15 @@ public class ScoreRecord
 
 public static class ScoreDataManager
 {
-    // Å‰‚ÌƒV[ƒ“‚ª“Ç‚İ‚Ü‚ê‚é‘OiAwake‚âStart‚æ‚è‚à‘Oj‚ÉAƒV[ƒ“ã‚ÉƒIƒuƒWƒFƒNƒg‚ğ”z’u‚µ‚Ä‚¢‚È‚­‚Ä‚àw’è‚µ‚½ƒƒ\ƒbƒh‚ğ©“®‚ÅŒÄ‚Ño‚¹‚é‘®«
+    // æœ€åˆã®ã‚·ãƒ¼ãƒ³ãŒèª­ã¿è¾¼ã¾ã‚Œã‚‹å‰ï¼ˆAwakeã‚„Startã‚ˆã‚Šã‚‚å‰ï¼‰ã«ã€ã‚·ãƒ¼ãƒ³ä¸Šã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é…ç½®ã—ã¦ã„ãªãã¦ã‚‚æŒ‡å®šã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã‚’è‡ªå‹•ã§å‘¼ã³å‡ºã›ã‚‹å±æ€§
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void LoadOnStartup()
     {
         Load();
-        Debug.Log("[ScoreData] ƒ[ƒh‚³‚ê‚Ü‚µ‚½");
+        Debug.Log("[SaveData] ScoreDataãŒãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¾ã—ãŸ");
     }
 
-    // ƒZ[ƒuƒtƒ@ƒCƒ‹‚ÌŒ`®ƒo[ƒWƒ‡ƒ“B€–Ú‚ğ‘‚â‚µ‚½‚çã‚°‚éB
+    // ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®å½¢å¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€‚é …ç›®ã‚’å¢—ã‚„ã—ãŸã‚‰ä¸Šã’ã‚‹ã€‚
     private const int SaveVersion = 1;
 
     private static string FilePath => Path.Combine(Application.persistentDataPath, "ScoreSaveData.dat");
@@ -33,12 +33,12 @@ public static class ScoreDataManager
     {
         try
         {
-            // ‡@ƒtƒ@ƒCƒ‹‚ğŠJ‚«(–³‚¯‚ê‚Îì¬‚µ)
+            // â‘ ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã(ç„¡ã‘ã‚Œã°ä½œæˆã—)
             using (FileStream stream = File.Open(FilePath, FileMode.Create))
-            // ‡A•Ï”ŒW‚ğŒq‚®B‚Ç‚¿‚ç‚à } ‚Å©“®“I‚É•Â‚ß‚ç‚ê‚é
+            // â‘¡å¤‰æ•°ä¿‚ã‚’ç¹‹ãã€‚ã©ã¡ã‚‰ã‚‚ } ã§è‡ªå‹•çš„ã«é–‰ã‚ã‚‰ã‚Œã‚‹
             using (BinaryWriter writer = new BinaryWriter(stream))
             {
-                // ‡B’l‚ğ‡”Ô‚É‘‚¢‚Ä‚¢‚­B‚±‚Ì‡”Ô‚Å“Ç‚Ü‚ê‚é‚½‚ßAÅ‰‚Éƒo[ƒWƒ‡ƒ“‚ğ‘‚­B
+                // â‘¢å€¤ã‚’é †ç•ªã«æ›¸ã„ã¦ã„ãã€‚ã“ã®é †ç•ªã§èª­ã¾ã‚Œã‚‹ãŸã‚ã€æœ€åˆã«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’æ›¸ãã€‚
                 writer.Write(SaveVersion);
                 writer.Write(records.Count);
 
@@ -55,13 +55,13 @@ public static class ScoreDataManager
 
         catch (IOException e)
         {
-            Debug.LogWarning($"[ScoreData] ƒZ[ƒu‚É¸”s‚µ‚Ü‚µ‚½:{e.Message}");
+            Debug.LogWarning($"[SaveData] ScoreDateã®ã‚»ãƒ¼ãƒ–ã«å¤±æ•—ã—ã¾ã—ãŸ:{e.Message}");
         }
     }
 
     public static void Load()
     {
-        // ƒtƒ@ƒCƒ‹‚ª–³‚¢(‰‰ñ‹N“®‚Ì)ê‡AŠù’è’l‚Ì‚Ü‚Ü‚Å‚¢‚¢‚½‚ß‘Šúreturn
+        // ãƒ•ã‚¡ã‚¤ãƒ«ãŒç„¡ã„(åˆå›èµ·å‹•ã®)å ´åˆã€æ—¢å®šå€¤ã®ã¾ã¾ã§ã„ã„ãŸã‚æ—©æœŸreturn
         if (!File.Exists(FilePath)) return;
 
         try
@@ -69,19 +69,19 @@ public static class ScoreDataManager
             using (FileStream stream = File.Open(FilePath, FileMode.Open))
             using (BinaryReader reader = new BinaryReader(stream))
             {
-                // æ“ª‚Ìƒo[ƒWƒ‡ƒ“‚ğŒ©‚ÄA‚Ç‚¤“Ç‚Ş‚©Œˆ‚ß‚é
+                // å…ˆé ­ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¦‹ã¦ã€ã©ã†èª­ã‚€ã‹æ±ºã‚ã‚‹
                 int version = reader.ReadInt32();
 
                 if (version > SaveVersion)
                 {
-                    Debug.LogWarning($"[ScoreData] –¢’m‚Ìƒo[ƒWƒ‡ƒ“{version}‚Å‚·B‹K’è’l‚Å‹N“®‚µ‚Ü‚·B");
+                    Debug.LogWarning($"[SaveData] ScoreDateãŒæœªçŸ¥ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³{version}ã§ã™ã€‚è¦å®šå€¤ã§èµ·å‹•ã—ã¾ã™ã€‚");
                     return;
                 }
 
-                // —v‘f‚ª‰½ŒÂ‚ ‚é‚Ì‚©Œ©‚ÄA‚»‚Ì‰ñ”‰ñ‚·
+                // è¦ç´ ãŒä½•å€‹ã‚ã‚‹ã®ã‹è¦‹ã¦ã€ãã®å›æ•°å›ã™
                 int recordCount = reader.ReadInt32();
 
-                // “Ç‚İI‚í‚é‚Ü‚Å records ‚É‚ÍG‚ç‚È‚¢B“r’†‚Å¸”s‚µ‚Ä‚àŠù‘¶‚Ì‹L˜^‚ğ‰ó‚³‚È‚¢‚½‚ß
+                // èª­ã¿çµ‚ã‚ã‚‹ã¾ã§ records ã«ã¯è§¦ã‚‰ãªã„ã€‚é€”ä¸­ã§å¤±æ•—ã—ã¦ã‚‚æ—¢å­˜ã®è¨˜éŒ²ã‚’å£Šã•ãªã„ãŸã‚
                 List<ScoreRecord> loaded = new List<ScoreRecord>();
 
                 for (int i = 0; i < recordCount; i++)
@@ -97,19 +97,19 @@ public static class ScoreDataManager
                 }
 
                 records = loaded;
-                Debug.Log($"[ScoreData] {records.Count}Œ‚Ì‹L˜^‚ğ“Ç‚İ‚İ‚Ü‚µ‚½");
+                Debug.Log($"[SaveData] ScoreDataã«ãŠã„ã¦ã€{records.Count}ä»¶ã®è¨˜éŒ²ã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸ");
             }
         }
 
         catch (IOException e)
         {
-            Debug.LogWarning($"[ScoreData] ƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½:{e.Message}");
+            Debug.LogWarning($"[SaveData] ScoreDataã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ:{e.Message}");
         }
 
     }
 
     /// <summary>
-    /// w’è‚µ‚½‹ÈE“ïˆÕ“x‚Ì‹L˜^‚ğ•Ô‚·B‚Ü‚¾ƒvƒŒƒC‚µ‚Ä‚¢‚È‚¯‚ê‚Înull‚ğ•Ô‚·B
+    /// æŒ‡å®šã—ãŸæ›²ãƒ»é›£æ˜“åº¦ã®è¨˜éŒ²ã‚’è¿”ã™ã€‚ã¾ã ãƒ—ãƒ¬ã‚¤ã—ã¦ã„ãªã‘ã‚Œã°nullã‚’è¿”ã™ã€‚
     /// </summary>
     public static ScoreRecord FindRecord(int songID, MusicDataManager.Difficulty difficulty)
     {
@@ -123,7 +123,7 @@ public static class ScoreDataManager
     }
 
     /// <summary>
-    /// ƒvƒŒƒCÏ‚©–¢ƒvƒŒƒC‚©”»’è‚µAÅ‚‹L˜^‚ğ“K‰‚·‚éB
+    /// ãƒ—ãƒ¬ã‚¤æ¸ˆã‹æœªãƒ—ãƒ¬ã‚¤ã‹åˆ¤å®šã—ã€æœ€é«˜è¨˜éŒ²ã‚’é©å¿œã™ã‚‹ã€‚
     /// </summary>
     public static void UpdateRecord(int songID, MusicDataManager.Difficulty difficulty, int score, int combo, ClearBadge badge)
     {
@@ -132,20 +132,20 @@ public static class ScoreDataManager
 
         ScoreRecord record = FindRecord(songID, difficulty);
 
-        // ‰ƒvƒŒƒC‚È‚çA‹L˜^‚ğV‚µ‚­ì‚Á‚ÄƒŠƒXƒg‚É‰Á‚¦‚é
+        // åˆãƒ—ãƒ¬ã‚¤ãªã‚‰ã€è¨˜éŒ²ã‚’æ–°ã—ãä½œã£ã¦ãƒªã‚¹ãƒˆã«åŠ ãˆã‚‹
         if (record == null)
         {
             record = new ScoreRecord
             {
                 songID = songID,
                 difficulty = difficulty,
-                bestBadge = ClearBadge.Finish,   // Šù’è‚Ì0(AllPerfect)‚¾‚Æ“ñ“x‚ÆXV‚³‚ê‚È‚¢
+                bestBadge = ClearBadge.Finish,   // æ—¢å®šã®0(AllPerfect)ã ã¨äºŒåº¦ã¨æ›´æ–°ã•ã‚Œãªã„
             };
 
             records.Add(record);
         }
 
-        // €–Ú‚²‚Æ‚É“Æ—§‚µ‚ÄÅ‚‚ğæ‚éiÌ†‚Í”’l‚ª¬‚³‚¢‚Ù‚ÇãˆÊj
+        // é …ç›®ã”ã¨ã«ç‹¬ç«‹ã—ã¦æœ€é«˜ã‚’å–ã‚‹ï¼ˆç§°å·ã¯æ•°å€¤ãŒå°ã•ã„ã»ã©ä¸Šä½ï¼‰
         if (score > record.maxScore) record.maxScore = score;
         if (combo > record.maxCombo) record.maxCombo = combo;
         if (badge < record.bestBadge) record.bestBadge = badge;

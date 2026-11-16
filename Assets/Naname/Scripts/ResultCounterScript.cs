@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public enum ClearBadge
 {
@@ -30,7 +30,7 @@ public class ResultCounterScript : MonoBehaviour
     public static int CountCombo = 0;
     public static int MaxCombo = 0;
 
-    public static int TotalJudgments = 0;   // ‘Sƒm[ƒc‚Ì”»’è‰ñ”iƒXƒRƒA‚Ì•ª•êj
+    public static int TotalJudgments = 0;   // å…¨ãƒãƒ¼ãƒ„ã®åˆ¤å®šå›æ•°ï¼ˆã‚¹ã‚³ã‚¢ã®åˆ†æ¯ï¼‰
 
     public static void ResetCounts()
     {
@@ -45,7 +45,7 @@ public class ResultCounterScript : MonoBehaviour
         TotalJudgments = 0;
     }
 
-    // ƒqƒbƒg‚ÉƒRƒ“ƒ{‚ğ‘‚â‚µAÅ‚‹L˜^‚ğXV
+    // ãƒ’ãƒƒãƒˆæ™‚ã«ã‚³ãƒ³ãƒœã‚’å¢—ã‚„ã—ã€æœ€é«˜è¨˜éŒ²ã‚’æ›´æ–°
     public static void AddCombo()
     {
         CountCombo++;
@@ -53,7 +53,7 @@ public class ResultCounterScript : MonoBehaviour
             MaxCombo = CountCombo;
     }
 
-    // MissFƒRƒ“ƒ{‚ğØ‚é
+    // Missæ™‚ï¼šã‚³ãƒ³ãƒœã‚’åˆ‡ã‚‹
     public static void ResetCombo()
     {
         CountCombo = 0;
@@ -65,7 +65,7 @@ public class ResultCounterScript : MonoBehaviour
 
         int MaxScore = TotalJudgments;
 
-        // ”»’è‚²‚Æ‚Ìd‚İ(Miss ‚Í 0 ‚È‚Ì‚Å‘«‚³‚È‚¢)
+        // åˆ¤å®šã”ã¨ã®é‡ã¿(Miss ã¯ 0 ãªã®ã§è¶³ã•ãªã„)
         float weighted = CountPerfect + CountGreat * 0.8f + CountGood * 0.5f;
 
         return Mathf.RoundToInt(weighted / MaxScore * 1_000_000f);
@@ -73,7 +73,7 @@ public class ResultCounterScript : MonoBehaviour
 
     public static ClearBadge GetBadge()
     {
-        // ã‚©‚ç‡‚Éƒ`ƒFƒbƒNiŒµ‚µ‚¢¨‚ä‚é‚¢j
+        // ä¸Šã‹ã‚‰é †ã«ãƒã‚§ãƒƒã‚¯ï¼ˆå³ã—ã„â†’ã‚†ã‚‹ã„ï¼‰
         if (CountMiss == 0 && CountGood == 0 && CountGreat == 0)
             return ClearBadge.AllPerfect;
 
@@ -87,7 +87,7 @@ public class ResultCounterScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ¡ƒvƒŒƒC‚µ‚½Œ‹‰Ê‚Ìƒ‰ƒ“ƒN
+    /// ä»Šãƒ—ãƒ¬ã‚¤ã—ãŸçµæœã®ãƒ©ãƒ³ã‚¯
     /// </summary>
     public static ScoreRank GetRank()
     {
@@ -95,7 +95,7 @@ public class ResultCounterScript : MonoBehaviour
     }
 
     /// <summary>
-    /// w’è‚µ‚½ƒXƒRƒA‚Ìƒ‰ƒ“ƒN
+    /// æŒ‡å®šã—ãŸã‚¹ã‚³ã‚¢ã®ãƒ©ãƒ³ã‚¯
     /// </summary>
     public static ScoreRank GetRank(int score)
     {
@@ -110,21 +110,28 @@ public class ResultCounterScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Ì†‚ğ•\¦—p‚Ì•¶š—ñ‚É•ÏŠ·‚·‚éienum–¼‚É "+" ‚ªg‚¦‚È‚¢‚½‚ßj
+    /// ç§°å·ã‚’è¡¨ç¤ºç”¨ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ï¼ˆenumåã« "+" ãŒä½¿ãˆãªã„ãŸã‚ï¼‰<br/>ä¾‹ : ALL PERFECT / FULL COMBO+
     /// </summary>
     public static string BadgeToText(ClearBadge badge)
     {
         switch (badge)
         {
-            case ClearBadge.AllPerfect: return "ALL PERFECT";
-            case ClearBadge.FullComboPlus: return "FULL COMBO+";
-            case ClearBadge.FullCombo: return "FULL COMBO";
-            default: return "CLEAR";
+            case ClearBadge.AllPerfect:
+                return "ALL PERFECT";
+
+            case ClearBadge.FullComboPlus:
+                return "FULL COMBO+";
+
+            case ClearBadge.FullCombo:
+                return "FULL COMBO";
+
+            default:
+                return "CLEAR";
         }
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒN‚ğ•\¦—p‚Ì•¶š—ñ‚É•ÏŠ·‚·‚éi“¯ãj
+    /// ãƒ©ãƒ³ã‚¯ã‚’è¡¨ç¤ºç”¨ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹<br/>ä¾‹ : SSS+ / SS / A
     /// </summary>
     public static string RankToText(ScoreRank rank)
     {
@@ -134,16 +141,23 @@ public class ResultCounterScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Ì†‚ğ•\¦—p‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é‚â‚Â‚Ì’Z‚¢”Åienum–¼‚É "+" ‚ªg‚¦‚È‚¢‚½‚ßj
+    /// ç§°å·ã‚’è¡¨ç¤ºç”¨ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ã‚„ã¤ã®çŸ­ã„ç‰ˆï¼ˆenumåã« "+" ãŒä½¿ãˆãªã„ãŸã‚ï¼‰<br/>ä¾‹ : AP / FC+
     /// </summary>
     public static string BadgeToShortText(ClearBadge badge)
     {
         switch (badge)
         {
-            case ClearBadge.AllPerfect: return "AP";
-            case ClearBadge.FullComboPlus: return "FC+";
-            case ClearBadge.FullCombo: return "FC";
-            default: return "CLEAR";
+            case ClearBadge.AllPerfect:
+                return "AP";
+
+            case ClearBadge.FullComboPlus:
+                return "FC+";
+
+            case ClearBadge.FullCombo:
+                return "FC";
+
+            default:
+                return "CLEAR";
         }
     }
 }

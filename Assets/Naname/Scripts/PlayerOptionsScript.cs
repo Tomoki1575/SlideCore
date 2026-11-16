@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -8,57 +8,53 @@ public class PlayerOptionsScript : MonoBehaviour
     public static PlayerOptionsScript Instance { get; private set; }
 
 
-    // ƒm[ƒcƒXƒs[ƒh‚Ìİ’è
+    // ãƒãƒ¼ãƒ„ã‚¹ãƒ”ãƒ¼ãƒ‰ã®è¨­å®š
     [SerializeField] private TextMeshProUGUI notesSpeedText;
     public static float NotesSpeedSetting { get; private set; } = 2.5f;
     private const float NotesSpeedPerSetting = 1000;
     public static float NotesSpeed => NotesSpeedSetting * NotesSpeedPerSetting;
 
 
-    // ƒIƒtƒZƒbƒg‚Ìİ’è
+    // ã‚ªãƒ•ã‚»ãƒƒãƒˆã®è¨­å®š
     //
-    // u–Â‚Á‚Ä‚¢‚é‰¹Šyv‚Æuƒm[ƒcv‚ÌƒYƒŒ‚ğ’¼‚·‚½‚ß‚ÌƒIƒtƒZƒbƒg
-    // ‚±‚Á‚¿‚ÍƒvƒŒƒCƒ„[‚ªİ’è‚·‚é
+    // ã€Œé³´ã£ã¦ã„ã‚‹éŸ³æ¥½ã€ã¨ã€Œãƒãƒ¼ãƒ„ã€ã®ã‚ºãƒ¬ã‚’ç›´ã™ãŸã‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+    // ã“ã£ã¡ã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè¨­å®šã™ã‚‹
     //
-    // u–Ú‰Ÿ‚µ‚Å‚Í‚È‚­ƒŠƒYƒ€‰Ÿ‚µ‚ğ‚µ‚½v‚É
-    // late‚¬‚İ‚¾‚Á‚½‚ç’l‚ğ‘‚â‚µ‚ÄAfast‚¬‚İ‚¾‚Á‚½‚ç’l‚ğŒ¸‚ç‚·
+    // ã€Œç›®æŠ¼ã—ã§ã¯ãªããƒªã‚ºãƒ æŠ¼ã—ã‚’ã—ãŸæ™‚ã€ã«
+    // lateãã¿ã ã£ãŸã‚‰å€¤ã‚’å¢—ã‚„ã—ã¦ã€fastãã¿ã ã£ãŸã‚‰å€¤ã‚’æ¸›ã‚‰ã™
     [SerializeField] private TextMeshProUGUI musicOffsetText;
     public static float MusicOffsetSetting { get; private set; } = 0f;
     private const float OffsetPerSetting = 1f / 60f;
     public static float MusicOffset => MusicOffsetSetting * OffsetPerSetting;
 
-
-    // ‰¹ŠÖ˜A‚Ì‰¹—Êİ’è
+    // éŸ³é–¢é€£ã®éŸ³é‡è¨­å®š
     [SerializeField] private AudioMixer audioMixer;
 
-    // AudioMixer ‘¤‚ÅŒöŠJ‚µ‚½ƒpƒ‰ƒ[ƒ^–¼
+    // AudioMixer å´ã§å…¬é–‹ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å
     private const string BGMVolumeParam = "BGMVolume";
     private const string SEVolumeParam = "SEVolume";
 
-    // ‰¹—Ê0‚Ì‚Æ‚«‚Ì dBiMixer ‚Ì‰ºŒÀj
+    // éŸ³é‡0ã®ã¨ãã® dBï¼ˆMixer ã®ä¸‹é™ï¼‰
     private const float MinDecibel = -80f;
 
-
-    // BGM‰¹—Ê‚Ìİ’è
+    // BGMéŸ³é‡ã®è¨­å®š
     [SerializeField] private Slider bgmVolumeSlider;
     [SerializeField] private TextMeshProUGUI bgmVolumeText;
     public static float BGMVolumeSetting { get; private set; } = 100f;
     private const float BGMVolumePerSetting = 0.01f;
     public static float BGMVolume => BGMVolumeSetting * BGMVolumePerSetting;
 
-
-    // SE‚Ì‰¹—Êİ’è
+    // SEã®éŸ³é‡è¨­å®š
     [SerializeField] private Slider seVolumeSlider;
     [SerializeField] private TextMeshProUGUI seVolumeText;
     public static float SEVolumeSetting { get; private set; } = 100f;
     private const float SEVolumePerSetting = 0.01f;
     public static float SEVolume => SEVolumeSetting * SEVolumePerSetting;
 
-
-    // ƒm[ƒcƒXƒs[ƒh‚Ìİ’è
-    [SerializeField] private Toggle isTimingFeedbackModeToggle;
+    // FastLateã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹
+    [SerializeField] private Toggle timingFeedbackOnToggle;
+    [SerializeField] private Toggle timingFeedbackOffToggle;
     public static bool IsTimingFeedbackMode { get; private set; } = false;
-
 
     private void Awake()
     {
@@ -69,15 +65,18 @@ public class PlayerOptionsScript : MonoBehaviour
     {
         if (bgmVolumeSlider != null) bgmVolumeSlider.SetValueWithoutNotify(BGMVolumeSetting);
         if (seVolumeSlider != null) seVolumeSlider.SetValueWithoutNotify(SEVolumeSetting);
-        if (isTimingFeedbackModeToggle != null) isTimingFeedbackModeToggle.SetIsOnWithoutNotify(IsTimingFeedbackMode);
 
+        if (IsTimingFeedbackMode)
+            timingFeedbackOnToggle.SetIsOnWithoutNotify(true);
+        else
+            timingFeedbackOffToggle.SetIsOnWithoutNotify(true);
         RefreshSettingText();
         ApplyVolume();
     }
 
     /// <summary>
-    /// OptionDataManager‚©‚çƒZ[ƒuƒf[ƒ^‚ğƒf[ƒ^‚ğƒ[ƒh‚·‚éÛA‚±‚ê‚ğ’‡‰î‚·‚é‚±‚Æ‚É‚æ‚èAó‚¯æ‚èŒû‚Ì”ÍˆÍ‚ği‚éB
-    /// (‚à‚µ‚à‰¼‚ÉBGMVolumeSetting = -9999‚İ‚½‚¢‚ÈƒoƒOƒZ[ƒuƒf[ƒ^‚ğ“Ç‚ñ‚Å‚µ‚Ü‚Á‚Ä‚à§Œä‚Å‚«‚é‚æ‚¤‚É‚·‚é‚½‚ß)
+    /// OptionDataManagerã‹ã‚‰ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹éš›ã€ã“ã‚Œã‚’ä»²ä»‹ã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šã€å—ã‘å–ã‚Šå£ã®ç¯„å›²ã‚’çµã‚‹ã€‚
+    /// (ã‚‚ã—ã‚‚ä»®ã«BGMVolumeSetting = -9999ã¿ãŸã„ãªãƒã‚°ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã‚“ã§ã—ã¾ã£ã¦ã‚‚åˆ¶å¾¡ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚)
     /// </summary>
     public static void ApplyLoadedValues(float notesSpeed, float musicOffset, float bgm, float se, bool isTimingFeedbackMode)
     {
@@ -101,7 +100,7 @@ public class PlayerOptionsScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Slider ‚Ì OnValueChanged ‚©‚çŒÄ‚Î‚ê‚é
+    /// Slider ã® OnValueChanged ã‹ã‚‰å‘¼ã°ã‚Œã‚‹
     /// </summary>
     public void OnBgmVolumeChanged(float value)
     {
@@ -111,7 +110,7 @@ public class PlayerOptionsScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Slider ‚Ì OnValueChanged ‚©‚çŒÄ‚Î‚ê‚é
+    /// Slider ã® OnValueChanged ã‹ã‚‰å‘¼ã°ã‚Œã‚‹
     /// </summary>
     public void OnSeVolumeChanged(float value)
     {
@@ -121,7 +120,7 @@ public class PlayerOptionsScript : MonoBehaviour
     }
 
     /// <summary>
-    /// •ÏX‚³‚ê‚½’l‚ğA–Ú‚ÉŒ©‚¦‚é•”•ª‚Æ‚µ‚Ä‘‚«Š·‚¦‚é
+    /// å¤‰æ›´ã•ã‚ŒãŸå€¤ã‚’ã€ç›®ã«è¦‹ãˆã‚‹éƒ¨åˆ†ã¨ã—ã¦æ›¸ãæ›ãˆã‚‹
     /// </summary>
     private void RefreshSettingText()
     {
@@ -132,13 +131,13 @@ public class PlayerOptionsScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Mixer‚É‰¹—Ê‚ğ‘—‚é
+    /// Mixerã«éŸ³é‡ã‚’é€ã‚‹
     /// </summary>
     private void ApplyVolume()
     {
         if (audioMixer == null)
         {
-            Debug.LogError("[Unassigned] AudioMixer ‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚Ü‚¹‚ñB", this);
+            Debug.LogError("[Unassigned] AudioMixer ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", this);
             return;
         }
 
@@ -147,11 +146,11 @@ public class PlayerOptionsScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ”{—¦(0-1)‚ğAƒfƒVƒxƒ‹‚É•ÏŠ·‚·‚é
+    /// å€ç‡(0-1)ã‚’ã€ãƒ‡ã‚·ãƒ™ãƒ«ã«å¤‰æ›ã™ã‚‹
     /// </summary>
     public static float ToDecibel(float volume)
     {
-        // Log10(0) ‚Í -‡ ‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚Ì‚ÅA‰ºŒÀ‚Å‘Å‚¿~‚ß‚É‚·‚é
+        // Log10(0) ã¯ -âˆ ã«ãªã£ã¦ã—ã¾ã†ã®ã§ã€ä¸‹é™ã§æ‰“ã¡æ­¢ã‚ã«ã™ã‚‹
         if (volume <= 0.0001f) 
             return MinDecibel;
 
@@ -159,7 +158,7 @@ public class PlayerOptionsScript : MonoBehaviour
     }
 
     /// <summary>
-    /// SE‚Ì‰¹—Ê’²®slider‚©‚çw‚ğ—£‚µ‚½Û‚ÉA‰¹—ÊŠm”F‚Ì‚½‚ß‚Éƒ^ƒbƒvƒm[ƒc‚ÌSE‚ğ–Â‚ç‚·
+    /// SEã®éŸ³é‡èª¿æ•´sliderã‹ã‚‰æŒ‡ã‚’é›¢ã—ãŸéš›ã«ã€éŸ³é‡ç¢ºèªã®ãŸã‚ã«ã‚¿ãƒƒãƒ—ãƒãƒ¼ãƒ„ã®SEã‚’é³´ã‚‰ã™
     /// </summary>
     public void OnPlayPreviewSE()
     {
@@ -167,7 +166,7 @@ public class PlayerOptionsScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggle ‚Ì OnValueChanged ‚©‚çŒÄ‚Î‚ê‚é
+    /// Toggle ã® OnValueChanged ã‹ã‚‰å‘¼ã°ã‚Œã‚‹
     /// </summary>
     public void OnMirrorChartChanged(bool value)
     {

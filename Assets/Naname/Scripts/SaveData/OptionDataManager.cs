@@ -1,17 +1,17 @@
-using System.IO;
+ï»¿using System.IO;
 using UnityEngine;
 
 public static class OptionDataManager
 {
-    // Å‰‚ÌƒV[ƒ“‚ª“Ç‚İ‚Ü‚ê‚é‘OiAwake‚âStart‚æ‚è‚à‘Oj‚ÉAƒV[ƒ“ã‚ÉƒIƒuƒWƒFƒNƒg‚ğ”z’u‚µ‚Ä‚¢‚È‚­‚Ä‚àw’è‚µ‚½ƒƒ\ƒbƒh‚ğ©“®‚ÅŒÄ‚Ño‚¹‚é‘®«
+    // æœ€åˆã®ã‚·ãƒ¼ãƒ³ãŒèª­ã¿è¾¼ã¾ã‚Œã‚‹å‰ï¼ˆAwakeã‚„Startã‚ˆã‚Šã‚‚å‰ï¼‰ã«ã€ã‚·ãƒ¼ãƒ³ä¸Šã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é…ç½®ã—ã¦ã„ãªãã¦ã‚‚æŒ‡å®šã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã‚’è‡ªå‹•ã§å‘¼ã³å‡ºã›ã‚‹å±æ€§
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void LoadOnStartup()
     {
         Load();
-        Debug.Log("[SaveData] ƒ[ƒh‚³‚ê‚Ü‚µ‚½");
+        Debug.Log("[SaveData] OptionDataãŒãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¾ã—ãŸ");
     }
 
-    // ƒZ[ƒuƒtƒ@ƒCƒ‹‚ÌŒ`®ƒo[ƒWƒ‡ƒ“B€–Ú‚ğ‘‚â‚µ‚½‚çã‚°‚éB
+    // ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®å½¢å¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€‚é …ç›®ã‚’å¢—ã‚„ã—ãŸã‚‰ä¸Šã’ã‚‹ã€‚
     private const int SaveVersion = 2;
 
     private static string FilePath => Path.Combine(Application.persistentDataPath, "OptionSaveData.dat");
@@ -20,12 +20,12 @@ public static class OptionDataManager
     {
         try
         {
-            // ‡@ƒtƒ@ƒCƒ‹‚ğŠJ‚«(–³‚¯‚ê‚Îì¬‚µ)
+            // â‘ ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã(ç„¡ã‘ã‚Œã°ä½œæˆã—)
             using (FileStream stream = File.Open(FilePath, FileMode.Create))
-            // ‡A•Ï”ŒW‚ğŒq‚®B‚Ç‚¿‚ç‚à } ‚Å©“®“I‚É•Â‚ß‚ç‚ê‚é
+            // â‘¡å¤‰æ•°ä¿‚ã‚’ç¹‹ãã€‚ã©ã¡ã‚‰ã‚‚ } ã§è‡ªå‹•çš„ã«é–‰ã‚ã‚‰ã‚Œã‚‹
             using (BinaryWriter writer = new BinaryWriter(stream))
             {
-                // ‡B’l‚ğ‡”Ô‚É‘‚¢‚Ä‚¢‚­B‚±‚Ì‡”Ô‚Å“Ç‚Ü‚ê‚é‚½‚ßAÅ‰‚Éƒo[ƒWƒ‡ƒ“‚ğ‘‚­B
+                // â‘¢å€¤ã‚’é †ç•ªã«æ›¸ã„ã¦ã„ãã€‚ã“ã®é †ç•ªã§èª­ã¾ã‚Œã‚‹ãŸã‚ã€æœ€åˆã«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’æ›¸ãã€‚
                 writer.Write(SaveVersion);
 
                 writer.Write(PlayerOptionsScript.NotesSpeedSetting);
@@ -38,13 +38,13 @@ public static class OptionDataManager
 
         catch (IOException e)
         {
-            Debug.LogWarning($"[SaveData] ƒZ[ƒu‚É¸”s‚µ‚Ü‚µ‚½:{e.Message}");
+            Debug.LogWarning($"[SaveData] OptionDataã®ã‚»ãƒ¼ãƒ–ã«å¤±æ•—ã—ã¾ã—ãŸ:{e.Message}");
         }
     }
 
     public static void Load()
     {
-        // ƒtƒ@ƒCƒ‹‚ª‚È‚¢(‰‰ñ‹N“®‚Ì)ê‡AŠù’è’l‚Ì‚Ü‚Ü‚Å‚¢‚¢‚½‚ß‘Šúreturn
+        // ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„(åˆå›èµ·å‹•æ™‚ã®)å ´åˆã€æ—¢å®šå€¤ã®ã¾ã¾ã§ã„ã„ãŸã‚æ—©æœŸreturn
         if (!File.Exists(FilePath)) return;
 
         try
@@ -52,43 +52,41 @@ public static class OptionDataManager
             using (FileStream stream = File.Open(FilePath, FileMode.Open))
             using (BinaryReader reader = new BinaryReader(stream))
             {
-                // æ“ª‚Ìƒo[ƒWƒ‡ƒ“‚ğŒ©‚ÄA‚Ç‚¤“Ç‚Ş‚©‚ğŒˆ‚ß‚é
+                // å…ˆé ­ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¦‹ã¦ã€ã©ã†èª­ã‚€ã‹ã‚’æ±ºã‚ã‚‹
                 int version = reader.ReadInt32();
 
                 if (version > SaveVersion)
                 {
-                    Debug.LogWarning($"[SaveData] –¢’m‚Ìƒo[ƒWƒ‡ƒ“{version}‚Å‚·BŠù’è’l‚Å‹N“®‚µ‚Ü‚·B");
+                    Debug.LogWarning($"[SaveData] OptionDataã«ãŠã„ã¦æœªçŸ¥ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³{version}ã§ã™ã€‚æ—¢å®šå€¤ã§èµ·å‹•ã—ã¾ã™ã€‚");
                     return;
                 }
 
-                // ‡@ˆê’U‘S•”“Ç‚İØ‚é
+                // â‘ ä¸€æ—¦å…¨éƒ¨èª­ã¿åˆ‡ã‚‹ï¼ˆå¤‰æ•°ã¨ã—ã¦æ›¸ãå‡ºã™ã ã‘ã§ã€å®Ÿéš›ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã«é©å¿œã¯ã—ã¦ã„ãªã„ã€‚ï¼‰
                 float notesSpeed = ReadFloatSince(reader, version, 1, 2.5f);
                 float musicOffset = ReadFloatSince(reader, version, 1, 0f);
                 float bgmVolume = ReadFloatSince(reader, version, 1, 100f);
                 float seVolume = ReadFloatSince(reader, version, 1, 100f);
                 bool isTimingFeedbackMode = ReadBoolSince(reader, version, 2, false);
 
-                // ‡A‚±‚±‚Ü‚Å—ˆ‚½‚ç¬Œ÷B‚Ü‚Æ‚ß‚Ä”½‰f‚·‚éB
+                // â‘¡ã“ã“ã¾ã§æ¥ãŸã‚‰æˆåŠŸã€‚ã¾ã¨ã‚ã¦ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã«åæ˜ ã™ã‚‹ã€‚
                 PlayerOptionsScript.ApplyLoadedValues(notesSpeed, musicOffset, bgmVolume, seVolume, isTimingFeedbackMode);
 
-                Debug.Log($"[SaveData] ƒ[ƒh‚µ‚Ü‚µ‚½ Ver.{version} / ƒIƒtƒZƒbƒg:{musicOffset} / ‘¬“x:{notesSpeed} / BGM:{bgmVolume} / SE:{seVolume} / Fast/Late•\¦:{isTimingFeedbackMode}");
+                Debug.Log($"[SaveData] Optiondataã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ Ver.{version} / ã‚ªãƒ•ã‚»ãƒƒãƒˆ:{musicOffset} / é€Ÿåº¦:{notesSpeed} / BGM:{bgmVolume} / SE:{seVolume} / Fast/Lateè¡¨ç¤º:{isTimingFeedbackMode}");
             }
         }
 
         catch (IOException e)
         {
-            Debug.LogWarning($"[SaveData] ƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½:{e.Message}");
+            Debug.LogWarning($"[SaveData] OptionDataã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ:{e.Message}");
         }
     }
 
-
     /// <summary>
-    /// float ‚É‚¨‚¢‚Ä version ‚ª since ˆÈã‚È‚ç“Ç‚İAŒÃ‚¢ƒZ[ƒu‚È‚ç“Ç‚Ü‚¸‚ÉŠù’è’l‚ğ•Ô‚·B
-    /// ¦ŒÄ‚Ô‡”Ô‚Í Save() ‚Ì‘‚«‚İ‡‚Æˆê’v‚µ‚Ä‚¢‚é‚±‚Æ
+    /// [ãƒã‚¤ãƒŠãƒª] ã‹ã‚‰ [C#ã®floatå¤‰æ•°] ã«å¤‰æ›ã™ã‚‹ã€‚<br/>ãã®éš›ã«versionãŒsinceæœªæº€(ã“ã®è¨˜éŒ²ã‚’ä½œã‚‹ã‚ˆã‚Šå‰ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³)ãªã‚‰ã€èª­ã¾ãšã«æ—¢å®šå€¤ã‚’è¿”ã™ã€‚<br/>
+    /// [é‡è¦] : å‘¼ã¶é †ç•ªã¯Saveã®æ›¸ãè¾¼ã¿é †ã¨ä¸€è‡´ã—ã¦ã„ã‚‹ã“ã¨ã€‚
     /// </summary>
     private static float ReadFloatSince(BinaryReader reader, int version, int since, float defaultValue)
     {
-        // ‚±‚Ìƒo[ƒWƒ‡ƒ“‚É‚Í‚Ü‚¾‘¶İ‚µ‚È‚¢€–Ú‚Ìê‡A“Ç‚Ü‚¸‚ÉŠù’è’l‚ğ•Ô‚·B
         if (version < since)
             return defaultValue;
 
@@ -96,12 +94,11 @@ public static class OptionDataManager
     }
 
     /// <summary>
-    /// bool ‚É‚¨‚¢‚Ä version ‚ª since ˆÈã‚È‚ç“Ç‚İAŒÃ‚¢ƒZ[ƒu‚È‚ç“Ç‚Ü‚¸‚ÉŠù’è’l‚ğ•Ô‚·B
-    /// ¦ŒÄ‚Ô‡”Ô‚Í Save() ‚Ì‘‚«‚İ‡‚Æˆê’v‚µ‚Ä‚¢‚é‚±‚Æ
+    /// [ãƒã‚¤ãƒŠãƒª] ã‹ã‚‰ [C#ã®boolå¤‰æ•°] ã«å¤‰æ›ã™ã‚‹ã€‚<br/>ãã®éš›ã«versionãŒsinceæœªæº€(ã“ã®è¨˜éŒ²ã‚’ä½œã‚‹ã‚ˆã‚Šå‰ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³)ãªã‚‰ã€èª­ã¾ãšã«æ—¢å®šå€¤ã‚’è¿”ã™ã€‚<br/>
+    /// [é‡è¦] : å‘¼ã¶é †ç•ªã¯Saveã®æ›¸ãè¾¼ã¿é †ã¨ä¸€è‡´ã—ã¦ã„ã‚‹ã“ã¨ã€‚
     /// </summary>
     private static bool ReadBoolSince(BinaryReader reader, int version, int since, bool defaultValue)
     {
-        // ‚±‚Ìƒo[ƒWƒ‡ƒ“‚É‚Í‚Ü‚¾‘¶İ‚µ‚È‚¢€–Ú‚Ìê‡A“Ç‚Ü‚¸‚ÉŠù’è’l‚ğ•Ô‚·B
         if (version < since)
             return defaultValue;
 
