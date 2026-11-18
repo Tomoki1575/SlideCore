@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -94,6 +94,9 @@ MonoBehaviour:
   Lane: 0
   MyNotesType: 0
   IsRight: 0
+  EndHitTime: 0
+  HoldBand: {fileID: 0}
+  HoldBaseOffsetY: 0
 --- !u!114 &-5476624000308350437
 MonoBehaviour:
   m_ObjectHideFlags: 0

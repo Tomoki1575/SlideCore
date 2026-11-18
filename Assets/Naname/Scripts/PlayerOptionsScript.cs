@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerOptionsScript : MonoBehaviour
 {
+    public enum SlideButtonLayout
+    {
+        Center = 0,
+        Edge = 1
+    }
+
+
     public static PlayerOptionsScript Instance { get; private set; }
 
 
@@ -56,6 +63,11 @@ public class PlayerOptionsScript : MonoBehaviour
     [SerializeField] private Toggle timingFeedbackOffToggle;
     public static bool IsTimingFeedbackMode { get; private set; } = false;
 
+    // スライドボタンのレイアウトを決定
+    [SerializeField] private Toggle slideButtonLayoutCenter;
+    [SerializeField] private Toggle slideButtonLayoutEdge;
+    public static SlideButtonLayout SlideButtonLayoutSetting { get; private set; } = SlideButtonLayout.Center;
+
     private void Awake()
     {
         Instance = this;
@@ -70,6 +82,17 @@ public class PlayerOptionsScript : MonoBehaviour
             timingFeedbackOnToggle.SetIsOnWithoutNotify(true);
         else
             timingFeedbackOffToggle.SetIsOnWithoutNotify(true);
+
+        switch (SlideButtonLayoutSetting)
+        {
+            case SlideButtonLayout.Center:
+                slideButtonLayoutCenter.SetIsOnWithoutNotify(true);
+                break;
+            case SlideButtonLayout.Edge:
+                slideButtonLayoutEdge.SetIsOnWithoutNotify(true);
+                break;
+        }
+
         RefreshSettingText();
         ApplyVolume();
     }
@@ -78,13 +101,14 @@ public class PlayerOptionsScript : MonoBehaviour
     /// OptionDataManagerからセーブデータをデータをロードする際、これを仲介することにより、受け取り口の範囲を絞る。
     /// (もしも仮にBGMVolumeSetting = -9999みたいなバグセーブデータを読んでしまっても制御できるようにするため)
     /// </summary>
-    public static void ApplyLoadedValues(float notesSpeed, float musicOffset, float bgm, float se, bool isTimingFeedbackMode)
+    public static void ApplyLoadedValues(float notesSpeed, float musicOffset, float bgmVolume, float seVolume, bool isTimingFeedbackMode,int slideButtonLayout)
     {
         NotesSpeedSetting = Mathf.Clamp(notesSpeed, 1f, 10f);
         MusicOffsetSetting = Mathf.Clamp(musicOffset, -20f, 20f);
-        BGMVolumeSetting = Mathf.Clamp(bgm, 0f, 100f);
-        SEVolumeSetting = Mathf.Clamp(se, 0f, 100f);
+        BGMVolumeSetting = Mathf.Clamp(bgmVolume, 0f, 100f);
+        SEVolumeSetting = Mathf.Clamp(seVolume, 0f, 100f);
         IsTimingFeedbackMode = isTimingFeedbackMode;
+        SlideButtonLayoutSetting = (SlideButtonLayout)Mathf.Clamp(slideButtonLayout,0,1);
     }
 
     public void OnChangeNotesSpeed(float delta)
@@ -151,7 +175,7 @@ public class PlayerOptionsScript : MonoBehaviour
     public static float ToDecibel(float volume)
     {
         // Log10(0) は -∞ になってしまうので、下限で打ち止めにする
-        if (volume <= 0.0001f) 
+        if (volume <= 0.0001f)
             return MinDecibel;
 
         return Mathf.Log10(volume) * 20f;
@@ -168,8 +192,26 @@ public class PlayerOptionsScript : MonoBehaviour
     /// <summary>
     /// Toggle の OnValueChanged から呼ばれる
     /// </summary>
-    public void OnMirrorChartChanged(bool value)
+    public void OnTimingFeedbackChanged(bool value)
     {
         IsTimingFeedbackMode = value;
+    }
+
+    /// <summary>
+    /// Toggle の OnValueChanged から呼ばれる
+    /// </summary>
+    public void OnSlideButtonLayoutCenterSelected(bool isOn)
+    {
+        if (!isOn) return;
+        SlideButtonLayoutSetting = SlideButtonLayout.Center;
+    }
+
+    /// <summary>
+    /// Toggle の OnValueChanged から呼ばれる
+    /// </summary>
+    public void OnSlideButtonLayoutEdgeSelected(bool isOn)
+    {
+        if (!isOn) return;
+        SlideButtonLayoutSetting = SlideButtonLayout.Edge;
     }
 }

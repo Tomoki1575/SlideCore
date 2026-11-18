@@ -1,31 +1,26 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using static UnityEngine.InputSystem.InputAction;
+﻿using UnityEngine;
 
 public class TitleInputScript : MonoBehaviour
 {
-    [SerializeField] private InputActionAsset actions;
+    [Header("panelをアタッチ")]
+    [SerializeField] private GameObject titlePanel;
 
-    private System.Action<CallbackContext> titleToSelectHandler;
-
-    private void OnEnable()
-    {
-        actions.Enable();
-
-        titleToSelectHandler = ctx => TitleToSelectTap();
-        actions.FindAction("TitleToSelect").canceled += titleToSelectHandler;
-    }
-
-    private void OnDisable()
-    {
-        actions.FindAction("TitleToSelect").canceled -= titleToSelectHandler;
-
-        actions.Disable();
-    }
-
-    private void TitleToSelectTap()
+    public void OnTitleToSelectTap()
     {
         SceneLoaderScript.Instance.LoadSceneWithFade("SelectScene");
+    }
+
+    public void OnOpenPanel()
+    {
+        if (titlePanel == null) return;
+        titlePanel.SetActive(true);
+
+        Debug.Log("開いた");
+    }
+
+    public void OnClosePanel()
+    {
+        if (titlePanel == null) return;
+        titlePanel.SetActive(false);
     }
 }
