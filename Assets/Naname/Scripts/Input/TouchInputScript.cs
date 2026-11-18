@@ -32,7 +32,16 @@ public class TouchInputScript : MonoBehaviour
         if (touchPressAction == null)
             Debug.LogError("[TouchInput] TouchPressが見つかりません。");
 
-        SetLayout(1);
+        switch (PlayerOptionsScript.SlideButtonLayoutSetting)
+        {
+            case PlayerOptionsScript.SlideButtonLayout.Center:
+                SetLayout(0);
+                break;
+
+            case PlayerOptionsScript.SlideButtonLayout.Edge:
+                SetLayout(1);
+                break;
+        }
     }
 
     private void OnEnable()
@@ -116,7 +125,7 @@ public class TouchInputScript : MonoBehaviour
         laneByTouchId.Remove(touchId);
 
         // まだほかの指が押している場合はreturn
-        foreach(int otherLane in laneByTouchId.Values)
+        foreach (int otherLane in laneByTouchId.Values)
         {
             if (otherLane == lane) return;
         }
@@ -153,7 +162,7 @@ public class TouchInputScript : MonoBehaviour
         if (layouts == null || index < 0 || index >= layouts.Length) return;
 
         // indexのレイアウトのみをアクティブにする
-        for (int i = 0;i < layouts.Length; i++)
+        for (int i = 0; i < layouts.Length; i++)
         {
             layouts[i].gameObject.SetActive(i == index);
         }

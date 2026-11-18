@@ -12,7 +12,7 @@ public static class OptionDataManager
     }
 
     // セーブファイルの形式バージョン。項目を増やしたら上げる。
-    private const int SaveVersion = 2;
+    private const int SaveVersion = 3;
 
     private static string FilePath => Path.Combine(Application.persistentDataPath, "OptionSaveData.dat");
 
@@ -33,6 +33,7 @@ public static class OptionDataManager
                 writer.Write(PlayerOptionsScript.BGMVolumeSetting);
                 writer.Write(PlayerOptionsScript.SEVolumeSetting);
                 writer.Write(PlayerOptionsScript.IsTimingFeedbackMode);
+                writer.Write((int)PlayerOptionsScript.SlideButtonLayoutSetting);
             }
         }
 
@@ -67,11 +68,24 @@ public static class OptionDataManager
                 float bgmVolume = ReadFloatSince(reader, version, 1, 100f);
                 float seVolume = ReadFloatSince(reader, version, 1, 100f);
                 bool isTimingFeedbackMode = ReadBoolSince(reader, version, 2, false);
+                int slideButtonLayout = ReadIntSince(reader, version, 3, 0);
 
                 // ②ここまで来たら成功。まとめてオプションに反映する。
-                PlayerOptionsScript.ApplyLoadedValues(notesSpeed, musicOffset, bgmVolume, seVolume, isTimingFeedbackMode);
+                PlayerOptionsScript.ApplyLoadedValues(
+                    notesSpeed: notesSpeed,
+                    musicOffset: musicOffset,
+                    bgmVolume:bgmVolume,
+                    seVolume: seVolume,
+                    isTimingFeedbackMode: isTimingFeedbackMode,
+                    slideButtonLayout:slideButtonLayout);
 
-                Debug.Log($"[SaveData] Optiondataをロードしました Ver.{version} / オフセット:{musicOffset} / 速度:{notesSpeed} / BGM:{bgmVolume} / SE:{seVolume} / Fast/Late表示:{isTimingFeedbackMode}");
+                Debug.Log($"[SaveData] Optiondataをロードしました Ver.{version} " +
+                    $"/ オフセット:{musicOffset} " +
+                    $"/ 速度:{notesSpeed} " +
+                    $"/ BGM:{bgmVolume} " +
+                    $"/ SE:{seVolume}" +
+                    $"/ Fast/Late表示:{isTimingFeedbackMode} " +
+                    $"/ スライドボタンの位置:{PlayerOptionsScript.SlideButtonLayoutSetting}");
             }
         }
 
@@ -79,6 +93,18 @@ public static class OptionDataManager
         {
             Debug.LogWarning($"[SaveData] OptionDataのロードに失敗しました:{e.Message}");
         }
+    }
+
+    /// <summary>
+    /// [バイナリ] から [C#のint変数] に変換する。<br/>その際にversionがsince未満(この記録を作るより前のバージョン)なら、読まずに既定値を返す。<br/>
+    /// [重要] : 呼ぶ順番はSaveの書き込み順と一致していること。
+    /// </summary>
+    private static int ReadIntSince(BinaryReader reader, int version, int since, int defaultValue)
+    {
+        if (version < since)
+            return defaultValue;
+
+        return reader.ReadInt32();
     }
 
     /// <summary>

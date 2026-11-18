@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,14 +8,14 @@ public class FadeManagerScript : MonoBehaviour
     private Image fadePanel;
     private Coroutine coroutine;
 
-    private Color panelColor = new Color(0, 0, 0, 1);
-    private float fadeTime = 1f;
+    [SerializeField] private Color panelColor = new Color(1, 1, 1, 1);
+    [SerializeField] private float fadeTime = 1.3f;
 
     public static FadeManagerScript Instance { get; private set; }
 
     private void Awake()
     {
-        // ƒVƒ“ƒOƒ‹ƒgƒ“‚Ìˆ—
+        // ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã®å‡¦ç†
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -26,28 +26,28 @@ public class FadeManagerScript : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        // canvas‚ğ¶¬
+        // canvasã‚’ç”Ÿæˆ
         GameObject canvasGenerate = new GameObject("FadeCanvas");
         fadeCanvas = canvasGenerate.AddComponent<Canvas>();
         canvasGenerate.AddComponent<CanvasScaler>();
         canvasGenerate.AddComponent<GraphicRaycaster>();
 
-        // ‚Ç‚Ìcanvas‚æ‚è‚àè‘O‚É•\¦‚·‚é
+        // ã©ã®canvasã‚ˆã‚Šã‚‚æ‰‹å‰ã«è¡¨ç¤ºã™ã‚‹
         fadeCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         fadeCanvas.sortingOrder = 100;
 
-        // panel‚ğ¶¬
+        // panelã‚’ç”Ÿæˆ
         GameObject panelGenerate = new GameObject("FadePanel");
         fadePanel = panelGenerate.AddComponent<Image>();
         fadePanel.color = panelColor;
 
-        // panel‚ğcanvas‚Ìq‹Ÿ‚Éİ’è
+        // panelã‚’canvasã®å­ä¾›ã«è¨­å®š
         panelGenerate.transform.SetParent(canvasGenerate.transform, false);
 
-        // canvas‚ğ‚±‚ê‚ªƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚Ìq‹Ÿ‚Éİ’è(‚±‚¤‚·‚é‚±‚Æ‚ÅƒV[ƒ“‚ğŒ×‚¢‚Å‚àƒpƒlƒ‹‚²‚Æc‚é)
+        // canvasã‚’ã“ã‚ŒãŒã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å­ä¾›ã«è¨­å®š(ã“ã†ã™ã‚‹ã“ã¨ã§ã‚·ãƒ¼ãƒ³ã‚’è·¨ã„ã§ã‚‚ãƒ‘ãƒãƒ«ã”ã¨æ®‹ã‚‹)
         canvasGenerate.transform.SetParent(this.transform, false);
 
-        // ¶¬‚µ‚½image‚Ì‘å‚«‚³‚ğ‰æ–Ê‘S‘Ì‚Ì‘å‚«‚³‚É‚È‚é‚æ‚¤‚É•ÏX
+        // ç”Ÿæˆã—ãŸimageã®å¤§ãã•ã‚’ç”»é¢å…¨ä½“ã®å¤§ãã•ã«ãªã‚‹ã‚ˆã†ã«å¤‰æ›´
         RectTransform rectTransform = fadePanel.rectTransform;
         rectTransform.anchorMin = Vector2.zero;
         rectTransform.anchorMax = Vector2.one;
@@ -56,7 +56,7 @@ public class FadeManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒtƒF[ƒhƒAƒEƒg‚Ì‰‰o‚ğ‹²‚Ş
+    /// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ¼”å‡ºã‚’æŒŸã‚€
     /// </summary>
     public Coroutine FadeOut()
     {
@@ -71,7 +71,7 @@ public class FadeManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒtƒF[ƒhƒCƒ“‚Ì‰‰o‚ğ‹²‚Ş
+    /// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®æ¼”å‡ºã‚’æŒŸã‚€
     /// </summary>
     public Coroutine FadeIn()
     {
@@ -91,7 +91,7 @@ public class FadeManagerScript : MonoBehaviour
 
         while (panelColor.a < 1f)
         {
-            // ƒ‰ƒO‚¢‚ÆƒtƒF[ƒh‚ªˆê‹C‚É•Ï‚í‚Á‚Ä‚µ‚Ü‚¤‚½‚ßAƒtƒF[ƒh‚Ì•Ï‰»—Ê‚ÉãŒÀ‚ğİ’è
+            // ãƒ©ã‚°ã„ã¨ãƒ•ã‚§ãƒ¼ãƒ‰ãŒä¸€æ°—ã«å¤‰ã‚ã£ã¦ã—ã¾ã†ãŸã‚ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã®å¤‰åŒ–é‡ã«ä¸Šé™ã‚’è¨­å®š
             panelColor.a += Mathf.Min(Time.unscaledDeltaTime, 1f / 30f) / fadeTime;
             fadePanel.color = panelColor;
             yield return null;
@@ -108,7 +108,7 @@ public class FadeManagerScript : MonoBehaviour
 
         while (panelColor.a > 0f)
         {
-            // ƒ‰ƒO‚¢‚ÆƒtƒF[ƒh‚ªˆê‹C‚É•Ï‚í‚Á‚Ä‚µ‚Ü‚¤‚½‚ßAƒtƒF[ƒh‚Ì•Ï‰»—Ê‚ÉãŒÀ‚ğİ’è
+            // ãƒ©ã‚°ã„ã¨ãƒ•ã‚§ãƒ¼ãƒ‰ãŒä¸€æ°—ã«å¤‰ã‚ã£ã¦ã—ã¾ã†ãŸã‚ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã®å¤‰åŒ–é‡ã«ä¸Šé™ã‚’è¨­å®š
             panelColor.a -= Mathf.Min(Time.unscaledDeltaTime, 1f / 30f) / fadeTime;
             fadePanel.color = panelColor;
             yield return null;
